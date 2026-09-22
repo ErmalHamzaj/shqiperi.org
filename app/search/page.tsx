@@ -16,14 +16,6 @@ import { matchCategory, companyNote, localize, type Company } from "@/lib/direct
 
 type Source = { title: string; url: string; age?: string };
 type Status = "idle" | "loading" | "streaming" | "done" | "error";
-type WikiSummary = {
-  title: string;
-  extract: string;
-  url: string;
-  thumbnail?: string;
-};
-type WebResult = { title: string; snippet: string; url: string };
-type WebData = { summary: WikiSummary | null; results: WebResult[] };
 
 export default function SearchPage() {
   return (
@@ -38,14 +30,9 @@ function SearchResults() {
   const query = params.get("q") ?? "";
   const { lang, tr } = useLang();
 
-  // Free web results (Wikipedia) — the default, no AI.
-  const [web, setWeb] = useState<WebData | null>(null);
-  const [webLoading, setWebLoading] = useState(true);
-  // AI is opt-in: only runs when the user asks, or when free results are empty.
-  const [showAI, setShowAI] = useState(false);
   const [answer, setAnswer] = useState("");
   const [sources, setSources] = useState<Source[]>([]);
-  const [status, setStatus] = useState<Status>("idle");
+  const [status, setStatus] = useState<Status>("loading");
   const abortRef = useRef<AbortController | null>(null);
 
   const refinement = getRefinement(query, lang);
@@ -58,42 +45,9 @@ function SearchResults() {
     );
   const highIntent = customPlan || category !== null;
 
-  // Fetch free web results whenever the query changes.
+  // Stream the AI answer for every (non-news) search.
   useEffect(() => {
     if (!query || isNews) return;
-    let active = true;
-    setWeb(null);
-    setWebLoading(true);
-    setShowAI(false);
-    setAnswer("");
-    setSources([]);
-    setStatus("idle");
-
-    fetch(`/api/websearch?q=${encodeURIComponent(query)}&lang=${lang}`, {
-      cache: "no-store",
-    })
-      .then((r) => r.json())
-      .then((d: WebData) => {
-        if (!active) return;
-        setWeb(d);
-        setWebLoading(false);
-        // Nothing free to show → AI is genuinely needed, run it automatically.
-        if (!d.summary && (!d.results || d.results.length === 0)) setShowAI(true);
-      })
-      .catch(() => {
-        if (!active) return;
-        setWebLoading(false);
-        setShowAI(true);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, [query, lang, isNews]);
-
-  // Stream the AI answer — only when requested (showAI).
-  useEffect(() => {
-    if (!query || isNews || !showAI) return;
     const controller = new AbortController();
     abortRef.current?.abort();
     abortRef.current = controller;
@@ -153,7 +107,7 @@ function SearchResults() {
     })();
 
     return () => controller.abort();
-  }, [query, lang, isNews, showAI]);
+  }, [query, lang, isNews]);
 
   return (
     <div className="min-h-screen">
@@ -211,72 +165,48 @@ function SearchResults() {
               </section>
             )}
 
-            {/* Free summary (Wikipedia) — no AI */}
-            {webLoading ? (
-              <section className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
+            {/* AI answer — the primary result for every search */}
+            <section className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
+              <div className="mb-4 flex items-center gap-2">
+                <BookIcon />
+                <h2 className="text-sm font-semibold tracking-wide text-flag-red uppercase">
+                  {tr.overview}
+                </h2>
+              </div>
+
+              {status === "loading" && answer === "" ? (
                 <LoadingSkeleton label={tr.searching} />
-              </section>
-            ) : web?.summary ? (
-              <WikiSummary summary={web.summary} via={tr.webVia} readMore={tr.readMore} />
-            ) : null}
-
-            {/* AI answer — opt-in (or auto when there's nothing free to show) */}
-            {showAI ? (
-              <section className="mt-6 rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
-                <div className="mb-4 flex items-center gap-2">
-                  <BookIcon />
-                  <h2 className="text-sm font-semibold tracking-wide text-flag-red uppercase">
-                    {tr.overview}
-                  </h2>
-                </div>
-
-                {status === "loading" && answer === "" ? (
-                  <LoadingSkeleton label={tr.searching} />
-                ) : status === "error" ? (
-                  <p className="text-zinc-600 dark:text-zinc-300">{tr.error}</p>
-                ) : (
-                  <div
-                    className={`answer text-[15px] text-zinc-800 dark:text-zinc-100 ${
-                      status === "streaming" ? "caret" : ""
-                    }`}
-                    dangerouslySetInnerHTML={{ __html: renderMarkdown(answer) }}
-                  />
-                )}
-
-                {sources.length > 0 && (
-                  <div className="mt-5 border-t border-zinc-100 dark:border-zinc-800 pt-4">
-                    <h3 className="mb-2 text-xs font-semibold uppercase text-zinc-400">
-                      {tr.sources}
-                    </h3>
-                    <ol className="space-y-2.5">
-                      {sources.map((s, idx) => (
-                        <SourceRow key={s.url} source={s} index={idx + 1} />
-                      ))}
-                    </ol>
-                  </div>
-                )}
-
-                <p className="mt-6 border-t border-zinc-100 dark:border-zinc-800 pt-3 text-xs text-zinc-400">
-                  {tr.disclaimer}
-                </p>
-              </section>
-            ) : (
-              !webLoading && (
-                <DetailedAnswerButton
-                  label={tr.detailedBtn}
-                  hint={tr.detailedHint}
-                  onClick={() => setShowAI(true)}
+              ) : status === "error" ? (
+                <p className="text-zinc-600 dark:text-zinc-300">{tr.error}</p>
+              ) : (
+                <div
+                  className={`answer text-[15px] text-zinc-800 dark:text-zinc-100 ${
+                    status === "streaming" ? "caret" : ""
+                  }`}
+                  dangerouslySetInnerHTML={{ __html: renderMarkdown(answer) }}
                 />
-              )
-            )}
+              )}
+
+              {sources.length > 0 && (
+                <div className="mt-5 border-t border-zinc-100 dark:border-zinc-800 pt-4">
+                  <h3 className="mb-2 text-xs font-semibold uppercase text-zinc-400">
+                    {tr.sources}
+                  </h3>
+                  <ol className="space-y-2.5">
+                    {sources.map((s, idx) => (
+                      <SourceRow key={s.url} source={s} index={idx + 1} />
+                    ))}
+                  </ol>
+                </div>
+              )}
+
+              <p className="mt-6 border-t border-zinc-100 dark:border-zinc-800 pt-3 text-xs text-zinc-400">
+                {tr.disclaimer}
+              </p>
+            </section>
 
             {/* Free representative / concierge — shown for high-intent queries */}
             {highIntent && <RepresentativeCTA query={query} prominent />}
-
-            {/* Related articles (Wikipedia) */}
-            {web?.results && web.results.length > 0 && (
-              <WebResults results={web.results} title={tr.related} />
-            )}
 
             {/* Company directory */}
             {category && (
@@ -289,105 +219,6 @@ function SearchResults() {
           </>
         )}
       </main>
-    </div>
-  );
-}
-
-function WikiSummary({
-  summary,
-  via,
-  readMore,
-}: {
-  summary: WikiSummary;
-  via: string;
-  readMore: string;
-}) {
-  return (
-    <section className="overflow-hidden rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 shadow-sm">
-      <div className="flex flex-col gap-4 p-5 sm:flex-row sm:p-6">
-        <div className="min-w-0 flex-1">
-          <a
-            href={summary.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-lg font-semibold text-zinc-800 hover:text-flag-red dark:text-zinc-100"
-          >
-            {summary.title}
-          </a>
-          <p className="mt-2 text-[15px] leading-relaxed text-zinc-700 dark:text-zinc-300">
-            {summary.extract}
-          </p>
-          <a
-            href={summary.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 inline-block text-sm font-medium text-flag-red hover:underline"
-          >
-            {readMore} ↗
-          </a>
-          <p className="mt-3 text-xs text-zinc-400">{via}</p>
-        </div>
-        {summary.thumbnail && (
-          /* eslint-disable-next-line @next/next/no-img-element */
-          <img
-            src={summary.thumbnail}
-            alt=""
-            className="h-32 w-full shrink-0 rounded-xl object-cover sm:h-28 sm:w-40"
-          />
-        )}
-      </div>
-    </section>
-  );
-}
-
-function WebResults({ results, title }: { results: WebResult[]; title: string }) {
-  return (
-    <section className="mt-8">
-      <h2 className="mb-3 text-sm font-semibold text-zinc-500 dark:text-zinc-400">
-        {title}
-      </h2>
-      <ol className="space-y-4">
-        {results.map((r) => (
-          <li key={r.url}>
-            <a
-              href={r.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[15px] font-medium text-flag-red hover:underline"
-            >
-              {r.title}
-            </a>
-            {r.snippet && (
-              <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2">
-                {r.snippet}
-              </p>
-            )}
-          </li>
-        ))}
-      </ol>
-    </section>
-  );
-}
-
-function DetailedAnswerButton({
-  label,
-  hint,
-  onClick,
-}: {
-  label: string;
-  hint: string;
-  onClick: () => void;
-}) {
-  return (
-    <div className="mt-6 flex flex-col items-start gap-2 rounded-2xl border border-dashed border-zinc-200 dark:border-zinc-700 p-4 sm:flex-row sm:items-center sm:justify-between">
-      <p className="text-sm text-zinc-500 dark:text-zinc-400">{hint}</p>
-      <button
-        onClick={onClick}
-        className="inline-flex items-center gap-2 rounded-full bg-flag-red px-4 py-2 text-sm font-semibold text-white hover:bg-flag-dark transition-colors"
-      >
-        <SparkIcon />
-        {label}
-      </button>
     </div>
   );
 }
@@ -536,14 +367,6 @@ function BookIcon() {
     >
       <path d="M4 5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H6a2 2 0 0 1-2-2z" />
       <path d="M17 3h1a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2h-1" />
-    </svg>
-  );
-}
-
-function SparkIcon() {
-  return (
-    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M12 2l1.6 4.8L18.5 8l-4.9 1.2L12 14l-1.6-4.8L5.5 8l4.9-1.2L12 2zM5 14l.8 2.4L8 17l-2.2.6L5 20l-.8-2.4L2 17l2.2-.6L5 14z" />
     </svg>
   );
 }

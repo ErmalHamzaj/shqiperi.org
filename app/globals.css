@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-white text-zinc-800 antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-zinc-900 text-zinc-100;
+  }
+}
+
+/* Answer typography */
+.answer p {
+  @apply mb-4 leading-relaxed;
+}
+.answer h2 {
+  @apply text-lg font-semibold mt-6 mb-2;
+}
+.answer h3 {
+  @apply text-base font-semibold mt-4 mb-2;
+}
+.answer ul {
+  @apply list-disc pl-6 mb-4 space-y-1;
+}
+.answer ol {
+  @apply list-decimal pl-6 mb-4 space-y-1;
+}
+.answer a {
+  @apply text-flag-red underline underline-offset-2 hover:text-flag-dark;
+}
+.answer strong {
+  @apply font-semibold;
+}
+
+/* Citation chip */
+.cite {
+  @apply inline-flex items-center justify-center align-super text-[0.65rem] font-semibold
+    text-flag-red ml-0.5 no-underline;
+}
+
+/* Blinking caret while streaming */
+.caret::after {
+  content: "▋";
+  @apply text-flag-red;
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Shimmer for skeletons */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.04) 25%,
+    rgba(0, 0, 0, 0.08) 37%,
+    rgba(0, 0, 0, 0.04) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+@media (prefers-color-scheme: dark) {
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.09) 37%,
+      rgba(255, 255, 255, 0.05) 63%
+    );
+    background-size: 400% 100%;
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

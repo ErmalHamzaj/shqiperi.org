@@ -115,22 +115,56 @@ const TOUR_COMPANIES: Company[] = [
   { name: "InAlba Tour", city: "Përmet", phone: "+355 68 434 0700", website: "https://inalbatour.com/", note: "Nature, cultural, rafting, local experiences" },
 ];
 
+// Albanian car rental companies.
+const CAR_RENTAL_COMPANIES: Company[] = [
+  { name: "Rental cars Tirana", city: "Tirana", phone: "+355 69 588 0047", note: "Car rental" },
+  { name: "Rental Zone Rent a Car", city: "Tirana", phone: "+355 68 208 2236", note: "Car rental" },
+  { name: "4x4 Car Rental Tirana Albania", city: "Tirana", phone: "+355 69 525 7213", note: "4x4 / SUV rental" },
+  { name: "RENTiGO ALBANIA", city: "Tirana", note: "Car rental" },
+  { name: "Perfect Car Rental Tirana", city: "Tirana", phone: "+355 69 683 8939", note: "Car rental" },
+  { name: "Eurocar Rentals Tirana", city: "Tirana", phone: "+355 67 600 7060", note: "Car rental" },
+  { name: "ARC Albania Rental Car", city: "Tirana", phone: "+355 69 586 5190", note: "Car rental" },
+  { name: "Tirana Airport Rental Car", city: "Tirana / Rinas", phone: "+355 69 672 4671", note: "Airport car rental" },
+  { name: "Nika's Rent Car Tirana", city: "Tirana", phone: "+355 68 409 4433", note: "Car rental" },
+  { name: "Rent Point Albania", city: "Tirana", phone: "+355 69 587 5689", note: "Car rental" },
+  { name: "Rent a car Tirana", city: "Tirana / Rinas", phone: "+355 69 268 6033", note: "Airport car rental" },
+  { name: "Tirana Car Rentals", city: "Tirana", phone: "+355 67 600 5454", note: "Car rental" },
+  { name: "Rent Cars Albania", city: "Tirana", phone: "+355 69 800 7001", note: "Car rental" },
+  { name: "Tezaku Rent Car", city: "Tirana", phone: "+355 69 214 8572", note: "Car rental" },
+  { name: "Amigo Car Rental Tirana", city: "Tirana", phone: "+355 69 208 5675", note: "Car rental" },
+  { name: "Prestige Rent Car", city: "Tirana", phone: "+355 69 609 7775", note: "Car rental" },
+  { name: "Hana Rental", city: "Tirana", phone: "+355 67 491 1084", note: "Car rental" },
+  { name: "Real Rent Car Rental", city: "Tirana", phone: "+355 69 543 4570", note: "Car rental" },
+  { name: "Tirana Rent Cars", city: "Tirana", phone: "+355 68 488 8888", note: "Car rental" },
+  { name: "Albania Rent-a-car", city: "Tirana", phone: "+355 68 334 5580", note: "Car rental" },
+  { name: "AA Rent a Car", city: "Rinas / Tirana", phone: "+355 68 408 8008", website: "https://www.albaniarentalcars.com/", note: "Car rental, taxi, rental with driver" },
+  { name: "Goldcar", city: "Rinas / Tirana", phone: "+355 69 700 4004", website: "https://www.goldcar.com/", note: "Car rental" },
+  { name: "Avis", city: "Rinas / Tirana", phone: "+355 67 502 3413", website: "https://www.avis.com/", note: "Car rental" },
+  { name: "Enterprise Rent-A-Car", city: "Rinas / Tirana", phone: "+355 67 600 0900", website: "https://www.enterprise.com/", note: "Car rental" },
+  { name: "Hertz", city: "Rinas / Tirana", phone: "+355 69 205 8775", website: "https://www.hertz.com/", note: "Car rental" },
+  { name: "SIXT", city: "Rinas / Tirana", website: "https://www.sixt.com/", note: "Car rental, premium/luxury" },
+  { name: "Alamo", city: "Rinas / Tirana", website: "https://www.alamo.com/", note: "Car rental" },
+  { name: "Sicily by Car", city: "Rinas / Tirana", website: "https://www.sicilybycar.it/", note: "Car rental" },
+  { name: "Europcar", city: "Rinas / Tirana", website: "https://www.europcar.com/", note: "Car rental" },
+  { name: "Budget", city: "Rinas / Tirana", website: "https://www.budget.com/", note: "Car rental" },
+  { name: "Auto-Union", city: "Rinas / Tirana", website: "https://www.auto-union.com/", note: "Car rental" },
+  { name: "Carwiz", city: "Rinas / Tirana", website: "https://www.carwiz.rent/", note: "Car rental" },
+  { name: "Addcar", city: "Rinas / Tirana", website: "https://www.addcarrental.com/", note: "Car rental" },
+  { name: "Ace Rent A Car", city: "Rinas / Tirana", website: "https://www.acerentacar.com/", note: "Car rental" },
+  { name: "Surprice Cars", city: "Rinas / Tirana", website: "https://www.surpricecars.com/", note: "Car rental" },
+  { name: "Green Motion", city: "Rinas / Tirana", website: "https://greenmotion.com/", note: "Car rental" },
+  { name: "MEX Rent A Car", city: "Rinas / Tirana", website: "https://mexrentacar.com/", note: "Car rental" },
+  { name: "Global Rent A Car", city: "Rinas / Tirana", note: "Car rental" },
+  { name: "Autowill Rent A Car", city: "Rinas / Tirana", note: "Car rental" },
+  { name: "Wheego", city: "Rinas / Tirana", website: "https://www.wheego-mobility.com/", note: "Car rental" },
+];
+
 export const CATEGORIES: Category[] = [
   {
     id: "rent-car",
     name: { sq: "Makina me qira", en: "Car rental" },
     match: /\b(cars?|makin|auto)\b.*\b(rent|rental|qira|qera)\b|\b(rent|rental|qira)\b.*\b(cars?|makin|auto)\b|araç kirala|araba kirala|kiralık ara|noleggio auto|noleggiare un.?auto|autonoleggio|تأجير سيار|استئجار سيار/i,
-    companies: [
-      {
-        name: "Enterprise Rent-A-Car",
-        city: "Shqipëri",
-        website: "https://www.enterprise.com/en/car-rental-locations/al.html",
-        note: {
-          sq: "Makina me qira, disa lokacione në Shqipëri",
-          en: "Car rental with multiple locations across Albania",
-        },
-      },
-    ],
+    companies: [...CAR_RENTAL_COMPANIES],
   },
   {
     id: "rent-home",

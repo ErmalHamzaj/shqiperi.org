@@ -23,6 +23,10 @@ export default function HomePage() {
       </header>
 
       <main className="flex flex-1 flex-col items-center px-4">
+        <h1 className="sr-only">
+          Shqipëri — Kërko biznese, shërbime dhe lajme në Shqipëri | Search
+          Albania: businesses, services and news
+        </h1>
         {/* Hero */}
         <div className="mt-[11vh] w-full max-w-xl flex flex-col items-center">
           <div className="mb-2">

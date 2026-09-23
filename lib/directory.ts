@@ -71,6 +71,50 @@ const edisonLami: Company = {
   },
 };
 
+// Albanian tour operators & travel agencies.
+const TOUR_COMPANIES: Company[] = [
+  { name: "Choose Balkans", city: "Tirana", website: "https://choosebalkans.com/", note: "Multi-day, cultural, adventure, hiking (private/group)" },
+  { name: "Albania Holidays DMC", city: "Tirana", phone: "+355 4 2235 498", website: "https://www.albania-holidays.com/", note: "DMC, cultural, incentive, cruise shore excursions, group tours" },
+  { name: "Albanian Odyssey", city: "Tirana", phone: "+355 69 619 1691", website: "https://albanianodyssey.com/", note: "Cultural, nature, history, food, custom tours" },
+  { name: "Albania My Way", city: "Tirana", phone: "+355 68 900 9560", website: "https://www.albaniamyway.com/", note: "Custom/private, cultural, nature, local experiences" },
+  { name: "Aria Travel Albania", city: "Tirana", phone: "+355 69 223 4999", website: "https://www.ariatravelalbania.com/", note: "Cultural, historical, nature, custom tours" },
+  { name: "AR&LO BluTour", city: "Tirana", phone: "+355 69 405 0183", website: "http://www.blutour.al/", note: "FIT, group, leisure, business travel, tours" },
+  { name: "Attractive Travel", city: "Tirana", phone: "+355 69 942 2999", website: "https://attractive-travel.com/", note: "Albania & Balkan tours, classical, cultural, adventure" },
+  { name: "Europa Travel & Tours", city: "Tirana", phone: "+355 4 222 1583", website: "https://www.europatravelalbania.com/", note: "Classical, adventure, religious, leisure, FIT/group" },
+  { name: "Cycle Albania", city: "Tirana", phone: "+355 69 247 5728", website: "https://cyclealbania.com/", note: "Cycling tours, active travel" },
+  { name: "Explorer Travel & Tours", city: "Tirana", phone: "+355 4 224 7572", website: "https://www.ave-tour.com/", note: "Daily tours, weekend, nature, culture" },
+  { name: "Fine Travel Albania", city: "Tirana", phone: "+355 69 371 6804", website: "https://finetravelalbania.com/", note: "DMC, boutique, incentive, bespoke experiences" },
+  { name: "Good Albania", city: "Tirana", phone: "+355 67 664 6146", website: "https://goodalbania.com/", note: "Experiential, conscious travel, cultural, nature" },
+  { name: "Jona Travel", city: "Tirana", phone: "+355 4 222 3346", website: "https://www.jona-travel.al/", note: "Tours, travel packages, cultural/leisure" },
+  { name: "Kalemi Travel & Tours", city: "Tirana", phone: "+355 69 888 5656", website: "https://kalemitravel.com/", note: "Cultural, activities, adventures, Gjirokastër tours" },
+  { name: "Outdoor Albania", city: "Tirana", phone: "+355 4 222 7121", website: "https://www.outdooralbania.com/", note: "Adventure, hiking, rafting, trekking, outdoor" },
+  { name: "Zbulo", city: "Tirana", phone: "+355 69 212 1612", website: "https://www.zbulo.org/", note: "Hiking, trekking, self-guided, adventure" },
+  { name: "intours Albania", city: "Tirana", phone: "+355 69 204 0434", website: "https://intours.al/", note: "Tour operator, DMC, cultural, leisure, group" },
+  { name: "Tours Albania & Balkans", city: "Tirana", phone: "+355 68 402 9914", website: "https://www.tours-albania.com/", note: "Private/group, cultural, nature, multi-day" },
+  { name: "Albanian Trip", city: "Tirana", phone: "+355 68 405 8529", website: "https://albaniantrip.com/", note: "Cultural, nature, city, custom tours" },
+  { name: "Discover Albania / Albania Social Club", city: "Tirana", phone: "+355 69 658 3870", website: "https://discoveralbania.al/", note: "Social, cultural, local experiences, tours" },
+  { name: "Marled Travel & Events Albania DMC", city: "Tirana", phone: "+355 69 658 7554", website: "https://www.marled.al/", note: "DMC, events, groups, corporate, cultural" },
+  { name: "Bravo Tours", city: "Tirana", phone: "+355 69 632 2731", website: "https://bravotours.al/", note: "Tours, travel packages, group travel" },
+  { name: "Zenith Travel", city: "Tirana", phone: "+355 68 205 9020", website: "https://zenithtravel.al/", note: "Travel agency, tours, packages" },
+  { name: "Planet Travel & Tours", city: "Tirana", phone: "+355 68 903 0102", note: "Tour operator, travel packages, group tours" },
+  { name: "Smart Travel & Tours", city: "Tirana", phone: "+355 68 822 2222", note: "Tours, travel packages, group travel" },
+  { name: "Global Tours Albania", city: "Tirana", phone: "+355 68 200 1112", website: "https://globaltours.al/", note: "Tour operator, cultural/leisure, packages" },
+  { name: "Berati Tours", city: "Tirana / Berat", phone: "+355 69 360 4259", website: "https://berati-tours.com/", note: "Berat, cultural, historical, food, local experiences" },
+  { name: "Shkodra Travel & Tours", city: "Shkodër", phone: "+355 69 209 1288", website: "https://shkodratravel.com/", note: "Cultural, northern Albania, nature, custom tours" },
+  { name: "Albanian Treasures", city: "Tirana", phone: "+355 69 204 9836", website: "https://albanian-treasures.com/", note: "Cultural, heritage, custom Albania tours" },
+  { name: "Caravan Horse Riding Albania", city: "Gjirokastër", phone: "+355 69 535 7743", note: "Horse riding, rural, nature, adventure" },
+  { name: "Active Albania", city: "Berat", phone: "+355 68 907 3732", note: "Outdoor, adventure, active travel" },
+  { name: "Albania Rafting", city: "Berat", phone: "+355 67 200 6623", website: "https://albrafting.org/", note: "Rafting, outdoor adventure (Vjosa, Osum Canyon)" },
+  { name: "Ecotour Albania", city: "Tirana", phone: "+355 68 209 2562", website: "https://ecotouralbania.com/", note: "Eco, nature, cultural, sustainable tours" },
+  { name: "Albanian Adventure Resort", city: "Skrapar", phone: "+355 69 996 7609", website: "https://aar.al/", note: "Adventure, outdoor, rafting, nature" },
+  { name: "Albania Explorer", city: "Tirana", website: "https://albaniaexplorer.com/", note: "DMC, cultural, nature (private/group)" },
+  { name: "Visit Albania DMC", city: "Tirana", phone: "+355 68 903 0102", note: "DMC, cultural, private/group tours" },
+  { name: "Albania Express Travel", city: "Tirana", phone: "+355 68 282 6670", note: "Travel/tours, packages, excursions" },
+  { name: "Shkendija Travel & Cruises", city: "Sarandë", phone: "+355 69 234 8222", website: "https://shkendijatravel.com/", note: "Cruises, boat trips, southern Albania excursions" },
+  { name: "Blue Line Travel", city: "Sarandë", phone: "+355 69 799 7299", website: "https://blueline.agency/", note: "Southern Albania, excursions, coastal tours" },
+  { name: "InAlba Tour", city: "Përmet", phone: "+355 68 434 0700", website: "https://inalbatour.com/", note: "Nature, cultural, rafting, local experiences" },
+];
+
 export const CATEGORIES: Category[] = [
   {
     id: "rent-car",
@@ -157,6 +201,7 @@ export const CATEGORIES: Category[] = [
           en: "Guided tours across Albania, day trips",
         },
       },
+      ...TOUR_COMPANIES,
     ],
   },
   {

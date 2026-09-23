@@ -159,6 +159,49 @@ const CAR_RENTAL_COMPANIES: Company[] = [
   { name: "Wheego", city: "Rinas / Tirana", website: "https://www.wheego-mobility.com/", note: "Car rental" },
 ];
 
+// Albanian lawyers & law firms.
+const LAW_FIRMS: Company[] = [
+  { name: "Boga & Associates", city: "Tirana", phone: "+355 4 225 1050", email: "boga@bogalaw.com", website: "https://bogalaw.com/", note: "Corporate, commercial, banking, tax, litigation, real estate" },
+  { name: "Kalo & Associates", city: "Tirana", phone: "+355 4 223 3532", email: "kalo@kalo-attorneys.com", website: "https://kalo-attorneys.com/", note: "Corporate, M&A, banking, competition, employment, real estate" },
+  { name: "Hoxha, Memi & Hoxha", city: "Tirana", phone: "+355 4 227 4558", website: "https://hmh.al/", note: "Corporate, commercial, banking, real estate, litigation" },
+  { name: "Wolf Theiss Albania", city: "Tirana", phone: "+355 4 227 4521", email: "sokol.nako@wolftheiss.com", website: "https://www.wolftheiss.com/countries/albania/", note: "Corporate, banking & finance, real estate, projects, cross-border" },
+  { name: "Rokas & Associates", city: "Tirana", phone: "+355 4 226 7707", email: "albania@rokas.com", website: "https://rokas.com/", note: "Corporate, energy, projects, litigation, employment" },
+  { name: "Drakopoulos Law Firm", city: "Tirana", phone: "+355 4 451 8181", website: "https://drakopoulos-law.com/", note: "Corporate, commercial, banking, real estate, dispute resolution" },
+  { name: "Claes & Partners", city: "Tirana", website: "https://claespartners.com/", note: "Corporate, commercial, M&A, tax, employment" },
+  { name: "Eversheds Bianchini Albania", city: "Tirana", phone: "+355 4 227 2265", website: "https://www.eversheds-sutherland.com/", note: "Corporate, M&A, banking, energy, infrastructure" },
+  { name: "Tonucci & Partners Albania", city: "Tirana", phone: "+355 4 225 0711", website: "https://tonucci.com/", note: "Corporate, commercial, real estate, litigation, tax" },
+  { name: "CMS Albania", city: "Tirana", phone: "+355 4 430 2123", website: "https://cms.law/", note: "Corporate, M&A, banking, projects, competition, real estate" },
+  { name: "AFortiori Legal Counselors", city: "Tirana", phone: "+355 68 201 0106", note: "Corporate, commercial, civil, litigation" },
+  { name: "Bozo Law & Associates", city: "Tirana", phone: "+355 68 203 0420", note: "Civil, commercial, criminal, family, litigation" },
+  { name: "ARS Legal & Financial Services", city: "Tirana", phone: "+355 69 247 6387", note: "Legal, tax, accounting, corporate, commercial" },
+  { name: "ShukeLaw", city: "Tirana", note: "Corporate, commercial, real estate, investment, dispute resolution" },
+  { name: "Frost & Fire Consulting", city: "Tirana", note: "Corporate, commercial, tax, regulatory, dispute resolution" },
+  { name: "Hoxha Law Firm", city: "Tirana", phone: "+355 68 206 6333", note: "Civil, family, criminal, property, litigation" },
+  { name: "Alba Legal Albanian Law Firm", city: "Tirana", phone: "+355 67 250 8888", note: "Civil, commercial, family, immigration, real estate" },
+  { name: "Haka & Associates Law Firm", city: "Tirana", phone: "+355 69 204 7429", note: "Civil, commercial, corporate, litigation" },
+  { name: "Shkrela Legal Solutions", city: "Tirana", phone: "+355 69 347 9230", note: "Civil, commercial, employment, family, litigation" },
+  { name: "JBC & Associates", city: "Tirana", phone: "+355 69 603 2690", note: "Corporate, commercial, civil, real estate, litigation" },
+  { name: "Kthupi & Zguri Law", city: "Tirana", phone: "+355 69 203 1881", note: "Civil, commercial, family, property, litigation" },
+  { name: "LPA Law Firm Albania", city: "Tirana", phone: "+355 67 511 1681", note: "Corporate, commercial, tax, real estate, litigation" },
+  { name: "MALAJ LAW FIRM", city: "Tirana", note: "Civil, criminal, family, property, litigation" },
+  { name: "Studio Ligjore TIVARI", city: "Tirana", note: "Civil, criminal, family, administrative" },
+  { name: "Studio Ligjore De Jure", city: "Tirana", note: "Civil, commercial, family, administrative" },
+  { name: "Petani Law & Tax", city: "Tirana", note: "Tax, corporate, commercial, accounting" },
+  { name: "Vela Law Firm", city: "Tirana", note: "Corporate, commercial, civil, litigation" },
+  { name: "Theodhori & Partners", city: "Tirana", note: "Corporate, commercial, civil, litigation" },
+  { name: "Sako Legal", city: "Tirana", note: "Civil, commercial, family, litigation" },
+  { name: "Malaj & Associates Law Firm", city: "Tirana", note: "Corporate, civil, criminal, litigation" },
+  { name: "Vision Consulting Albania", city: "Tirana", phone: "+355 68 404 5566", note: "Legal consulting, corporate, commercial, tax" },
+  { name: "NLT Consulting", city: "Tirana", phone: "+355 67 408 6303", note: "Legal and business consulting" },
+  { name: "Avokat Im", city: "Tirana", phone: "+355 69 336 6999", note: "General legal services, civil, family, litigation" },
+  { name: "Avokat - Zyre Avokatie", city: "Tirana", phone: "+355 67 221 1323", note: "General legal services, civil, family, litigation" },
+  { name: "Avokate Rejsi Meçe", city: "Tirana", note: "Trial, civil, family, litigation" },
+  { name: "Tirana lawyer Eranda Gjonaj", city: "Tirana", phone: "+355 68 208 4324", note: "Legal services, civil, commercial, litigation" },
+  { name: "Avokat Arjan Dervishanji", city: "Tirana", phone: "+355 69 337 0970", note: "Legal services, civil, criminal, litigation" },
+  { name: "AV Valentina Halili", city: "Tirana", phone: "+355 69 941 0620", note: "Legal services, civil, family, litigation" },
+  { name: "Briss' Law Zyrë Ligjore / Avokate", city: "Tirana", phone: "+355 68 206 7455", note: "Legal services, civil, commercial, family" },
+];
+
 export const CATEGORIES: Category[] = [
   {
     id: "rent-car",
@@ -252,6 +295,7 @@ export const CATEGORIES: Category[] = [
           en: "Lawyer — legal services, contracts, property, business",
         },
       },
+      ...LAW_FIRMS,
     ],
   },
   {

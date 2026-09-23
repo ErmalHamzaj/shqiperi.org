@@ -11,7 +11,8 @@ import { Weather } from "@/components/Weather";
 import { RepresentativeCTA } from "@/components/RepresentativeCTA";
 import { useLang } from "@/components/LanguageProvider";
 import { getRefinement } from "@/lib/refine";
-import { matchCategory, companyNote, localize, type Company } from "@/lib/directory";
+import { matchCategory, localize, sortByRating, type Company } from "@/lib/directory";
+import { CompanyCard } from "@/components/CompanyCard";
 
 type Result = { title: string; url: string; rating?: string; snippet?: string };
 type Status = "loading" | "done" | "error";
@@ -36,6 +37,8 @@ function SearchResults() {
 
   const refinement = getRefinement(query, lang);
   const category = matchCategory(query);
+  // Category with listings → show the database directly (no AI, no cost).
+  const hasDb = category !== null && category.companies.length > 0;
   const isNews = /(news|lajm|haber|notiz|أخبار|الأخبار)/i.test(query);
   const customPlan =
     /\b(plan|organi[sz]|itinerar|transfer|package|paket[ëe]|then|from there|pastaj|nga atje|custom|trip|udh[ëe]tim|tour|tur[ëa]?)\b/i.test(
@@ -43,9 +46,9 @@ function SearchResults() {
     );
   const highIntent = customPlan || category !== null;
 
-  // Fetch the top real results for every (non-news) search.
+  // Fetch AI results only when there's no local database for this query.
   useEffect(() => {
-    if (!query || isNews) return;
+    if (!query || isNews || hasDb) return;
     const controller = new AbortController();
     abortRef.current?.abort();
     abortRef.current = controller;
@@ -73,7 +76,7 @@ function SearchResults() {
     })();
 
     return () => controller.abort();
-  }, [query, lang, isNews]);
+  }, [query, lang, isNews, hasDb]);
 
   return (
     <div className="min-h-screen">
@@ -109,16 +112,6 @@ function SearchResults() {
           <div className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
             <NewsList limit={30} />
           </div>
-        ) : status === "loading" ? (
-          <section className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
-            <LoadingSkeleton label={tr.searching} />
-          </section>
-        ) : !albania ? (
-          /* Off-topic query → politely decline (Albania only) */
-          <section className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-8 text-center shadow-sm">
-            <div className="mb-3 text-3xl">🇦🇱</div>
-            <p className="text-zinc-600 dark:text-zinc-300">{tr.notAlbania}</p>
-          </section>
         ) : (
           <>
             {/* Disambiguation */}
@@ -141,8 +134,23 @@ function SearchResults() {
               </section>
             )}
 
-            {/* Top results */}
-            {status === "error" ? (
+            {hasDb ? (
+              /* We have a local database for this query → no AI needed */
+              <DirectorySection
+                title={tr.dirTitle}
+                categoryName={localize(category!.name, lang)}
+                companies={category!.companies}
+              />
+            ) : status === "loading" ? (
+              <section className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
+                <LoadingSkeleton label={tr.searching} />
+              </section>
+            ) : !albania ? (
+              <section className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-8 text-center shadow-sm">
+                <div className="mb-3 text-3xl">🇦🇱</div>
+                <p className="text-zinc-600 dark:text-zinc-300">{tr.notAlbania}</p>
+              </section>
+            ) : status === "error" ? (
               <p className="text-zinc-600 dark:text-zinc-300">{tr.error}</p>
             ) : results.length > 0 ? (
               <ol className="space-y-4">
@@ -157,8 +165,8 @@ function SearchResults() {
             {/* Concierge — high-intent queries */}
             {highIntent && <RepresentativeCTA query={query} prominent />}
 
-            {/* Admin-added companies for this category */}
-            {category && (
+            {/* Empty category → invite to get listed */}
+            {category && !hasDb && (
               <DirectorySection
                 title={tr.dirTitle}
                 categoryName={localize(category.name, lang)}
@@ -172,6 +180,8 @@ function SearchResults() {
   );
 }
 
+const DIR_INITIAL = 6;
+
 function DirectorySection({
   title,
   categoryName,
@@ -182,12 +192,35 @@ function DirectorySection({
   companies: Company[];
 }) {
   const { lang, tr } = useLang();
+  const [expanded, setExpanded] = useState(false);
+
+  const moreLabel: Record<string, string> = {
+    sq: "Shiko të gjitha",
+    en: "Show all",
+    tr: "Tümünü gör",
+    it: "Mostra tutto",
+    ar: "عرض الكل",
+  };
+  const lessLabel: Record<string, string> = {
+    sq: "Shfaq më pak",
+    en: "Show less",
+    tr: "Daha az göster",
+    it: "Mostra meno",
+    ar: "عرض أقل",
+  };
+
+  const sorted = sortByRating(companies);
+  const shown = expanded ? sorted : sorted.slice(0, DIR_INITIAL);
+
   return (
     <section className="mt-8 rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
       <div className="mb-4 flex items-center gap-2">
         <TagIcon />
         <h2 className="text-sm font-semibold tracking-wide text-flag-red uppercase">
           {title} · {categoryName}
+          {companies.length > 0 && (
+            <span className="ml-1 text-zinc-400">({companies.length})</span>
+          )}
         </h2>
       </div>
 
@@ -197,48 +230,24 @@ function DirectorySection({
           <span className="text-zinc-500 dark:text-zinc-300">{tr.dirListCta}</span>
         </p>
       ) : (
-        <ul className="grid gap-3 sm:grid-cols-2">
-          {companies.map((c) => (
-            <li
-              key={c.name}
-              className="rounded-xl border border-zinc-100 dark:border-zinc-700 p-4"
+        <>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {shown.map((c) => (
+              <CompanyCard key={c.name} company={c} />
+            ))}
+          </ul>
+
+          {companies.length > DIR_INITIAL && (
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              className="mt-4 w-full rounded-full border border-zinc-200 dark:border-zinc-700 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:border-flag-red hover:text-flag-red transition-colors"
             >
-              <div className="font-semibold text-zinc-800 dark:text-zinc-100">
-                {c.name}
-              </div>
-              {companyNote(c, lang) && (
-                <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">
-                  {companyNote(c, lang)}
-                </p>
-              )}
-              <div className="mt-2 space-y-0.5 text-sm">
-                {c.city && (
-                  <div className="text-zinc-500">📍 {c.city}</div>
-                )}
-                {c.phone && (
-                  <a href={`tel:${c.phone}`} className="block text-flag-red hover:underline">
-                    📞 {c.phone}
-                  </a>
-                )}
-                {c.email && (
-                  <a href={`mailto:${c.email}`} className="block text-flag-red hover:underline">
-                    ✉️ {c.email}
-                  </a>
-                )}
-                {c.website && (
-                  <a
-                    href={c.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-flag-red hover:underline"
-                  >
-                    🔗 {c.website.replace(/^https?:\/\/(www\.)?/, "")}
-                  </a>
-                )}
-              </div>
-            </li>
-          ))}
-        </ul>
+              {expanded
+                ? lessLabel[lang] ?? lessLabel.en
+                : `${moreLabel[lang] ?? moreLabel.en} (${companies.length})`}
+            </button>
+          )}
+        </>
       )}
     </section>
   );

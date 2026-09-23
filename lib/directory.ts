@@ -20,9 +20,16 @@ export type Company = {
   phone?: string;
   email?: string;
   website?: string;
+  /** Google/aggregate star rating, e.g. 4.6. Shown as a badge; used to sort. */
+  rating?: number;
   /** Short description; string or per-language. */
   note?: string | LangText;
 };
+
+/** Sort companies best-rated first; unrated keep their original order after rated. */
+export function sortByRating(companies: Company[]): Company[] {
+  return [...companies].sort((a, b) => (b.rating ?? -1) - (a.rating ?? -1));
+}
 
 export type Category = {
   id: string;

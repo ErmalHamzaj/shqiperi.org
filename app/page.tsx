@@ -69,6 +69,9 @@ function Footer() {
       <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-3 sm:flex-row">
         <span>© {new Date().getFullYear()} Shqipëri</span>
         <nav className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          <Link href="/directory" className="hover:text-flag-red">
+            {tr.dirTitle}
+          </Link>
           <a href="#" className="hover:text-flag-red">
             {tr.footerAbout}
           </a>

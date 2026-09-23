@@ -10,12 +10,19 @@ import { companyNote, type Company } from "@/lib/directory";
 export function CompanyCard({ company: c }: { company: Company }) {
   const { lang } = useLang();
   const note = companyNote(c, lang);
+  const featured = !!c.featured;
   return (
-    <li className="relative rounded-xl border border-zinc-100 dark:border-zinc-700 border-l-4 border-l-flag-red bg-flag-red/[0.02] p-4">
+    <li
+      className={
+        featured
+          ? "relative rounded-xl border border-flag-red/30 border-l-4 border-l-flag-red bg-flag-red/[0.04] p-4"
+          : "relative rounded-xl border border-zinc-100 dark:border-zinc-700 p-4"
+      }
+    >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <div className="flex items-center gap-1.5">
-            <CheckIcon />
+            {featured && <CheckIcon />}
             <span className="font-semibold text-zinc-800 dark:text-zinc-100">{c.name}</span>
           </div>
           {note && (

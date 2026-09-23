@@ -22,13 +22,18 @@ export type Company = {
   website?: string;
   /** Google/aggregate star rating, e.g. 4.6. Shown as a badge; used to sort. */
   rating?: number;
+  /** Featured/premium listing — gets the highlighted style and sorts first. */
+  featured?: boolean;
   /** Short description; string or per-language. */
   note?: string | LangText;
 };
 
-/** Sort companies best-rated first; unrated keep their original order after rated. */
+/** Featured first, then best-rated first; the rest keep their order. */
 export function sortByRating(companies: Company[]): Company[] {
-  return [...companies].sort((a, b) => (b.rating ?? -1) - (a.rating ?? -1));
+  return [...companies].sort((a, b) => {
+    if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1;
+    return (b.rating ?? -1) - (a.rating ?? -1);
+  });
 }
 
 export type Category = {
@@ -63,6 +68,7 @@ const century21Yllka: Company = {
   city: "Tiranë",
   phone: "+355 67 650 7008",
   website: "https://www.century21albania.com/en/agent/1963-yllka-tule.html",
+  featured: true,
   note: {
     sq: "Agjente pronash — qira & blerje (apartamente, vila, prona)",
     en: "Property agent — rent & buy (apartments, villas, homes)",
@@ -72,6 +78,7 @@ const century21Yllka: Company = {
 const edisonLami: Company = {
   name: "Edison Lami",
   phone: "+355 68 806 5088",
+  featured: true,
   note: {
     sq: "Prona — qira & blerje (apartamente, vila, prona, tokë)",
     en: "Property — rent & buy (apartments, villas, homes, land)",
@@ -297,6 +304,7 @@ export const CATEGORIES: Category[] = [
         name: "Av. Anxhela Lami",
         city: "Shqipëri",
         phone: "+355 68 806 5055",
+        featured: true,
         note: {
           sq: "Avokate — shërbime ligjore, kontrata, prona, biznes",
           en: "Lawyer — legal services, contracts, property, business",

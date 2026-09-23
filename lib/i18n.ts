@@ -38,6 +38,7 @@ export type Dict = {
   detailedHint: string;
   noWebResults: string;
   readMore: string;
+  notAlbania: string;
   examplesTitle: string;
   examples: string[];
   newsTitle: string;
@@ -82,6 +83,7 @@ export const dict: Record<Lang, Dict> = {
     detailedHint: "Për pyetje specifike, merr një përgjigje të përpunuar.",
     noWebResults: "Nuk u gjetën rezultate të drejtpërdrejta për këtë kërkim.",
     readMore: "Lexo më shumë",
+    notAlbania: "Shqipëri kërkon vetëm për Shqipërinë dhe shqiptarët.",
     examplesTitle: "Provoni:",
     examples: [
       "Lajmet e fundit nga Shqipëria",
@@ -139,6 +141,7 @@ export const dict: Record<Lang, Dict> = {
     detailedHint: "For specific questions, get a synthesized answer.",
     noWebResults: "No direct results were found for this search.",
     readMore: "Read more",
+    notAlbania: "Shqipëri only searches for Albania and Albanians.",
     examplesTitle: "Try:",
     examples: [
       "Latest news from Albania",
@@ -196,6 +199,7 @@ export const dict: Record<Lang, Dict> = {
     detailedHint: "Belirli sorular için derlenmiş bir yanıt alın.",
     noWebResults: "Bu arama için doğrudan sonuç bulunamadı.",
     readMore: "Devamını oku",
+    notAlbania: "Shqipëri yalnızca Arnavutluk ve Arnavutlar için arama yapar.",
     examplesTitle: "Deneyin:",
     examples: [
       "Arnavutluk'tan son haberler",
@@ -253,6 +257,7 @@ export const dict: Record<Lang, Dict> = {
     detailedHint: "Per domande specifiche, ottieni una risposta elaborata.",
     noWebResults: "Nessun risultato diretto trovato per questa ricerca.",
     readMore: "Leggi di più",
+    notAlbania: "Shqipëri cerca solo per l'Albania e gli albanesi.",
     examplesTitle: "Prova:",
     examples: [
       "Ultime notizie dall'Albania",
@@ -310,6 +315,7 @@ export const dict: Record<Lang, Dict> = {
     detailedHint: "للأسئلة المحددة، احصل على إجابة مُعدّة.",
     noWebResults: "لم يتم العثور على نتائج مباشرة لهذا البحث.",
     readMore: "اقرأ المزيد",
+    notAlbania: "شقيبري يبحث فقط عن ألبانيا والألبان.",
     examplesTitle: "جرّب:",
     examples: [
       "آخر الأخبار من ألبانيا",

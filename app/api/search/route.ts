@@ -7,16 +7,18 @@ export const dynamic = "force-dynamic";
 
 const MODEL = process.env.SHQIPERI_MODEL || "claude-haiku-4-5-20251001";
 
-type Source = {
+type Lang = "sq" | "en" | "tr" | "it" | "ar";
+
+type Result = {
   title: string;
   url: string;
-  age?: string;
+  rating?: string;
+  snippet?: string;
 };
+type SearchPayload = { albania: boolean; results: Result[] };
 
 // ── Tiny in-memory cache ────────────────────────────────────────────────────
-// Repeated identical searches (same query + language) are served from here
-// without re-hitting the API. Per server instance; clears on restart.
-type CacheEntry = { answer: string; sources: Source[]; expires: number };
+type CacheEntry = { payload: SearchPayload; expires: number };
 const CACHE = new Map<string, CacheEntry>();
 const CACHE_TTL = 60 * 60 * 1000; // 1 hour
 const CACHE_MAX = 300;
@@ -24,56 +26,55 @@ const CACHE_MAX = 300;
 function cacheKey(lang: string, q: string): string {
   return `${lang}:${q.toLowerCase().replace(/\s+/g, " ").trim()}`;
 }
-
-function cacheGet(key: string): CacheEntry | null {
+function cacheGet(key: string): SearchPayload | null {
   const e = CACHE.get(key);
   if (!e) return null;
   if (Date.now() > e.expires) {
     CACHE.delete(key);
     return null;
   }
-  // Refresh recency (LRU-ish): re-insert so it's newest.
   CACHE.delete(key);
   CACHE.set(key, e);
-  return e;
+  return e.payload;
 }
-
-function cacheSet(key: string, answer: string, sources: Source[]): void {
-  if (!answer.trim()) return;
+function cacheSet(key: string, payload: SearchPayload): void {
   if (CACHE.size >= CACHE_MAX) {
     const oldest = CACHE.keys().next().value;
     if (oldest) CACHE.delete(oldest);
   }
-  CACHE.set(key, { answer, sources, expires: Date.now() + CACHE_TTL });
+  CACHE.set(key, { payload, expires: Date.now() + CACHE_TTL });
 }
 
-type Lang = "sq" | "en" | "tr" | "it" | "ar";
-
-const LANG_INSTRUCTION: Record<Lang, string> = {
-  sq: "Përgjigju GJITHMONË në gjuhën shqipe.",
-  en: "ALWAYS answer in English.",
-  tr: "Yanıtı HER ZAMAN Türkçe ver.",
-  it: "Rispondi SEMPRE in italiano.",
-  ar: "أجب دائمًا باللغة العربية.",
+const LANG_NAME: Record<Lang, string> = {
+  sq: "Albanian",
+  en: "English",
+  tr: "Turkish",
+  it: "Italian",
+  ar: "Arabic",
 };
 
 function systemPrompt(lang: Lang): string {
-  const language = LANG_INSTRUCTION[lang] ?? LANG_INSTRUCTION.en;
   return [
-    "You are Shqipëri — an expert guide and encyclopedia for Albania, Albanians, and the Albanian world (including Kosovo, the diaspora, Arbëresh communities, and Albanian language and culture).",
-    "IMPORTANT: Never describe yourself as an AI, assistant, chatbot, language model, or 'artificial intelligence'. Never say phrases like 'as an AI' or 'I am an AI'. Do not mention how the answer is generated. Simply present the information directly and confidently, as an authoritative Albania resource.",
-    "You have access to web search. Use it to ground every factual answer in current, reliable sources. Prefer Albanian and reputable international sources.",
-    "Areas you cover in depth: Albanian news and current events; Albanian businesses; investing in Albania; buying property in Albania; the best investment centers; renting a car, home, villa, land, or other services in Albania; investment risk factors; tourism, travel, history, culture, language and cuisine.",
-    "BE CONCISE AND FAST. Keep answers SHORT — usually 2–4 sentences, or 3–5 tight bullet points for lists. Lead with the direct answer in the first sentence. No preamble, no filler, no repetition, no long wind-ups. Only add a detail if it is essential to the answer.",
-    "For practical, business, investment, property, and rental questions: give a few concrete, actionable points (key steps, typical costs as dated ranges, useful institutions). Keep it brief.",
-    "Be accurate; if something is uncertain, say so briefly. Never invent facts, statistics, prices, phone numbers, company names, or URLs.",
-    "Do not include a 'Sources' list in your text — the interface renders sources separately.",
-    language,
+    "You are the search engine for Shqipëri — a search service ONLY about Albania and things located in or relevant to Albania (businesses, services, travel, property, people, news, culture, etc.).",
+    "Return the TOP 4 most relevant, REAL results for the query, ranked best-first.",
+    "For service or business queries (car rental, lawyers, hotels, restaurants, tour guides, real estate, clinics, etc.), return the HIGHEST-RATED providers in the relevant Albanian city — real companies with their star rating when available. Rank by rating.",
+    "For places, people, topics or news, return the most relevant real pages (official sites, maps listings, reputable sources).",
+    "Use web search to find real results. NEVER invent companies, URLs or ratings — only real ones from search.",
+    "DO NOT explain, summarize, give instructions, or add any prose. Users know what to do. Output results only.",
+    "A result's snippet is a SHORT descriptor (max ~10 words) — e.g. the city, category, or one distinguishing fact. Not an explanation.",
+    `Write each title and snippet in ${LANG_NAME[lang]}.`,
+    "If the query is NOT about Albania or not a need in/for Albania, set albania=false and return no results.",
+    "",
+    "Respond with ONLY a JSON object, no markdown, no code fences, no other text:",
+    '{"albania": true, "results": [{"title": "Company Name", "url": "https://...", "rating": "4.8", "snippet": "Tirana · car rental"}]}',
+    "rating is optional (omit when unknown). Include at most 4 results.",
   ].join("\n");
 }
 
-function sse(data: unknown): string {
-  return `data: ${JSON.stringify(data)}\n\n`;
+function json(payload: SearchPayload, cache: "HIT" | "MISS" = "MISS") {
+  return Response.json(payload, {
+    headers: { "Cache-Control": "no-store", "X-Cache": cache },
+  });
 }
 
 export async function POST(req: NextRequest) {
@@ -86,153 +87,79 @@ export async function POST(req: NextRequest) {
     return new Response("Bad request", { status: 400 });
   }
 
-  const query = (body.q || "").toString().trim().slice(0, 500);
+  const query = (body.q || "").toString().trim().slice(0, 300);
   const allowed: Lang[] = ["sq", "en", "tr", "it", "ar"];
-  const lang: Lang = allowed.includes(body.lang as Lang)
-    ? (body.lang as Lang)
-    : "sq";
+  const lang: Lang = allowed.includes(body.lang as Lang) ? (body.lang as Lang) : "sq";
+  if (!query) return new Response("Missing query", { status: 400 });
 
-  if (!query) {
-    return new Response("Missing query", { status: 400 });
-  }
-
-  const encoder = new TextEncoder();
   const key = cacheKey(lang, query);
-
-  // Cache hit → replay the stored answer, no API call.
   const cached = cacheGet(key);
-  if (cached) {
-    const stream = new ReadableStream({
-      start(controller) {
-        controller.enqueue(
-          encoder.encode(sse({ type: "text", text: cached.answer })),
-        );
-        controller.enqueue(
-          encoder.encode(sse({ type: "sources", sources: cached.sources })),
-        );
-        controller.enqueue(encoder.encode(sse({ type: "done" })));
-        controller.close();
-      },
-    });
-    return new Response(stream, { headers: sseHeaders("HIT") });
-  }
+  if (cached) return json(cached, "HIT");
 
-  // Graceful fallback when no key is configured, so the UI still works in dev.
   if (!apiKey) {
-    const stream = new ReadableStream({
-      start(controller) {
-        const msg =
-          lang === "sq"
-            ? "⚠️ Çelësi i API-t (ANTHROPIC_API_KEY) nuk është vendosur. Shto çelësin në skedarin .env.local për të aktivizuar kërkimin.\n\nKy është një mesazh demonstrimi për pyetjen: "
-            : "⚠️ The API key (ANTHROPIC_API_KEY) is not set. Add it to .env.local to enable search.\n\nThis is a demo message for your query: ";
-        controller.enqueue(encoder.encode(sse({ type: "text", text: msg })));
-        controller.enqueue(
-          encoder.encode(sse({ type: "text", text: `"${query}"` })),
-        );
-        controller.enqueue(encoder.encode(sse({ type: "sources", sources: [] })));
-        controller.enqueue(encoder.encode(sse({ type: "done" })));
-        controller.close();
-      },
+    return json({
+      albania: true,
+      results: [
+        {
+          title: "ANTHROPIC_API_KEY not set",
+          url: "https://console.anthropic.com/",
+          snippet: "Add the key to .env.local to enable search results.",
+        },
+      ],
     });
-    return new Response(stream, { headers: sseHeaders() });
   }
 
   const client = new Anthropic({ apiKey });
 
-  const stream = new ReadableStream({
-    async start(controller) {
-      const send = (d: unknown) =>
-        controller.enqueue(encoder.encode(sse(d)));
-
-      try {
-        const llm = client.messages.stream({
-          model: MODEL,
-          max_tokens: 700,
-          system: systemPrompt(lang),
-          messages: [{ role: "user", content: query }],
-          tools: [
-            {
-              type: "web_search_20250305",
-              name: "web_search",
-              max_uses: 1,
-            },
-          ],
-        });
-
-        let full = "";
-        for await (const event of llm) {
-          if (
-            event.type === "content_block_delta" &&
-            event.delta.type === "text_delta"
-          ) {
-            full += event.delta.text;
-            send({ type: "text", text: event.delta.text });
-          }
-        }
-
-        const final = await llm.finalMessage();
-        const sources = extractSources(final);
-        cacheSet(key, full, sources);
-        send({ type: "sources", sources });
-        send({ type: "done" });
-      } catch (err) {
-        console.error("[search] error:", err);
-        send({
-          type: "error",
-          message: err instanceof Error ? err.message : "Unknown error",
-        });
-      } finally {
-        controller.close();
-      }
-    },
-  });
-
-  return new Response(stream, { headers: sseHeaders() });
-}
-
-function sseHeaders(cache: "HIT" | "MISS" = "MISS") {
-  return {
-    "Content-Type": "text/event-stream; charset=utf-8",
-    "Cache-Control": "no-cache, no-transform",
-    Connection: "keep-alive",
-    "X-Cache": cache,
-  };
-}
-
-/** Pull unique web-search results (and citation targets) out of the final message. */
-function extractSources(msg: Anthropic.Messages.Message): Source[] {
-  const seen = new Set<string>();
-  const sources: Source[] = [];
-
-  const add = (url?: string, title?: string, age?: string) => {
-    if (!url || seen.has(url)) return;
-    seen.add(url);
-    sources.push({
-      url,
-      title: title?.trim() || hostOf(url),
-      age,
+  try {
+    const msg = await client.messages.create({
+      model: MODEL,
+      max_tokens: 900,
+      system: systemPrompt(lang),
+      messages: [{ role: "user", content: query }],
+      tools: [
+        { type: "web_search_20250305", name: "web_search", max_uses: 3 },
+      ],
     });
-  };
 
-  for (const block of msg.content as any[]) {
-    if (block.type === "web_search_tool_result" && Array.isArray(block.content)) {
-      for (const r of block.content) {
-        if (r.type === "web_search_result") {
-          add(r.url, r.title, r.page_age);
-        }
-      }
-    }
-    // Citations attached to text blocks (cited sources take priority visually).
-    if (block.type === "text" && Array.isArray(block.citations)) {
-      for (const c of block.citations) {
-        if (c.type === "web_search_result_location") {
-          add(c.url, c.title);
-        }
-      }
-    }
+    const text = (msg.content as any[])
+      .filter((b) => b.type === "text")
+      .map((b) => b.text)
+      .join("\n");
+
+    const payload = parsePayload(text);
+    cacheSet(key, payload);
+    return json(payload);
+  } catch (err) {
+    console.error("[search] error:", err);
+    return Response.json(
+      { albania: true, results: [], error: err instanceof Error ? err.message : "error" },
+      { status: 200 },
+    );
   }
+}
 
-  return sources.slice(0, 12);
+/** Extract the JSON object from the model's reply and normalize it. */
+function parsePayload(text: string): SearchPayload {
+  const match = text.match(/\{[\s\S]*\}/);
+  if (!match) return { albania: true, results: [] };
+  try {
+    const raw = JSON.parse(match[0]);
+    const results: Result[] = Array.isArray(raw.results)
+      ? raw.results
+          .filter((r: any) => r && typeof r.url === "string" && /^https?:\/\//.test(r.url))
+          .slice(0, 4)
+          .map((r: any) => ({
+            title: String(r.title || hostOf(r.url)).slice(0, 140),
+            url: r.url,
+            rating: r.rating ? String(r.rating).slice(0, 8) : undefined,
+            snippet: r.snippet ? String(r.snippet).slice(0, 120) : undefined,
+          }))
+      : [];
+    return { albania: raw.albania !== false, results };
+  } catch {
+    return { albania: true, results: [] };
+  }
 }
 
 function hostOf(url: string): string {

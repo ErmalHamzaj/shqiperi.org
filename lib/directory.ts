@@ -75,7 +75,7 @@ export const CATEGORIES: Category[] = [
   {
     id: "rent-car",
     name: { sq: "Makina me qira", en: "Car rental" },
-    match: /\b(car|makin|auto)\b.*\b(rent|qira|qera)\b|\b(rent|qira)\b.*\b(car|makin|auto)\b|araç kirala|araba kirala|kiralık ara|noleggio auto|noleggiare un.?auto|autonoleggio|تأجير سيار|استئجار سيار/i,
+    match: /\b(cars?|makin|auto)\b.*\b(rent|rental|qira|qera)\b|\b(rent|rental|qira)\b.*\b(cars?|makin|auto)\b|araç kirala|araba kirala|kiralık ara|noleggio auto|noleggiare un.?auto|autonoleggio|تأجير سيار|استئجار سيار/i,
     companies: [
       {
         name: "Enterprise Rent-A-Car",
@@ -162,7 +162,7 @@ export const CATEGORIES: Category[] = [
   {
     id: "lawyer",
     name: { sq: "Avokatë & shërbime ligjore", en: "Lawyers & legal services" },
-    match: /\b(lawyer|attorney|legal|law firm|avokat|jurist|juridik|ligjor|noter|kontrat)\b|avukat|avvocato|legale|محامي|محاماة|قانوني/i,
+    match: /\b(lawyers?|attorneys?|legal|law firm|avokat|jurist|juridik|ligjor|noter|kontrat)\b|avukat|avvocato|legale|محامي|محاماة|قانوني/i,
     companies: [
       {
         name: "Av. Anxhela Lami",

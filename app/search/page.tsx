@@ -10,12 +10,11 @@ import { NewsList } from "@/components/NewsList";
 import { Weather } from "@/components/Weather";
 import { RepresentativeCTA } from "@/components/RepresentativeCTA";
 import { useLang } from "@/components/LanguageProvider";
-import { renderMarkdown } from "@/lib/markdown";
 import { getRefinement } from "@/lib/refine";
 import { matchCategory, companyNote, localize, type Company } from "@/lib/directory";
 
-type Source = { title: string; url: string; age?: string };
-type Status = "idle" | "loading" | "streaming" | "done" | "error";
+type Result = { title: string; url: string; rating?: string; snippet?: string };
+type Status = "loading" | "done" | "error";
 
 export default function SearchPage() {
   return (
@@ -30,30 +29,29 @@ function SearchResults() {
   const query = params.get("q") ?? "";
   const { lang, tr } = useLang();
 
-  const [answer, setAnswer] = useState("");
-  const [sources, setSources] = useState<Source[]>([]);
+  const [results, setResults] = useState<Result[]>([]);
+  const [albania, setAlbania] = useState(true);
   const [status, setStatus] = useState<Status>("loading");
   const abortRef = useRef<AbortController | null>(null);
 
   const refinement = getRefinement(query, lang);
   const category = matchCategory(query);
   const isNews = /(news|lajm|haber|notiz|أخبار|الأخبار)/i.test(query);
-  // High-intent: someone wants a custom/organized plan or a service/purchase.
   const customPlan =
     /\b(plan|organi[sz]|itinerar|transfer|package|paket[ëe]|then|from there|pastaj|nga atje|custom|trip|udh[ëe]tim|tour|tur[ëa]?)\b/i.test(
       query,
     );
   const highIntent = customPlan || category !== null;
 
-  // Stream the AI answer for every (non-news) search.
+  // Fetch the top real results for every (non-news) search.
   useEffect(() => {
     if (!query || isNews) return;
     const controller = new AbortController();
     abortRef.current?.abort();
     abortRef.current = controller;
 
-    setAnswer("");
-    setSources([]);
+    setResults([]);
+    setAlbania(true);
     setStatus("loading");
 
     (async () => {
@@ -64,43 +62,11 @@ function SearchResults() {
           body: JSON.stringify({ q: query, lang }),
           signal: controller.signal,
         });
-        if (!res.ok || !res.body) throw new Error(`HTTP ${res.status}`);
-
-        const reader = res.body.getReader();
-        const decoder = new TextDecoder();
-        let buffer = "";
-
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          buffer += decoder.decode(value, { stream: true });
-
-          const parts = buffer.split("\n\n");
-          buffer = parts.pop() ?? "";
-          for (const part of parts) {
-            const line = part.trim();
-            if (!line.startsWith("data:")) continue;
-            const payload = line.slice(5).trim();
-            if (!payload) continue;
-            let evt: any;
-            try {
-              evt = JSON.parse(payload);
-            } catch {
-              continue;
-            }
-            if (evt.type === "text") {
-              setStatus("streaming");
-              setAnswer((a) => a + evt.text);
-            } else if (evt.type === "sources") {
-              setSources(evt.sources ?? []);
-            } else if (evt.type === "done") {
-              setStatus("done");
-            } else if (evt.type === "error") {
-              setStatus("error");
-            }
-          }
-        }
-        setStatus((s) => (s === "error" ? s : "done"));
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        setAlbania(data.albania !== false);
+        setResults(Array.isArray(data.results) ? data.results : []);
+        setStatus("done");
       } catch (e) {
         if ((e as Error).name !== "AbortError") setStatus("error");
       }
@@ -139,10 +105,20 @@ function SearchResults() {
         </p>
 
         {isNews ? (
-          /* News query → aggregated Albanian news feed, no AI answer */
+          /* News query → aggregated Albanian news feed */
           <div className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
             <NewsList limit={30} />
           </div>
+        ) : status === "loading" ? (
+          <section className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
+            <LoadingSkeleton label={tr.searching} />
+          </section>
+        ) : !albania ? (
+          /* Off-topic query → politely decline (Albania only) */
+          <section className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-8 text-center shadow-sm">
+            <div className="mb-3 text-3xl">🇦🇱</div>
+            <p className="text-zinc-600 dark:text-zinc-300">{tr.notAlbania}</p>
+          </section>
         ) : (
           <>
             {/* Disambiguation */}
@@ -165,50 +141,23 @@ function SearchResults() {
               </section>
             )}
 
-            {/* AI answer — the primary result for every search */}
-            <section className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
-              <div className="mb-4 flex items-center gap-2">
-                <BookIcon />
-                <h2 className="text-sm font-semibold tracking-wide text-flag-red uppercase">
-                  {tr.overview}
-                </h2>
-              </div>
+            {/* Top results */}
+            {status === "error" ? (
+              <p className="text-zinc-600 dark:text-zinc-300">{tr.error}</p>
+            ) : results.length > 0 ? (
+              <ol className="space-y-4">
+                {results.map((r) => (
+                  <ResultCard key={r.url} result={r} />
+                ))}
+              </ol>
+            ) : (
+              <p className="text-zinc-500 dark:text-zinc-400">{tr.noWebResults}</p>
+            )}
 
-              {status === "loading" && answer === "" ? (
-                <LoadingSkeleton label={tr.searching} />
-              ) : status === "error" ? (
-                <p className="text-zinc-600 dark:text-zinc-300">{tr.error}</p>
-              ) : (
-                <div
-                  className={`answer text-[15px] text-zinc-800 dark:text-zinc-100 ${
-                    status === "streaming" ? "caret" : ""
-                  }`}
-                  dangerouslySetInnerHTML={{ __html: renderMarkdown(answer) }}
-                />
-              )}
-
-              {sources.length > 0 && (
-                <div className="mt-5 border-t border-zinc-100 dark:border-zinc-800 pt-4">
-                  <h3 className="mb-2 text-xs font-semibold uppercase text-zinc-400">
-                    {tr.sources}
-                  </h3>
-                  <ol className="space-y-2.5">
-                    {sources.map((s, idx) => (
-                      <SourceRow key={s.url} source={s} index={idx + 1} />
-                    ))}
-                  </ol>
-                </div>
-              )}
-
-              <p className="mt-6 border-t border-zinc-100 dark:border-zinc-800 pt-3 text-xs text-zinc-400">
-                {tr.disclaimer}
-              </p>
-            </section>
-
-            {/* Free representative / concierge — shown for high-intent queries */}
+            {/* Concierge — high-intent queries */}
             {highIntent && <RepresentativeCTA query={query} prominent />}
 
-            {/* Company directory */}
+            {/* Admin-added companies for this category */}
             {category && (
               <DirectorySection
                 title={tr.dirTitle}
@@ -295,28 +244,17 @@ function DirectorySection({
   );
 }
 
-function SourceRow({ source, index }: { source: Source; index: number }) {
-  let host = source.url;
+function ResultCard({ result }: { result: Result }) {
+  let host = result.url;
   try {
-    host = new URL(source.url).hostname.replace(/^www\./, "");
+    host = new URL(result.url).hostname.replace(/^www\./, "");
   } catch {
     /* keep raw */
   }
   return (
-    <li className="flex gap-3">
-      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-100 dark:bg-zinc-700 text-xs font-semibold text-zinc-500">
-        {index}
-      </span>
-      <div className="min-w-0">
-        <a
-          href={source.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="line-clamp-1 text-[15px] text-flag-red hover:underline"
-        >
-          {source.title}
-        </a>
-        <div className="flex items-center gap-1.5 text-xs text-zinc-400">
+    <li className="rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-4 sm:p-5 shadow-sm hover:border-flag-red/40 transition-colors">
+      <a href={result.url} target="_blank" rel="noopener noreferrer" className="block">
+        <div className="mb-1 flex items-center gap-2 text-xs text-zinc-400">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`https://icons.duckduckgo.com/ip3/${host}.ico`}
@@ -329,9 +267,21 @@ function SourceRow({ source, index }: { source: Source; index: number }) {
             }}
           />
           <span className="truncate">{host}</span>
-          {source.age && <span>· {source.age}</span>}
         </div>
-      </div>
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="text-[17px] font-semibold text-flag-red hover:underline">
+            {result.title}
+          </h3>
+          {result.rating && (
+            <span className="shrink-0 whitespace-nowrap rounded-full bg-amber-100 dark:bg-amber-400/15 px-2 py-0.5 text-xs font-semibold text-amber-700 dark:text-amber-400">
+              ★ {result.rating}
+            </span>
+          )}
+        </div>
+        {result.snippet && (
+          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{result.snippet}</p>
+        )}
+      </a>
     </li>
   );
 }
@@ -350,24 +300,6 @@ function LoadingSkeleton({ label }: { label: string }) {
         <div className="shimmer h-4 w-10/12 rounded" />
       </div>
     </div>
-  );
-}
-
-function BookIcon() {
-  return (
-    <svg
-      className="h-4 w-4 text-flag-red"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M4 5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H6a2 2 0 0 1-2-2z" />
-      <path d="M17 3h1a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2h-1" />
-    </svg>
   );
 }
 

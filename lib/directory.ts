@@ -22,17 +22,20 @@ export type Company = {
   website?: string;
   /** Google/aggregate star rating, e.g. 4.6. Shown as a badge; used to sort. */
   rating?: number;
+  /** Number of Google reviews — shown when no star rating; used to sort. */
+  reviews?: number;
   /** Featured/premium listing — gets the highlighted style and sorts first. */
   featured?: boolean;
   /** Short description; string or per-language. */
   note?: string | LangText;
 };
 
-/** Featured first, then best-rated first; the rest keep their order. */
+/** Featured first, then best-rated, then most-reviewed; the rest keep their order. */
 export function sortByRating(companies: Company[]): Company[] {
   return [...companies].sort((a, b) => {
     if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1;
-    return (b.rating ?? -1) - (a.rating ?? -1);
+    if ((a.rating ?? -1) !== (b.rating ?? -1)) return (b.rating ?? -1) - (a.rating ?? -1);
+    return (b.reviews ?? -1) - (a.reviews ?? -1);
   });
 }
 
@@ -216,6 +219,71 @@ const LAW_FIRMS: Company[] = [
   { name: "Briss' Law Zyrë Ligjore / Avokate", city: "Tirana", phone: "+355 68 206 7455", note: "Legal services, civil, commercial, family" },
 ];
 
+// Albanian boat & yacht tours (reviews = Google review count).
+const BOAT_YACHT_COMPANIES: Company[] = [
+  { name: "Vlora Boat Trip 3 Fiori", city: "Vlorë", phone: "+355 69 226 2980", reviews: 8359, note: "Boat tours, cruises (Sazan, Karaburun, Vlorë)" },
+  { name: "TripMe.Today Boat Tour & Boat Trips Vlore", city: "Vlorë", phone: "+355 69 444 6664", reviews: 4441, note: "Boat tours, cruises, private trips" },
+  { name: "Himara Watertaxi - Boat trips Albania", city: "Himarë", phone: "+355 69 564 6999", reviews: 1688, note: "Water taxi, boat trips (Riviera, caves)" },
+  { name: "Exploring Himara Boat Trips", city: "Himarë", phone: "+355 69 973 9957", reviews: 1563, note: "Boat tours, private trips (caves, bays)" },
+  { name: "Tedi Boat Trip Ksamil", city: "Ksamil", phone: "+355 68 330 4804", reviews: 1080, note: "Boat tours, island trips (Ksamil, Tongo)" },
+  { name: "Himara Golden Boat Tours", city: "Himarë", phone: "+355 69 332 3083", reviews: 742, note: "Boat tours, private trips (Riviera)" },
+  { name: "Durres Daily Tours", city: "Durrës", phone: "+355 68 666 6603", reviews: 622, note: "Boat tours, daily excursions" },
+  { name: "Ajla Boat", city: "Sarandë", phone: "+355 69 644 6410", reviews: 605, note: "Boat tours (Sarandë, Ksamil, Ionian coast)" },
+  { name: "Luna Boat Trips Vlore", city: "Vlorë", phone: "+355 69 944 8195", reviews: 602, note: "Boat tours, cruises (Sazan, Karaburun)" },
+  { name: "Adventure Point Boat Tours & ATV Tours", city: "Durrës", phone: "+355 69 618 3536", reviews: 458, note: "Boat tours, ATV, excursions" },
+  { name: "SeaSun BoatTours Ksamil", city: "Ksamil", phone: "+355 69 993 2818", reviews: 447, note: "Boat tours, island trips (Ksamil, Tongo)" },
+  { name: "Santi Boat Saranda", city: "Sarandë", phone: "+355 69 486 4488", reviews: 447, note: "Boat tours, private trips (Ksamil, Riviera)" },
+  { name: "Sea Breeze Boat Tours - Himara", city: "Himarë", phone: "+355 69 286 4190", reviews: 432, note: "Boat tours, private/group (caves, bays)" },
+  { name: "Ava Boat Tours Saranda", city: "Sarandë", phone: "+355 69 680 7381", reviews: 339, note: "Boat tours, private trips (caves, beaches)" },
+  { name: "Ksamil Boat Tours - Trip", city: "Ksamil", phone: "+355 69 691 5199", reviews: 155, note: "Boat tours (Ksamil Islands, Tongo)" },
+  { name: "Rei Boat Tours", city: "Sarandë", phone: "+355 69 478 8314", reviews: 93, note: "Boat rental, boat tours (Ksamil, Riviera)" },
+  { name: "Boat Tours Ksamil", city: "Ksamil", phone: "+355 69 655 4011", reviews: 63, note: "Boat tours (Ksamil Islands, caves)" },
+  { name: "Durres Boat Trips", city: "Durrës", phone: "+355 69 214 3830", reviews: 1, note: "Boat tours (Adriatic coast)" },
+  { name: "Azzuro Yacht Charter", city: "Durrës", phone: "+355 69 285 5951", reviews: 24, note: "Yacht charter, boat tours (Adriatic coast)" },
+  { name: "Boat Trip Albania", city: "Vlorë / Sarandë / Ksamil / Himarë", phone: "+355 68 240 7915", website: "https://boatripalbania.com/", note: "Boat tours, cruises, speedboats, private trips" },
+  { name: "Gloria Boat Tours Saranda", city: "Sarandë", website: "https://www.gloriaboatsaranda.com/", note: "Group cruises, private charters (Turtle Cave, Kakome)" },
+  { name: "Riviera Boats AL", city: "Vlorë / Himarë / Sarandë", website: "https://rivieraboatsal.com/", note: "Group tours, private charters (Riviera)" },
+  { name: "Marin Yacht Agency", city: "Sarandë", phone: "+355 68 827 2447", email: "info@marinyachtagency.com", website: "https://www.marinyachtagency.com/", note: "Yacht agency, port services, yacht support" },
+  { name: "BWA Yachting Albania", city: "Sarandë", phone: "+355 69 209 4030", email: "albania@bwayachting.com", website: "https://www.bwayachting.com/albania/", note: "Yacht management, charter, agency" },
+  { name: "Acquera Yachting", city: "Sarandë", phone: "+355 69 457 5752", email: "bjordi.gogo@acquera.com", website: "https://www.acquerayachting.com/", note: "Yacht agency, charter support" },
+  { name: "Samer&Misa", city: "Sarandë", phone: "+355 69 202 4706", email: "samer-misa@samer-misa.com", website: "http://www.samer-misa.com/", note: "Yacht / port services" },
+  { name: "MT Sky", city: "Sarandë", phone: "+355 68 804 4929", email: "info@mtskyachting.com", website: "https://mtskyachting.com/", note: "Yacht services, charter support" },
+  { name: "Agimi-Jonian", city: "Sarandë", phone: "+355 69 256 6576", email: "agimzholi@yahoo.com", website: "http://agimi-jonian.com/", note: "Boat / yacht services (Ionian coast)" },
+  { name: "Albania Destination Service", city: "Sarandë", phone: "+355 69 254 2475", email: "info@albania-destination.com", website: "https://albania-destination.com/", note: "Destination services, boat/yacht support" },
+  { name: "Super Yacht Services Albania", city: "Sarandë", phone: "+355 69 401 0322", email: "info@superyachtalbania.com", website: "https://superyachtservicesalbania.com/", note: "Superyacht services, yacht support" },
+  { name: "Sipa Tours", city: "Sarandë", phone: "+355 85 226 675", email: "info@sipatours.com", website: "https://sipatours.com/", note: "Tours, boat excursions, destination services" },
+  { name: "AYC Albania Yacht Charter", city: "Tirana / Albania", phone: "+355 67 600 0688", email: "albaniayacht.charter@gmail.com", note: "Yacht charter (Albanian coast)" },
+  { name: "Hello Albania", city: "Vlorë", phone: "+355 67 208 0007", email: "info@helloagency.al", note: "Tours, coastal excursions (Riviera)" },
+];
+
+// Albanian taxi & airport transfer services.
+const TAXI_COMPANIES: Company[] = [
+  { name: "Auto Holiday Albania / TIA TAXI", city: "Tirana / Rinas", phone: "+355 69 999 9300", website: "https://tiataxi.al/", note: "Airport taxi, city, intercity, group transfers" },
+  { name: "Albania Airport Transfers", city: "Tirana / Rinas", phone: "+355 69 528 0440", note: "Airport transfers, private transfers" },
+  { name: "City Taxi Albania", city: "Tirana", phone: "+355 69 999 9111", note: "City taxi, airport transfer" },
+  { name: "Private Transfers Albania", city: "Tirana", phone: "+355 69 629 4254", note: "Private airport and intercity transfers" },
+  { name: "Private Driver Attractive Albania", city: "Tirana", phone: "+355 67 567 0015", note: "Chauffeur, VIP, private transfers (Albania & region)" },
+  { name: "Albania VIP Transfer", city: "Tirana / Rinas", note: "VIP airport and private transfers" },
+  { name: "Green Taxi", city: "Tirana", phone: "+355 800 2000", website: "https://greentaxi.al/", note: "Taxi, airport, city transfers" },
+  { name: "Private Driver Albania", city: "Tirana", phone: "+355 67 207 7780", note: "Private driver, airport, intercity" },
+  { name: "Zetta Transfers and Travel Albania", city: "Tirana", phone: "+355 67 688 1655", note: "Airport transfer, chauffeur, travel transport" },
+  { name: "International Airport Shuttle", city: "Tirana / Rinas", phone: "+355 67 201 3434", note: "Airport shuttle, transfers" },
+  { name: "Check Taxi Tirana", city: "Tirana", phone: "+355 68 555 5501", note: "Taxi, city and airport" },
+  { name: "Transfer Private South Albania", city: "Rinas / South Albania", phone: "+355 68 956 7113", note: "Private transfers, airport, Riviera" },
+  { name: "EM Albania Transfer", city: "Tirana / Rinas", phone: "+355 69 629 4254", note: "Airport and private transfers" },
+  { name: "Taxi Lux", city: "Tirana", phone: "+355 4 833 3333", note: "Taxi, airport, city, premium" },
+  { name: "Albanian VIP Transport 24H", city: "Rinas / Tirana", phone: "+355 69 293 9678", note: "VIP, airport, chauffeur" },
+  { name: "Tirana Airport Transfers", city: "Tirana", phone: "+355 4 223 3997", note: "Airport transfer, private transport" },
+  { name: "Eco Taxi Albania", city: "Tirana", phone: "+355 69 433 3111", note: "Taxi, airport, city" },
+  { name: "Chauffeur Service Albania - CSA", city: "Tirana", phone: "+355 68 202 1574", note: "Chauffeur, VIP, corporate transfers" },
+  { name: "AlbShuttle - Day Trips and Transport", city: "Golem / Durrës", phone: "+355 68 333 0064", note: "Shuttle, airport, day trips, transfers" },
+  { name: "BEE TAXI Tirana Albania", city: "Tirana", phone: "+355 800 8080", note: "Taxi, airport, city" },
+  { name: "REKO Taxi", city: "Tirana", website: "https://www.reko.al/", note: "Taxi, airport, Riviera, executive transport" },
+  { name: "TIRAVA Taxi Transfers", city: "Tirana", website: "https://tirava.app/", note: "Pre-booked taxi, chauffeur, fixed-fare airport transfers" },
+  { name: "KadTaxi", city: "Tirana / Rinas", phone: "+355 69 652 0007", website: "https://kadtaxi.al/airport", note: "Airport taxi, private transfers, meet & greet" },
+  { name: "Tirana Airport Transfer / ATHS", city: "Tirana / Rinas", website: "https://www.tiranaairporttransfer.com/", note: "Private taxi, van, airport transfers" },
+];
+
 export const CATEGORIES: Category[] = [
   {
     id: "rent-car",
@@ -258,6 +326,18 @@ export const CATEGORIES: Category[] = [
         },
       },
     ],
+  },
+  {
+    id: "boat-yacht",
+    name: { sq: "Tura me varkë & jaht", en: "Boat & yacht tours" },
+    match: /\b(boat|yacht|cruise|speedboat|catamaran|water ?taxi|sail)\b|varkë|varka|lundrim|jaht|anije|tekne|barca|barche|crociera|قارب|يخت|قوارب/i,
+    companies: [...BOAT_YACHT_COMPANIES],
+  },
+  {
+    id: "taxi-transfers",
+    name: { sq: "Taksi & transferta", en: "Taxi & transfers" },
+    match: /\b(taxi|transfer|transfers|shuttle|chauffeur)\b|taksi|transfert|aeroport|navetta|trasferiment|تاكسي|سيارة أجرة|نقل/i,
+    companies: [...TAXI_COMPANIES],
   },
   {
     id: "buy-property",

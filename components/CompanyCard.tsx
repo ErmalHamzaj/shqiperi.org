@@ -29,11 +29,15 @@ export function CompanyCard({ company: c }: { company: Company }) {
             <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">{note}</p>
           )}
         </div>
-        {typeof c.rating === "number" && (
+        {typeof c.rating === "number" ? (
           <span className="shrink-0 whitespace-nowrap rounded-full bg-amber-100 dark:bg-amber-400/15 px-2 py-0.5 text-xs font-semibold text-amber-700 dark:text-amber-400">
             ★ {c.rating.toFixed(1)}
           </span>
-        )}
+        ) : typeof c.reviews === "number" ? (
+          <span className="shrink-0 whitespace-nowrap rounded-full bg-zinc-100 dark:bg-zinc-700 px-2 py-0.5 text-xs font-semibold text-zinc-500 dark:text-zinc-300">
+            {formatCount(c.reviews)} ★
+          </span>
+        ) : null}
       </div>
       <div className="mt-2 space-y-0.5 text-sm">
         {c.city && <div className="text-zinc-500">📍 {c.city}</div>}
@@ -60,6 +64,10 @@ export function CompanyCard({ company: c }: { company: Company }) {
       </div>
     </li>
   );
+}
+
+function formatCount(n: number): string {
+  return n >= 1000 ? `${(n / 1000).toFixed(1).replace(/\.0$/, "")}k` : String(n);
 }
 
 function CheckIcon() {

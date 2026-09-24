@@ -25,19 +25,24 @@ topics.tr.txt  ──seed──▶  queue.json  ──generate──▶  content
    Re-run any time after editing `topics.tr.txt`; it keeps the status of posts
    already generated, so nothing is regenerated.
 
-2. **Generate + publish one** (what cron runs):
+2. **See what's pending** and pick a topic:
    ```bash
-   node scripts/generate-post.mjs            # next pending topic
-   node scripts/generate-post.mjs --id <id>  # a specific topic
+   node scripts/list-topics.mjs                  # next 25 pending
+   node scripts/list-topics.mjs --category cars  # pending in one category
+   node scripts/list-topics.mjs --all            # everything pending
    ```
 
-3. **Generate + publish the whole queue** (background, on the VPS):
+3. **Generate + publish ONE post** (the manual, one-by-one workflow):
    ```bash
-   nohup node scripts/run-queue.mjs > blog-run.log 2>&1 &
-   tail -f blog-run.log        # watch progress
+   node scripts/generate-post.mjs            # the next pending topic
+   node scripts/generate-post.mjs --id <id>  # a specific topic from the list
    ```
-   `node scripts/run-queue.mjs --max 20` does only the next 20. Safe to stop
-   (Ctrl-C / kill) and re-run; it always continues from the next pending topic.
+   Each run writes one post, publishes it, and marks that topic done. Repeat
+   whenever you want another.
+
+   > The old batch runner `scripts/run-queue.mjs` (auto-generate the whole
+   > queue) still exists but is **not used** in the manual workflow. Don't start
+   > it, and make sure no old background run is going: `pkill -f run-queue.mjs`.
 
 ## Writing rules (baked into the generator)
 

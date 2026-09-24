@@ -1,6 +1,7 @@
 {
   "slug": "tutap-arnavutluk",
   "status": "published",
+  "manual": true,
   "category": "partnership",
   "cover": "🤝",
   "ogImage": "/images/tutap-og.jpg",

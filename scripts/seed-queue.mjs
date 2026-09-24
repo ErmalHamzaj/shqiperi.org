@@ -88,6 +88,8 @@ const queue = {
     "Auto-generated from topics.tr.txt by scripts/seed-queue.mjs. The generator writes canonical articles in sourceLang, then translates to the other languages, and AUTO-PUBLISHES. Run the whole queue with scripts/run-queue.mjs.",
   schedule: { days: [1, 2, 3, 4, 5], hour: 9 },
   model: "claude-haiku-4-5-20251001",
+  translateModel: "claude-haiku-4-5-20251001",
+  langModels: { sq: "claude-sonnet-5" },
   sourceLang: "tr",
   wordTarget: 1200,
   topics,

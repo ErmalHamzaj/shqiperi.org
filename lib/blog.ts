@@ -22,6 +22,9 @@ export type BlogCategory = {
   editorial?: boolean;
 };
 
+// (Post-level "manual" flag lives on the JSON; it marks hand-written posts
+// that scripts/retranslate.mjs must not overwrite.)
+
 export const BLOG_CATEGORIES: BlogCategory[] = [
   { id: "partnership", icon: "🤝", cta: null, editorial: true,
     name: { en: "News & Partnerships", tr: "Haberler & İşbirlikleri", sq: "Lajme & Partneritete", it: "Notizie e partnership", ar: "أخبار وشراكات" } },
@@ -71,6 +74,8 @@ export function ctaForCategory(id?: string): string | null {
 export type Post = {
   slug: string;
   status: "draft" | "published";
+  /** Hand-written post that scripts/retranslate.mjs must not overwrite. */
+  manual?: boolean;
   /** Blog category id (see BLOG_CATEGORIES). */
   category?: string;
   cover?: string;

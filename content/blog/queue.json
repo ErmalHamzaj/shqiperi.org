@@ -11,6 +11,8 @@
     "hour": 9
   },
   "model": "claude-haiku-4-5-20251001",
+  "translateModel": "claude-haiku-4-5-20251001",
+  "langModels": { "sq": "claude-sonnet-5" },
   "sourceLang": "tr",
   "wordTarget": 1200,
   "topics": [

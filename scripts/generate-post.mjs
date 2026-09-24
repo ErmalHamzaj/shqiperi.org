@@ -21,11 +21,11 @@ const ROOT = process.cwd();
 const QUEUE_PATH = path.join(ROOT, "content", "blog", "queue.json");
 const POSTS_DIR = path.join(ROOT, "content", "blog", "posts");
 
-const LANG_NAME = { sq: "Albanian", en: "English", tr: "Turkish", it: "Italian", ar: "Arabic (Modern Standard Arabic)" };
+export const LANG_NAME = { sq: "Albanian", en: "English", tr: "Turkish", it: "Italian", ar: "Arabic (Modern Standard Arabic)" };
 const ALL_LANGS = ["sq", "en", "tr", "it", "ar"];
 
 // ── env ─────────────────────────────────────────────────────────────────────
-function loadEnv() {
+export function loadEnv() {
   if (process.env.ANTHROPIC_API_KEY) return;
   const envPath = path.join(ROOT, ".env.local");
   if (!fs.existsSync(envPath)) return;
@@ -61,6 +61,25 @@ function cleanFields(obj) {
   return obj;
 }
 
+// Escape raw control characters (newlines, tabs, etc.) that appear INSIDE JSON
+// string literals, so JSON.parse accepts model output that left them unescaped.
+function escapeStringControls(s) {
+  let out = "";
+  let inStr = false;
+  let esc = false;
+  for (const ch of s) {
+    if (esc) { out += ch; esc = false; continue; }
+    if (ch === "\\") { out += ch; esc = true; continue; }
+    if (ch === '"') { inStr = !inStr; out += ch; continue; }
+    if (inStr && ch.charCodeAt(0) < 0x20) {
+      out += "\\u" + ch.charCodeAt(0).toString(16).padStart(4, "0");
+      continue;
+    }
+    out += ch;
+  }
+  return out;
+}
+
 function extractJson(text) {
   let t = text.trim();
   const fence = t.match(/```(?:json)?\s*([\s\S]*?)```/);
@@ -68,7 +87,7 @@ function extractJson(text) {
   const start = t.indexOf("{");
   const end = t.lastIndexOf("}");
   if (start === -1 || end === -1) throw new Error("No JSON object in model reply");
-  return JSON.parse(t.slice(start, end + 1));
+  return JSON.parse(escapeStringControls(t.slice(start, end + 1)));
 }
 
 async function ask(client, model, system, user, maxTokens) {
@@ -103,9 +122,20 @@ async function generateCanonical(client, model, topic, langName, target) {
   return cleanFields(extractJson(await ask(client, model, system, user, 6000)));
 }
 
-async function translate(client, model, src, langName) {
+// Extra native-quality guidance per target language.
+const LANG_GUIDANCE = {
+  sq:
+    "Write in correct, natural, standard literary Albanian (gjuha standarde shqipe), as a professional native editor would. " +
+    "Be very careful with noun definiteness and plural forms, gender agreement, and case (for example use 'çertifikatë' / 'çertifikata', never 'sertifikata'; 'dokument, dokumente, dokumentet, dokumentat' correctly; 'të gjitha dokumentet' not 'të gjithë dokumentet'). " +
+    "Use proper Albanian orthography (ç, ë) and native terminology. Avoid Turkish, Serbian or English loan-forms and calques. Read it back and make sure the grammar is flawless.",
+  ar: "Write in clear, correct Modern Standard Arabic with proper grammar and orthography.",
+};
+
+export async function translate(client, model, src, langName, code) {
+  const guidance = LANG_GUIDANCE[code] ? "\n" + LANG_GUIDANCE[code] : "";
   const system =
-    `You are a professional native translator into ${langName}. Translate faithfully and naturally, preserving Markdown structure and meaning, keeping proper nouns and place names. Keep the warm, human, positive tone. NEVER use em or en dashes. Do not add or remove content.`;
+    `You are a professional native translator and editor into ${langName}. Translate faithfully and naturally, preserving Markdown structure and meaning, keeping proper nouns and place names. Keep the warm, human, positive tone. NEVER use em or en dashes. Do not add or remove content.` +
+    guidance;
   const user =
     `Translate these article fields into ${langName}. Output ONLY JSON with the same keys, no code fences:\n` +
     JSON.stringify({ title: src.title, description: src.description, excerpt: src.excerpt, body: src.body });
@@ -119,6 +149,10 @@ export async function generateOne({ id = null, force = false } = {}) {
 
   const queue = JSON.parse(fs.readFileSync(QUEUE_PATH, "utf8"));
   const model = queue.model || "claude-sonnet-5";
+  // Model used for translations (per language override wins, then translateModel, then model).
+  const translateModel = queue.translateModel || model;
+  const langModels = queue.langModels || {};
+  const modelFor = (code) => langModels[code] || translateModel;
   const sourceLang = queue.sourceLang || "tr";
   const sourceName = LANG_NAME[sourceLang] || "Turkish";
   const defaultTarget = queue.wordTarget || 1400;
@@ -150,7 +184,7 @@ export async function generateOne({ id = null, force = false } = {}) {
   for (const code of ALL_LANGS) {
     if (code === sourceLang) continue;
     try {
-      const tr = await translate(client, model, canonical, LANG_NAME[code]);
+      const tr = await translate(client, modelFor(code), canonical, LANG_NAME[code], code);
       title[code] = tr.title || canonical.title;
       description[code] = tr.description || canonical.description;
       excerpt[code] = tr.excerpt || canonical.excerpt;

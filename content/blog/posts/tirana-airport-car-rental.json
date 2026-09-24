@@ -1,6 +1,7 @@
 {
   "slug": "tirana-airport-car-rental",
   "status": "published",
+  "manual": true,
   "category": "cars",
   "cover": "🚗",
   "readingMinutes": 5,

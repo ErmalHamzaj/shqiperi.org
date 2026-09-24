@@ -149,35 +149,40 @@
       "title": "Komani Lake Ferry & Boat Trip",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "komani-lake-ferry-boat-trip"
     },
     {
       "id": "the-best-beaches-in-albania",
       "title": "The Best Beaches in Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "the-best-beaches-in-albania"
     },
     {
       "id": "hidden-gems-of-albania",
       "title": "Hidden Gems of Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "hidden-gems-of-albania"
     },
     {
       "id": "unesco-world-heritage-sites-in-albania",
       "title": "UNESCO World Heritage Sites in Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "unesco-world-heritage-sites-in-albania"
     },
     {
       "id": "ancient-cities-castles-of-albania",
       "title": "Ancient Cities & Castles of Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "ancient-cities-castles-of-albania"
     },
     {
       "id": "hiking-trekking-routes-in-albania",

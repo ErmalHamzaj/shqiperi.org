@@ -437,42 +437,48 @@
       "title": "Buying a Home in Albania: Full Guide",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "buying-a-home-in-albania-full-guide"
     },
     {
       "id": "can-foreigners-buy-property-in-albania",
       "title": "Can Foreigners Buy Property in Albania?",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "can-foreigners-buy-property-in-albania"
     },
     {
       "id": "the-property-purchase-process-step-by-step",
       "title": "The Property Purchase Process, Step by Step",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "the-property-purchase-process-step-by-step"
     },
     {
       "id": "documents-needed-to-buy-a-home-in-albania",
       "title": "Documents Needed to Buy a Home in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "documents-needed-to-buy-a-home-in-albania"
     },
     {
       "id": "costs-taxes-when-buying-property-in-albania",
       "title": "Costs & Taxes When Buying Property in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "costs-taxes-when-buying-property-in-albania"
     },
     {
       "id": "checking-title-deeds-ownership-in-albania",
       "title": "Checking Title Deeds & Ownership in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "checking-title-deeds-ownership-in-albania"
     },
     {
       "id": "lawyer-notary-process-when-buying-a-home",

@@ -1,9 +1,1510 @@
 {
-  "_readme": "The bulk topic list has been removed. Posts are now managed individually (hand-written JSON in content/blog/posts, or generate-post.mjs with a topic you add to the 'topics' array below). The settings here are still used by generate-post.mjs / retranslate.mjs / add-slugs.mjs.",
+  "_readme": "Blog topic queue (English source titles). Generate one with: node scripts/generate-post.mjs --id <id>. Settings below are used by generate-post.mjs / retranslate.mjs / add-slugs.mjs.",
   "model": "claude-haiku-4-5-20251001",
   "translateModel": "claude-haiku-4-5-20251001",
-  "langModels": { "sq": "claude-sonnet-5" },
+  "langModels": {
+    "sq": "claude-sonnet-5"
+  },
   "sourceLang": "en",
   "wordTarget": 1200,
-  "topics": []
+  "topics": [
+    {
+      "id": "first-trip-to-albania-a-beginners-guide",
+      "title": "First Trip to Albania: A Beginner's Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "3-days-in-albania-itinerary",
+      "title": "3 Days in Albania: Itinerary",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "5-days-in-albania-itinerary",
+      "title": "5 Days in Albania: Itinerary",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "7-days-in-albania-itinerary",
+      "title": "7 Days in Albania: Itinerary",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "10-days-in-albania-itinerary",
+      "title": "10 Days in Albania: Itinerary",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "albania-north-to-south-road-trip",
+      "title": "Albania North to South Road Trip",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "the-albanian-riviera-travel-guide",
+      "title": "The Albanian Riviera Travel Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "ksamil-travel-guide",
+      "title": "Ksamil Travel Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "saranda-travel-guide",
+      "title": "Saranda Travel Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "vlora-travel-guide",
+      "title": "Vlora Travel Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "himara-dhermi-travel-guide",
+      "title": "Himara & Dhermi Travel Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "berat-travel-guide",
+      "title": "Berat Travel Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "gjirokaster-travel-guide",
+      "title": "Gjirokastër Travel Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "tirana-travel-guide",
+      "title": "Tirana Travel Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "shkodra-travel-guide",
+      "title": "Shkodra Travel Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "theth-national-park-guide",
+      "title": "Theth National Park Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "valbona-valley-guide",
+      "title": "Valbona Valley Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "komani-lake-ferry-boat-trip",
+      "title": "Komani Lake Ferry & Boat Trip",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "the-best-beaches-in-albania",
+      "title": "The Best Beaches in Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "hidden-gems-of-albania",
+      "title": "Hidden Gems of Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "unesco-world-heritage-sites-in-albania",
+      "title": "UNESCO World Heritage Sites in Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "ancient-cities-castles-of-albania",
+      "title": "Ancient Cities & Castles of Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "hiking-trekking-routes-in-albania",
+      "title": "Hiking & Trekking Routes in Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "nature-adventure-tourism-in-albania",
+      "title": "Nature & Adventure Tourism in Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "best-boat-yacht-tours-in-albania",
+      "title": "Best Boat & Yacht Tours in Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "diving-snorkeling-spots-in-albania",
+      "title": "Diving & Snorkeling Spots in Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "waterfalls-canyons-of-albania",
+      "title": "Waterfalls & Canyons of Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "best-photography-spots-in-albania",
+      "title": "Best Photography Spots in Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "festivals-events-calendar-in-albania",
+      "title": "Festivals & Events Calendar in Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "best-time-to-visit-albania",
+      "title": "Best Time to Visit Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "albania-beach-season-guide",
+      "title": "Albania Beach Season Guide",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "winter-mountain-tourism-in-albania",
+      "title": "Winter & Mountain Tourism in Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "budget-guide-for-a-trip-to-albania",
+      "title": "Budget Guide for a Trip to Albania",
+      "category": "travel",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "renting-a-car-in-albania-full-guide",
+      "title": "Renting a Car in Albania: Full Guide",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "car-rental-at-tirana-airport",
+      "title": "Car Rental at Tirana Airport",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "best-road-trip-routes-by-rental-car",
+      "title": "Best Road Trip Routes by Rental Car",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "what-to-check-when-renting-a-car-in-albania",
+      "title": "What to Check When Renting a Car in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "car-rental-insurance-deposit-in-albania",
+      "title": "Car Rental Insurance & Deposit in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "driving-in-albania-with-a-foreign-license",
+      "title": "Driving in Albania with a Foreign License",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "do-you-need-an-international-driving-permit-in-albania",
+      "title": "Do You Need an International Driving Permit in Albania?",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "traffic-rules-in-albania",
+      "title": "Traffic Rules in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "driving-on-mountain-roads-in-albania",
+      "title": "Driving on Mountain Roads in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "fuel-stations-petrol-prices-in-albania",
+      "title": "Fuel Stations & Petrol Prices in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "parking-guide-in-albania",
+      "title": "Parking Guide in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "private-driver-vip-transfers-in-albania",
+      "title": "Private Driver & VIP Transfers in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "airport-transfer-guide-in-albania",
+      "title": "Airport Transfer Guide in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "using-taxis-in-albania",
+      "title": "Using Taxis in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "intercity-buses-minibuses-in-albania",
+      "title": "Intercity Buses & Minibuses in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "crossing-borders-with-a-rental-car",
+      "title": "Crossing Borders with a Rental Car",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "traveling-albania-by-campervan",
+      "title": "Traveling Albania by Campervan",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "ev-charging-stations-in-albania",
+      "title": "EV Charging Stations in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "buying-a-used-car-in-albania",
+      "title": "Buying a Used Car in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "car-insurance-inspection-in-albania",
+      "title": "Car Insurance & Inspection in Albania",
+      "category": "cars",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "buying-a-home-in-albania-full-guide",
+      "title": "Buying a Home in Albania: Full Guide",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "can-foreigners-buy-property-in-albania",
+      "title": "Can Foreigners Buy Property in Albania?",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "the-property-purchase-process-step-by-step",
+      "title": "The Property Purchase Process, Step by Step",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "documents-needed-to-buy-a-home-in-albania",
+      "title": "Documents Needed to Buy a Home in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "costs-taxes-when-buying-property-in-albania",
+      "title": "Costs & Taxes When Buying Property in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "checking-title-deeds-ownership-in-albania",
+      "title": "Checking Title Deeds & Ownership in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "lawyer-notary-process-when-buying-a-home",
+      "title": "Lawyer & Notary Process When Buying a Home",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "buying-a-sea-view-home-in-albania",
+      "title": "Buying a Sea-View Home in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "property-investment-on-the-riviera-saranda-ksamil-vlora",
+      "title": "Property Investment on the Riviera: Saranda, Ksamil, Vlora",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "buying-a-home-in-tirana",
+      "title": "Buying a Home in Tirana",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "investment-property-in-albania",
+      "title": "Investment Property in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "buy-to-let-buying-and-renting-out-in-albania",
+      "title": "Buy-to-Let: Buying and Renting Out in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "buying-off-plan-new-build-property-in-albania",
+      "title": "Buying Off-Plan / New-Build Property in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "checking-zoning-building-permits-in-albania",
+      "title": "Checking Zoning & Building Permits in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "property-valuation-prices-in-albania",
+      "title": "Property Valuation & Prices in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "short-term-rental-airbnb-investment-in-albania",
+      "title": "Short-Term Rental & Airbnb Investment in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "long-term-renting-in-albania",
+      "title": "Long-Term Renting in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "rental-contracts-deposits-in-albania",
+      "title": "Rental Contracts & Deposits in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "working-with-a-real-estate-agent-in-albania",
+      "title": "Working with a Real Estate Agent in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "paying-for-property-from-abroad",
+      "title": "Paying for Property from Abroad",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "buying-land-in-albania",
+      "title": "Buying Land in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "commercial-property-hotel-investment-in-albania",
+      "title": "Commercial Property & Hotel Investment in Albania",
+      "category": "real-estate",
+      "cover": "🏡",
+      "status": "pending"
+    },
+    {
+      "id": "how-to-get-a-residence-permit-in-albania",
+      "title": "How to Get a Residence Permit in Albania",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "residence-permit-for-foreigners-in-albania",
+      "title": "Residence Permit for Foreigners in Albania",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "documents-for-an-albanian-residence-permit",
+      "title": "Documents for an Albanian Residence Permit",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "renewing-your-residence-permit-in-albania",
+      "title": "Renewing Your Residence Permit in Albania",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "long-term-permanent-residency-in-albania",
+      "title": "Long-Term & Permanent Residency in Albania",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "residency-through-investment-in-albania",
+      "title": "Residency Through Investment in Albania",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "how-to-get-a-work-permit-in-albania",
+      "title": "How to Get a Work Permit in Albania",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "family-reunification-in-albania",
+      "title": "Family Reunification in Albania",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "applying-for-albanian-citizenship",
+      "title": "Applying for Albanian Citizenship",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "requirements-documents-for-citizenship",
+      "title": "Requirements & Documents for Citizenship",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "address-registration-in-albania",
+      "title": "Address Registration in Albania",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "rights-obligations-of-foreigners-in-albania",
+      "title": "Rights & Obligations of Foreigners in Albania",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "power-of-attorney-apostille-in-albania",
+      "title": "Power of Attorney & Apostille in Albania",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "retiring-in-albania-residency-living",
+      "title": "Retiring in Albania: Residency & Living",
+      "category": "immigration",
+      "cover": "🛂",
+      "status": "pending"
+    },
+    {
+      "id": "starting-a-company-in-albania-step-by-step",
+      "title": "Starting a Company in Albania: Step by Step",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "documents-needed-to-register-a-company",
+      "title": "Documents Needed to Register a Company",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "types-of-companies-in-albania",
+      "title": "Types of Companies in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "setting-up-a-company-as-a-foreigner",
+      "title": "Setting Up a Company as a Foreigner",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "the-cost-of-starting-a-company-in-albania",
+      "title": "The Cost of Starting a Company in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "company-address-virtual-office-in-albania",
+      "title": "Company Address & Virtual Office in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "what-to-do-after-registering-your-company",
+      "title": "What to Do After Registering Your Company",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "business-licenses-permits-in-albania",
+      "title": "Business Licenses & Permits in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "opening-a-restaurant-in-albania",
+      "title": "Opening a Restaurant in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "opening-a-hotel-in-albania",
+      "title": "Opening a Hotel in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "starting-a-tourism-business-in-albania",
+      "title": "Starting a Tourism Business in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "opening-a-real-estate-agency-in-albania",
+      "title": "Opening a Real Estate Agency in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "import-export-in-albania",
+      "title": "Import & Export in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "hiring-employees-in-albania",
+      "title": "Hiring Employees in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "salaries-employer-costs-in-albania",
+      "title": "Salaries & Employer Costs in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "finding-partners-suppliers-in-albania",
+      "title": "Finding Partners & Suppliers in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "shares-ownership-transfer-in-albania",
+      "title": "Shares & Ownership Transfer in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "closing-liquidating-a-company-in-albania",
+      "title": "Closing & Liquidating a Company in Albania",
+      "category": "business",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "opening-a-bank-account-in-albania",
+      "title": "Opening a Bank Account in Albania",
+      "category": "money",
+      "cover": "🏦",
+      "status": "pending"
+    },
+    {
+      "id": "getting-a-tax-number-as-a-foreigner",
+      "title": "Getting a Tax Number as a Foreigner",
+      "category": "money",
+      "cover": "🏦",
+      "status": "pending"
+    },
+    {
+      "id": "the-albanian-tax-system-explained",
+      "title": "The Albanian Tax System Explained",
+      "category": "money",
+      "cover": "🏦",
+      "status": "pending"
+    },
+    {
+      "id": "tax-residency-in-albania",
+      "title": "Tax Residency in Albania",
+      "category": "money",
+      "cover": "🏦",
+      "status": "pending"
+    },
+    {
+      "id": "double-taxation-agreements-albania",
+      "title": "Double Taxation Agreements & Albania",
+      "category": "money",
+      "cover": "🏦",
+      "status": "pending"
+    },
+    {
+      "id": "sending-money-to-and-from-albania",
+      "title": "Sending Money to and from Albania",
+      "category": "money",
+      "cover": "🏦",
+      "status": "pending"
+    },
+    {
+      "id": "currency-lek-exchange-guide",
+      "title": "Currency (Lek) & Exchange Guide",
+      "category": "money",
+      "cover": "🏦",
+      "status": "pending"
+    },
+    {
+      "id": "card-payments-cash-in-albania",
+      "title": "Card Payments & Cash in Albania",
+      "category": "money",
+      "cover": "🏦",
+      "status": "pending"
+    },
+    {
+      "id": "mortgages-home-loans-in-albania",
+      "title": "Mortgages & Home Loans in Albania",
+      "category": "money",
+      "cover": "🏦",
+      "status": "pending"
+    },
+    {
+      "id": "online-banking-in-albania",
+      "title": "Online Banking in Albania",
+      "category": "money",
+      "cover": "🏦",
+      "status": "pending"
+    },
+    {
+      "id": "living-in-albania-a-complete-guide",
+      "title": "Living in Albania: A Complete Guide",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "what-to-know-before-moving-to-albania",
+      "title": "What to Know Before Moving to Albania",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "cost-of-living-in-albania",
+      "title": "Cost of Living in Albania",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "monthly-cost-of-living-in-tirana",
+      "title": "Monthly Cost of Living in Tirana",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "cost-of-living-in-saranda",
+      "title": "Cost of Living in Saranda",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "rental-prices-in-albania",
+      "title": "Rental Prices in Albania",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "healthcare-hospitals-in-albania",
+      "title": "Healthcare & Hospitals in Albania",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "private-health-insurance-in-albania",
+      "title": "Private Health Insurance in Albania",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "international-schools-in-albania",
+      "title": "International Schools in Albania",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "universities-education-in-albania",
+      "title": "Universities & Education in Albania",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "living-in-albania-with-children",
+      "title": "Living in Albania with Children",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "social-life-for-expats-in-albania",
+      "title": "Social Life for Expats in Albania",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "retiring-in-albania",
+      "title": "Retiring in Albania",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "internet-sim-esim-in-albania",
+      "title": "Internet, SIM & eSIM in Albania",
+      "category": "living",
+      "cover": "🌇",
+      "status": "pending"
+    },
+    {
+      "id": "a-guide-to-albanian-cuisine",
+      "title": "A Guide to Albanian Cuisine",
+      "category": "food",
+      "cover": "🍽️",
+      "status": "pending"
+    },
+    {
+      "id": "must-try-dishes-in-albania",
+      "title": "Must-Try Dishes in Albania",
+      "category": "food",
+      "cover": "🍽️",
+      "status": "pending"
+    },
+    {
+      "id": "best-seafood-restaurants-in-albania",
+      "title": "Best Seafood Restaurants in Albania",
+      "category": "food",
+      "cover": "🍽️",
+      "status": "pending"
+    },
+    {
+      "id": "traditional-albanian-breakfast",
+      "title": "Traditional Albanian Breakfast",
+      "category": "food",
+      "cover": "🍽️",
+      "status": "pending"
+    },
+    {
+      "id": "best-coffee-spots-in-albania",
+      "title": "Best Coffee Spots in Albania",
+      "category": "food",
+      "cover": "🍽️",
+      "status": "pending"
+    },
+    {
+      "id": "wine-routes-vineyards-in-albania",
+      "title": "Wine Routes & Vineyards in Albania",
+      "category": "food",
+      "cover": "🍽️",
+      "status": "pending"
+    },
+    {
+      "id": "halal-restaurants-in-albania",
+      "title": "Halal Restaurants in Albania",
+      "category": "food",
+      "cover": "🍽️",
+      "status": "pending"
+    },
+    {
+      "id": "vegetarian-vegan-options-in-albania",
+      "title": "Vegetarian & Vegan Options in Albania",
+      "category": "food",
+      "cover": "🍽️",
+      "status": "pending"
+    },
+    {
+      "id": "fine-dining-in-albania",
+      "title": "Fine Dining in Albania",
+      "category": "food",
+      "cover": "🍽️",
+      "status": "pending"
+    },
+    {
+      "id": "local-markets-flavors-of-albania",
+      "title": "Local Markets & Flavors of Albania",
+      "category": "food",
+      "cover": "🍽️",
+      "status": "pending"
+    },
+    {
+      "id": "family-holiday-guide-to-albania",
+      "title": "Family Holiday Guide to Albania",
+      "category": "family",
+      "cover": "👨‍👩‍👧",
+      "status": "pending"
+    },
+    {
+      "id": "places-to-visit-with-kids-in-albania",
+      "title": "Places to Visit with Kids in Albania",
+      "category": "family",
+      "cover": "👨‍👩‍👧",
+      "status": "pending"
+    },
+    {
+      "id": "family-friendly-hotels-in-albania",
+      "title": "Family-Friendly Hotels in Albania",
+      "category": "family",
+      "cover": "👨‍👩‍👧",
+      "status": "pending"
+    },
+    {
+      "id": "traveling-to-albania-with-a-baby",
+      "title": "Traveling to Albania with a Baby",
+      "category": "family",
+      "cover": "👨‍👩‍👧",
+      "status": "pending"
+    },
+    {
+      "id": "activities-for-children-in-albania",
+      "title": "Activities for Children in Albania",
+      "category": "family",
+      "cover": "👨‍👩‍👧",
+      "status": "pending"
+    },
+    {
+      "id": "best-family-holiday-areas-in-albania",
+      "title": "Best Family Holiday Areas in Albania",
+      "category": "family",
+      "cover": "👨‍👩‍👧",
+      "status": "pending"
+    },
+    {
+      "id": "childrens-health-hospitals-in-albania",
+      "title": "Children's Health & Hospitals in Albania",
+      "category": "family",
+      "cover": "👨‍👩‍👧",
+      "status": "pending"
+    },
+    {
+      "id": "luxury-holiday-guide-to-albania",
+      "title": "Luxury Holiday Guide to Albania",
+      "category": "luxury",
+      "cover": "✨",
+      "status": "pending"
+    },
+    {
+      "id": "best-luxury-hotels-in-albania",
+      "title": "Best Luxury Hotels in Albania",
+      "category": "luxury",
+      "cover": "✨",
+      "status": "pending"
+    },
+    {
+      "id": "private-villa-rentals-in-albania",
+      "title": "Private Villa Rentals in Albania",
+      "category": "luxury",
+      "cover": "✨",
+      "status": "pending"
+    },
+    {
+      "id": "private-yacht-charter-in-albania",
+      "title": "Private Yacht Charter in Albania",
+      "category": "luxury",
+      "cover": "✨",
+      "status": "pending"
+    },
+    {
+      "id": "private-jet-helicopter-services-in-albania",
+      "title": "Private Jet & Helicopter Services in Albania",
+      "category": "luxury",
+      "cover": "✨",
+      "status": "pending"
+    },
+    {
+      "id": "vip-transfers-private-drivers-in-albania",
+      "title": "VIP Transfers & Private Drivers in Albania",
+      "category": "luxury",
+      "cover": "✨",
+      "status": "pending"
+    },
+    {
+      "id": "concierge-services-in-albania",
+      "title": "Concierge Services in Albania",
+      "category": "luxury",
+      "cover": "✨",
+      "status": "pending"
+    },
+    {
+      "id": "vip-beach-clubs-in-albania",
+      "title": "VIP Beach Clubs in Albania",
+      "category": "luxury",
+      "cover": "✨",
+      "status": "pending"
+    },
+    {
+      "id": "honeymoons-romantic-getaways-in-albania",
+      "title": "Honeymoons & Romantic Getaways in Albania",
+      "category": "luxury",
+      "cover": "✨",
+      "status": "pending"
+    },
+    {
+      "id": "getting-married-in-albania-a-guide",
+      "title": "Getting Married in Albania: A Guide",
+      "category": "weddings",
+      "cover": "💍",
+      "status": "pending"
+    },
+    {
+      "id": "wedding-venues-in-albania",
+      "title": "Wedding Venues in Albania",
+      "category": "weddings",
+      "cover": "💍",
+      "status": "pending"
+    },
+    {
+      "id": "beachfront-weddings-in-albania",
+      "title": "Beachfront Weddings in Albania",
+      "category": "weddings",
+      "cover": "💍",
+      "status": "pending"
+    },
+    {
+      "id": "wedding-planning-in-albania",
+      "title": "Wedding Planning in Albania",
+      "category": "weddings",
+      "cover": "💍",
+      "status": "pending"
+    },
+    {
+      "id": "engagement-event-venues-in-albania",
+      "title": "Engagement & Event Venues in Albania",
+      "category": "weddings",
+      "cover": "💍",
+      "status": "pending"
+    },
+    {
+      "id": "wedding-photography-video-in-albania",
+      "title": "Wedding Photography & Video in Albania",
+      "category": "weddings",
+      "cover": "💍",
+      "status": "pending"
+    },
+    {
+      "id": "legal-guide-for-foreigners-in-albania",
+      "title": "Legal Guide for Foreigners in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "how-to-find-a-lawyer-in-albania",
+      "title": "How to Find a Lawyer in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "getting-legal-advice-in-albania",
+      "title": "Getting Legal Advice in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "notary-services-in-albania",
+      "title": "Notary Services in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "apostille-document-translation-in-albania",
+      "title": "Apostille & Document Translation in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "legal-checks-when-buying-a-home",
+      "title": "Legal Checks When Buying a Home",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "rental-contracts-tenant-rights-in-albania",
+      "title": "Rental Contracts & Tenant Rights in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "inheritance-succession-in-albania",
+      "title": "Inheritance & Succession in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "making-a-will-in-albania",
+      "title": "Making a Will in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "trademark-registration-ip-in-albania",
+      "title": "Trademark Registration & IP in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "legal-compliance-for-companies-in-albania",
+      "title": "Legal Compliance for Companies in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "consumer-rights-in-albania",
+      "title": "Consumer Rights in Albania",
+      "category": "legal",
+      "cover": "⚖️",
+      "status": "pending"
+    },
+    {
+      "id": "emergency-phone-numbers-in-albania",
+      "title": "Emergency Phone Numbers in Albania",
+      "category": "practical",
+      "cover": "🧭",
+      "status": "pending"
+    },
+    {
+      "id": "finding-a-pharmacy-or-hospital-in-albania",
+      "title": "Finding a Pharmacy or Hospital in Albania",
+      "category": "practical",
+      "cover": "🧭",
+      "status": "pending"
+    },
+    {
+      "id": "consular-services-in-albania",
+      "title": "Consular Services in Albania",
+      "category": "practical",
+      "cover": "🧭",
+      "status": "pending"
+    },
+    {
+      "id": "public-holidays-in-albania",
+      "title": "Public Holidays in Albania",
+      "category": "practical",
+      "cover": "🧭",
+      "status": "pending"
+    },
+    {
+      "id": "local-customs-etiquette-in-albania",
+      "title": "Local Customs & Etiquette in Albania",
+      "category": "practical",
+      "cover": "🧭",
+      "status": "pending"
+    },
+    {
+      "id": "electricity-plugs-voltage-in-albania",
+      "title": "Electricity, Plugs & Voltage in Albania",
+      "category": "practical",
+      "cover": "🧭",
+      "status": "pending"
+    },
+    {
+      "id": "travel-insurance-for-albania",
+      "title": "Travel Insurance for Albania",
+      "category": "practical",
+      "cover": "🧭",
+      "status": "pending"
+    },
+    {
+      "id": "traveling-to-albania-with-pets",
+      "title": "Traveling to Albania with Pets",
+      "category": "practical",
+      "cover": "🧭",
+      "status": "pending"
+    },
+    {
+      "id": "tips-for-traveling-to-albania-with-kids",
+      "title": "Tips for Traveling to Albania with Kids",
+      "category": "practical",
+      "cover": "🧭",
+      "status": "pending"
+    },
+    {
+      "id": "weather-climate-in-albania",
+      "title": "Weather & Climate in Albania",
+      "category": "practical",
+      "cover": "🧭",
+      "status": "pending"
+    },
+    {
+      "id": "internet-providers-in-albania",
+      "title": "Internet Providers in Albania",
+      "category": "digital",
+      "cover": "📱",
+      "status": "pending"
+    },
+    {
+      "id": "getting-a-sim-card-in-albania",
+      "title": "Getting a SIM Card in Albania",
+      "category": "digital",
+      "cover": "📱",
+      "status": "pending"
+    },
+    {
+      "id": "esim-guide-for-albania",
+      "title": "eSIM Guide for Albania",
+      "category": "digital",
+      "cover": "📱",
+      "status": "pending"
+    },
+    {
+      "id": "e-albania-digital-government-services",
+      "title": "e-Albania: Digital Government Services",
+      "category": "digital",
+      "cover": "📱",
+      "status": "pending"
+    },
+    {
+      "id": "online-shopping-in-albania",
+      "title": "Online Shopping in Albania",
+      "category": "digital",
+      "cover": "📱",
+      "status": "pending"
+    },
+    {
+      "id": "courier-delivery-services-in-albania",
+      "title": "Courier & Delivery Services in Albania",
+      "category": "digital",
+      "cover": "📱",
+      "status": "pending"
+    },
+    {
+      "id": "albania-guide-for-the-diaspora-abroad",
+      "title": "Albania Guide for the Diaspora Abroad",
+      "category": "diaspora",
+      "cover": "🌍",
+      "status": "pending"
+    },
+    {
+      "id": "returning-to-albania-a-guide",
+      "title": "Returning to Albania: A Guide",
+      "category": "diaspora",
+      "cover": "🌍",
+      "status": "pending"
+    },
+    {
+      "id": "investing-in-albania-as-a-diaspora",
+      "title": "Investing in Albania as a Diaspora",
+      "category": "diaspora",
+      "cover": "🌍",
+      "status": "pending"
+    },
+    {
+      "id": "starting-a-business-in-albania-as-a-diaspora",
+      "title": "Starting a Business in Albania as a Diaspora",
+      "category": "diaspora",
+      "cover": "🌍",
+      "status": "pending"
+    },
+    {
+      "id": "family-ancestry-research-in-albania",
+      "title": "Family & Ancestry Research in Albania",
+      "category": "diaspora",
+      "cover": "🌍",
+      "status": "pending"
+    },
+    {
+      "id": "what-currency-is-used-in-albania",
+      "title": "What currency is used in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "is-albania-expensive",
+      "title": "Is Albania expensive?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "is-albania-safe",
+      "title": "Is Albania safe?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "is-english-spoken-in-albania",
+      "title": "Is English spoken in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "what-languages-are-spoken-in-albania",
+      "title": "What languages are spoken in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "are-credit-cards-accepted-in-albania",
+      "title": "Are credit cards accepted in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "is-the-internet-fast-in-albania",
+      "title": "Is the internet fast in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "do-you-tip-in-albania",
+      "title": "Do you tip in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "what-power-plugs-are-used-in-albania",
+      "title": "What power plugs are used in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "how-many-days-do-you-need-in-albania",
+      "title": "How many days do you need in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "north-or-south-albania",
+      "title": "North or South Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "tirana-or-saranda",
+      "title": "Tirana or Saranda?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "ksamil-or-himara",
+      "title": "Ksamil or Himara?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "berat-or-gjirokaster",
+      "title": "Berat or Gjirokastër?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "what-is-the-best-month-to-swim-in-albania",
+      "title": "What is the best month to swim in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "is-there-uber-in-albania",
+      "title": "Is there Uber in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "do-you-need-a-visa-for-albania",
+      "title": "Do you need a visa for Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    },
+    {
+      "id": "can-you-drink-tap-water-in-albania",
+      "title": "Can you drink tap water in Albania?",
+      "category": "answers",
+      "cover": "❓",
+      "status": "pending"
+    }
+  ]
 }

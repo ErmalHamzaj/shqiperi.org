@@ -4,7 +4,7 @@ import { BlogCategoryPage } from "@/components/BlogCategoryPage";
 import { BLOG_CATEGORIES, getBlogCategory, listPostsByCategory } from "@/lib/blog";
 
 const SITE = "https://shqiperi.org";
-export const revalidate = 300;
+export const revalidate = 30;
 export const dynamicParams = true;
 
 export function generateStaticParams() {

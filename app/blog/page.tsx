@@ -1,8 +1,8 @@
 import { BlogIndex, type BlogSection } from "@/components/BlogIndex";
 import { BLOG_CATEGORIES, listPostsByCategory } from "@/lib/blog";
 
-// Pick up newly published posts without a rebuild.
-export const revalidate = 300;
+// Pick up newly published posts quickly, without a rebuild.
+export const revalidate = 30;
 
 const PREVIEW_PER_CATEGORY = 3;
 

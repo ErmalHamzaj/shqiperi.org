@@ -183,16 +183,24 @@ export async function generateOne({ id = null, force = false } = {}) {
 
   for (const code of ALL_LANGS) {
     if (code === sourceLang) continue;
-    try {
-      const tr = await translate(client, modelFor(code), canonical, LANG_NAME[code], code);
+    let tr = null;
+    for (let attempt = 1; attempt <= 3 && !tr; attempt++) {
+      try {
+        tr = await translate(client, modelFor(code), canonical, LANG_NAME[code], code);
+      } catch (err) {
+        console.error(`  ! ${code} translation attempt ${attempt}/3 failed (${err.message})`);
+        if (attempt < 3) await new Promise((r) => setTimeout(r, 3000));
+      }
+    }
+    if (tr) {
       title[code] = tr.title || canonical.title;
       description[code] = tr.description || canonical.description;
       excerpt[code] = tr.excerpt || canonical.excerpt;
       body[code] = tr.body || canonical.body;
-    } catch (err) {
+    } else {
       title[code] = canonical.title; description[code] = canonical.description;
       excerpt[code] = canonical.excerpt; body[code] = canonical.body;
-      console.error(`  ! ${code} translation failed (${err.message}), used source`);
+      console.error(`  ! ${code} used source fallback after 3 attempts`);
     }
   }
 

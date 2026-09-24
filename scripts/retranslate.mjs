@@ -13,7 +13,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import Anthropic from "@anthropic-ai/sdk";
-import { translate, loadEnv, LANG_NAME } from "./generate-post.mjs";
+import { translate, loadEnv, LANG_NAME, slugify } from "./generate-post.mjs";
+
+const SLUG_LANGS = ["sq", "en", "tr", "it"];
 
 const ROOT = process.cwd();
 const QUEUE_PATH = path.join(ROOT, "content", "blog", "queue.json");
@@ -24,6 +26,9 @@ const args = process.argv.slice(2);
 const lang = args.find((a) => !a.startsWith("--")) || "sq";
 const modelArg = args.includes("--model") ? args[args.indexOf("--model") + 1] : null;
 const max = args.includes("--max") ? Number(args[args.indexOf("--max") + 1]) : Infinity;
+// Only re-translate posts where this language still equals the source (i.e. the
+// translation failed at generation and fell back to the source language).
+const onlyFailed = args.includes("--only-failed");
 
 loadEnv();
 if (!process.env.ANTHROPIC_API_KEY) {
@@ -58,12 +63,21 @@ for (const f of files) {
     body: post.body?.[sourceLang],
   };
   if (!src.body) { console.log(`  · skip (no ${sourceLang} source): ${post.slug}`); continue; }
+  if (onlyFailed) {
+    const cur = post.body?.[lang];
+    if (cur && cur !== src.body) continue; // already properly translated
+  }
   try {
     const tr = await translate(client, model, src, LANG_NAME[lang], lang);
     post.title[lang] = tr.title || post.title[lang];
     post.description[lang] = tr.description || post.description[lang];
     post.excerpt[lang] = tr.excerpt || post.excerpt[lang];
     post.body[lang] = tr.body || post.body[lang];
+    // Keep the localized URL slug in sync with the corrected title.
+    if (SLUG_LANGS.includes(lang) && tr.title) {
+      const s = slugify(post.title[lang]);
+      if (s) { post.slugs = post.slugs || {}; post.slugs[lang] = s; }
+    }
     fs.writeFileSync(p, JSON.stringify(post, null, 2) + "\n", "utf8");
     done++;
     console.log(`  ✓ ${done}. ${post.slug}`);

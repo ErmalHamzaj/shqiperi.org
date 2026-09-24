@@ -157,18 +157,35 @@ export async function generateOne({ id = null, force = false } = {}) {
   const sourceName = LANG_NAME[sourceLang] || "Turkish";
   const defaultTarget = queue.wordTarget || 1400;
 
-  const topic = id
-    ? queue.topics.find((t) => t.id === id)
-    : queue.topics.find((t) => (t.status || "pending") === "pending");
-  if (!topic) return { done: true };
+  const saveQueue = () => fs.writeFileSync(QUEUE_PATH, JSON.stringify(queue, null, 2) + "\n", "utf8");
 
-  const slug = topic.id ? slugify(topic.id) : slugify(topic.title);
-  const outPath = path.join(POSTS_DIR, `${slug}.json`);
-  if (fs.existsSync(outPath) && !force) {
-    topic.status = "published";
-    fs.writeFileSync(QUEUE_PATH, JSON.stringify(queue, null, 2) + "\n", "utf8");
-    return { slug, skipped: true };
+  // Find the next topic to actually generate. For the no-id case, skip topics
+  // whose post file already exists (mark them published) and move on, so one
+  // run always produces the next genuinely-new post.
+  let topic, slug, outPath;
+  let queueDirty = false;
+  let skippedExisting = 0;
+  while (true) {
+    topic = id
+      ? queue.topics.find((t) => t.id === id)
+      : queue.topics.find((t) => (t.status || "pending") === "pending");
+    if (!topic) {
+      if (queueDirty) saveQueue();
+      return { done: true, skippedExisting };
+    }
+    slug = topic.id ? slugify(topic.id) : slugify(topic.title);
+    outPath = path.join(POSTS_DIR, `${slug}.json`);
+    if (fs.existsSync(outPath) && !force) {
+      topic.status = "published";
+      topic.slug = slug;
+      queueDirty = true;
+      if (id) { saveQueue(); return { slug, skipped: true }; }
+      skippedExisting++;
+      continue; // skip already-generated topic, try the next pending one
+    }
+    break; // found a topic to generate
   }
+  if (queueDirty) saveQueue();
 
   const target = topic.wordTarget || (topic.category === "answers" ? 650 : defaultTarget);
   const client = new Anthropic({ apiKey });
@@ -243,7 +260,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const force = args.includes("--force");
   generateOne({ id, force })
     .then((r) => {
-      if (r.done) console.log("[blog] No pending topics.");
+      if (r.skippedExisting) console.log(`[blog] Skipped ${r.skippedExisting} already-generated topic(s).`);
+      if (r.done) console.log("[blog] No new topics left to generate.");
       else if (r.skipped) console.log(`[blog] ${r.slug} already exists, marked published.`);
       else console.log(`[blog] ✅ Published: /blog/post/${r.slug}`);
     })

@@ -27,7 +27,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const resolved = resolvePost(params.slug);
   if (!resolved) return { title: "Not found" };
   const { post, forcedLang } = resolved;
-  const L = forcedLang ?? "tr";
+  const L = forcedLang ?? "en";
   const title = post.title[L] ?? post.title.tr ?? post.title.en ?? post.title.sq;
   const description = post.description[L] ?? post.description.tr ?? post.description.en ?? post.description.sq;
   const images = post.ogImage
@@ -82,7 +82,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     if (post.body[lang]) langSlugs[lang] = postSlug(post, lang);
   }
 
-  const metaLang = forcedLang ?? "tr";
+  const metaLang = forcedLang ?? "en";
   const data: ArticleData = {
     slug: post.slug,
     forcedLang,

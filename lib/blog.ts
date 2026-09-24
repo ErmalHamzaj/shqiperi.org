@@ -127,6 +127,17 @@ export function categoriesWithPosts(): BlogCategory[] {
   return BLOG_CATEGORIES.filter((c) => ids.has(c.id));
 }
 
+/** Related posts for a given post: Türkiye-focused ones first, then recent. */
+export function relatedPosts(currentSlug: string, limit = 3): Post[] {
+  const others = listPublishedPosts().filter((p) => p.slug !== currentSlug);
+  const rx = /t[üu]rk/i;
+  const turkiye = others.filter(
+    (p) => rx.test(p.slug) || rx.test(p.title.tr || "") || rx.test(p.title.en || ""),
+  );
+  const pick = turkiye.length ? turkiye : others;
+  return pick.slice(0, limit);
+}
+
 /** A single published post by slug. */
 export function getPost(slug: string): Post | null {
   const post = readAll().find((p) => p.slug === slug);

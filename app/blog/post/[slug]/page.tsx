@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { marked } from "marked";
 import { BlogArticle, type ArticleData } from "@/components/BlogArticle";
-import { listPublishedPosts, getPost, getBlogCategory, ctaForCategory } from "@/lib/blog";
+import { listPublishedPosts, getPost, getBlogCategory, ctaForCategory, relatedPosts } from "@/lib/blog";
 import { LANGS, type Lang } from "@/lib/i18n";
 
 const SITE = "https://shqiperi.org";
@@ -63,6 +63,11 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     title: post.title,
     html,
     ctaQuery: post.title.tr ?? post.title.en ?? post.title.sq,
+    related: relatedPosts(post.slug, 3).map((r) => ({
+      slug: r.slug,
+      title: r.title,
+      cover: r.cover,
+    })),
   };
 
   const jsonLd = {

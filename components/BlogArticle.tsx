@@ -29,6 +29,12 @@ export type ArticleData = {
   html: Partial<Record<Lang, string>>;
   /** Plain query used to pre-fill the concierge message. */
   ctaQuery: string;
+  /** Related posts shown at the bottom. */
+  related?: { slug: string; title: LangText; cover?: string }[];
+};
+
+const RELATED: Record<string, string> = {
+  sq: "Mund t'ju interesojë", en: "You might be interested", tr: "İlginizi çekebilir", it: "Potrebbe interessarti", ar: "قد يهمّك",
 };
 
 const READ: Record<string, string> = {
@@ -125,6 +131,31 @@ export function BlogArticle({ data }: { data: ArticleData }) {
             categoryId={data.ctaCategory ?? null}
             prominent
           />
+        )}
+
+        {data.related && data.related.length > 0 && (
+          <section className="mt-12 border-t border-zinc-100 dark:border-zinc-800 pt-8">
+            <h2 className="mb-4 text-lg font-bold text-zinc-800 dark:text-zinc-100">
+              {RELATED[lang] ?? RELATED.en}
+            </h2>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {data.related.map((r) => (
+                <li key={r.slug}>
+                  <Link
+                    href={`/blog/post/${r.slug}`}
+                    className="group flex items-center gap-3 rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-4 shadow-sm transition hover:border-flag-red/40 hover:shadow"
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-flag-red/10 text-lg">
+                      {r.cover ?? "📄"}
+                    </span>
+                    <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-100 group-hover:text-flag-red transition-colors">
+                      {localize(r.title, lang)}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
         )}
       </main>
     </div>

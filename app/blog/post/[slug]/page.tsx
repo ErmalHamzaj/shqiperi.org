@@ -40,7 +40,12 @@ export default function PostPage({ params }: { params: { slug: string } }) {
   const html: Partial<Record<Lang, string>> = {};
   for (const lang of LANGS) {
     const md = post.body[lang];
-    if (md) html[lang] = String(marked.parse(md));
+    if (md) {
+      html[lang] = String(marked.parse(md)).replace(
+        /<a href="(https?:\/\/[^"]+)"/g,
+        '<a href="$1" target="_blank" rel="noopener noreferrer"',
+      );
+    }
   }
 
   const cat = getBlogCategory(post.category);
@@ -53,6 +58,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     categoryIcon: cat?.icon,
     ctaCategory: ctaForCategory(post.category),
     hideCta: cat?.editorial ?? false,
+    date: post.publishedAt ?? post.createdAt,
     readingMinutes: post.readingMinutes,
     title: post.title,
     html,

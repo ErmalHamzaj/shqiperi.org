@@ -21,6 +21,8 @@ export type ArticleData = {
   ctaCategory?: string | null;
   /** Hide the concierge CTA entirely (editorial sections). */
   hideCta?: boolean;
+  /** ISO publish date, shown in the article header. */
+  date?: string;
   readingMinutes?: number;
   title: LangText;
   /** Pre-rendered HTML body per language. */
@@ -36,6 +38,24 @@ const READ: Record<string, string> = {
 const BACK: Record<string, string> = {
   sq: "Blog", en: "Blog", tr: "Blog", it: "Blog", ar: "المدونة",
 };
+
+// Deterministic month names (avoids server/client Intl mismatches).
+const MONTHS: Record<string, string[]> = {
+  sq: ["janar", "shkurt", "mars", "prill", "maj", "qershor", "korrik", "gusht", "shtator", "tetor", "nëntor", "dhjetor"],
+  en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  tr: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+  it: ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"],
+  ar: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
+};
+
+function formatDate(iso: string, lang: string): string {
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "";
+  const day = d.getUTCDate();
+  const month = (MONTHS[lang] ?? MONTHS.en)[d.getUTCMonth()];
+  const year = d.getUTCFullYear();
+  return lang === "en" ? `${month} ${day}, ${year}` : `${day} ${month} ${year}`;
+}
 
 export function BlogArticle({ data }: { data: ArticleData }) {
   const { lang } = useLang();
@@ -82,11 +102,16 @@ export function BlogArticle({ data }: { data: ArticleData }) {
           <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50">
             {localize(data.title, lang)}
           </h1>
-          {data.readingMinutes ? (
-            <p className="mt-2 text-sm text-zinc-400">
-              {data.readingMinutes} {READ[lang] ?? READ.en}
-            </p>
-          ) : null}
+          {(() => {
+            const dateStr = data.date ? formatDate(data.date, lang) : "";
+            const readStr = data.readingMinutes
+              ? `${data.readingMinutes} ${READ[lang] ?? READ.en}`
+              : "";
+            const parts = [dateStr, readStr].filter(Boolean);
+            return parts.length ? (
+              <p className="mt-2 text-sm text-zinc-400">{parts.join(" · ")}</p>
+            ) : null;
+          })()}
 
           <div
             className="prose prose-zinc dark:prose-invert mt-6 max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-flag-red prose-a:no-underline hover:prose-a:underline"

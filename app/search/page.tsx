@@ -164,7 +164,13 @@ function SearchResults() {
             )}
 
             {/* Concierge — high-intent queries */}
-            {highIntent && <RepresentativeCTA query={query} prominent />}
+            {highIntent && (
+              <RepresentativeCTA
+                query={query}
+                categoryId={category?.id ?? null}
+                prominent
+              />
+            )}
 
             {/* Empty category → invite to get listed */}
             {category && !hasDb && (

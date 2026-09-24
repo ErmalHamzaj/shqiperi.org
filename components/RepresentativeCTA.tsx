@@ -6,70 +6,85 @@ import {
   emailLink,
   hasContact,
 } from "@/lib/representative";
+import { getPitch } from "@/lib/pitches";
 
 /**
- * Free online-representative call-to-action. Shown prominently for high-intent
- * queries (custom tours, buying property, transfers, rentals…), where a visitor
- * likely wants a person to organize things for them.
+ * Free concierge call-to-action, tailored per category (personalized tour,
+ * property list by budget, available cars now, etc.). Shown for high-intent
+ * queries where a visitor likely wants a person to organize things for them.
  */
 export function RepresentativeCTA({
   query,
+  categoryId = null,
   prominent = false,
 }: {
   query: string;
+  categoryId?: string | null;
   prominent?: boolean;
 }) {
   const { lang, tr } = useLang();
   const wa = whatsappLink(query, lang);
   const mail = emailLink(query, lang);
 
+  const pitch = getPitch(categoryId, lang);
+  const title = pitch?.title ?? tr.repTitle;
+  const body = pitch?.body ?? tr.repBody;
+  const ctaLabel = pitch?.cta ?? tr.repWhatsapp;
+
   return (
     <section
-      className={`mt-8 overflow-hidden rounded-2xl border ${
+      className={`mt-8 overflow-hidden rounded-2xl border shadow-sm ${
         prominent
-          ? "border-flag-red/30 bg-gradient-to-br from-flag-red/[0.07] to-transparent"
+          ? "border-flag-red/30 bg-gradient-to-br from-flag-red/[0.10] via-flag-red/[0.04] to-transparent"
           : "border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40"
-      } p-5 sm:p-6 shadow-sm`}
+      } p-5 sm:p-6`}
     >
-      <div className="flex items-start gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-flag-red/10">
-          <HeadsetIcon />
+      <div className="flex items-start gap-3.5">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-flag-red text-white shadow-sm">
+          <SparkleIcon />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-2">
-            <h2 className="text-base font-semibold text-zinc-800 dark:text-zinc-100">
-              {tr.repTitle}
-            </h2>
-            <span className="rounded-full bg-flag-red px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-white">
-              {tr.repFree}
-            </span>
-          </div>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-300">
-            {tr.repBody}
-          </p>
+          <span className="mb-1.5 inline-flex items-center gap-1 rounded-full bg-flag-red/10 px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wide text-flag-red">
+            ✦ {tr.repFree}
+          </span>
+          <h2 className="text-lg font-bold leading-snug text-zinc-900 dark:text-zinc-50">
+            {title}
+          </h2>
+          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-300">{body}</p>
 
           {hasContact() ? (
-            <div className="mt-4 flex flex-wrap gap-2.5">
+            <div className="mt-4 flex flex-wrap items-center gap-2.5">
               {wa && (
                 <a
                   href={wa}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-2 text-sm font-semibold text-white hover:brightness-95 transition"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-bold text-white shadow-sm hover:brightness-95 hover:shadow transition"
                 >
                   <WhatsAppIcon />
-                  {tr.repWhatsapp}
+                  {ctaLabel}
                 </a>
               )}
               {mail && (
                 <a
                   href={mail}
-                  className="inline-flex items-center gap-2 rounded-full border border-flag-red px-4 py-2 text-sm font-semibold text-flag-red hover:bg-flag-red hover:text-white transition"
+                  className="inline-flex items-center gap-2 rounded-full border border-flag-red px-4 py-2.5 text-sm font-semibold text-flag-red hover:bg-flag-red hover:text-white transition"
                 >
                   <MailIcon />
                   {tr.repEmail}
                 </a>
               )}
+              <span className="text-xs text-zinc-400">
+                {lang === "sq"
+                  ? "Përgjigje brenda pak minutash"
+                  : lang === "tr"
+                    ? "Birkaç dakika içinde yanıt"
+                    : lang === "it"
+                      ? "Risposta in pochi minuti"
+                      : lang === "ar"
+                        ? "رد خلال دقائق"
+                        : "Reply within minutes"}
+              </span>
             </div>
           ) : (
             <p className="mt-3 text-xs text-zinc-400">{tr.repSoon}</p>
@@ -80,22 +95,10 @@ export function RepresentativeCTA({
   );
 }
 
-function HeadsetIcon() {
+function SparkleIcon() {
   return (
-    <svg
-      className="h-5 w-5 text-flag-red"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M3 14v-2a9 9 0 0 1 18 0v2" />
-      <path d="M21 16a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2z" />
-      <path d="M3 16a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2z" />
-      <path d="M18 18a4 4 0 0 1-4 3h-2" />
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2l1.9 5.6L19.5 9l-4.6 1.7L12 16l-1.9-5.3L4.5 9l5.6-1.4L12 2zM5 15l.9 2.6L8.5 18l-2.2.8L5 21l-.9-2.2L2 18l2.1-.4L5 15zM18 13l.8 2.4L21 16l-2.2.7L18 19l-.8-2.3L15 16l2.2-.6L18 13z" />
     </svg>
   );
 }

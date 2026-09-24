@@ -237,35 +237,40 @@
       "title": "Festivals & Events Calendar in Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "festivals-events-calendar-in-albania"
     },
     {
       "id": "best-time-to-visit-albania",
       "title": "Best Time to Visit Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "best-time-to-visit-albania"
     },
     {
       "id": "albania-beach-season-guide",
       "title": "Albania Beach Season Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "albania-beach-season-guide"
     },
     {
       "id": "winter-mountain-tourism-in-albania",
       "title": "Winter & Mountain Tourism in Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "winter-mountain-tourism-in-albania"
     },
     {
       "id": "budget-guide-for-a-trip-to-albania",
       "title": "Budget Guide for a Trip to Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "budget-guide-for-a-trip-to-albania"
     },
     {
       "id": "renting-a-car-in-albania-full-guide",

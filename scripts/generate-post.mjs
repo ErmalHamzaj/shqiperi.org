@@ -37,7 +37,7 @@ export function loadEnv() {
 
 // ── helpers ───────────────────────────────────────────────────────────────
 const TR_MAP = { ç: "c", Ç: "c", ğ: "g", Ğ: "g", ı: "i", İ: "i", ö: "o", Ö: "o", ş: "s", Ş: "s", ü: "u", Ü: "u", ë: "e", Ë: "e" };
-function slugify(s) {
+export function slugify(s) {
   return s
     .replace(/[çÇğĞıİöÖşŞüÜëË]/g, (c) => TR_MAP[c] || c)
     .toLowerCase()
@@ -196,8 +196,18 @@ export async function generateOne({ id = null, force = false } = {}) {
     }
   }
 
+  // Per-language URL slugs for Latin-script languages (ar uses the base slug).
+  const slugs = {};
+  for (const code of ["sq", "en", "tr", "it"]) {
+    if (title[code]) {
+      const s = slugify(title[code]);
+      if (s) slugs[code] = s;
+    }
+  }
+
   const post = {
     slug,
+    slugs,
     status: "published",
     category: topic.category || undefined,
     cover: topic.cover || "📄",

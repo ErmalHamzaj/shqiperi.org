@@ -71,8 +71,14 @@ export function ctaForCategory(id?: string): string | null {
   return getBlogCategory(id)?.cta ?? null;
 }
 
+/** Languages that get their own localized URL slug. Arabic (Arabic script)
+ * uses the base slug, rendered in the reader's language. */
+export const SLUG_LANGS: Lang[] = ["sq", "en", "tr", "it"];
+
 export type Post = {
   slug: string;
+  /** Per-language URL slugs (Latin-script languages). */
+  slugs?: Partial<Record<Lang, string>>;
   status: "draft" | "published";
   /** Hand-written post that scripts/retranslate.mjs must not overwrite. */
   manual?: boolean;
@@ -143,6 +149,23 @@ export function relatedPosts(currentSlug: string, limit = 3): Post[] {
   );
   const pick = turkiye.length ? turkiye : others;
   return pick.slice(0, limit);
+}
+
+/** The URL slug for a post in a given language (falls back to the base slug). */
+export function postSlug(post: { slug: string; slugs?: Partial<Record<Lang, string>> }, lang: Lang): string {
+  return (SLUG_LANGS.includes(lang) && post.slugs?.[lang]) || post.slug;
+}
+
+/** Resolve any language's slug to its post and the language it was requested in
+ * (forcedLang is null for the base slug: render in the reader's own language). */
+export function resolvePost(slug: string): { post: Post; forcedLang: Lang | null } | null {
+  for (const post of listPublishedPosts()) {
+    for (const lang of SLUG_LANGS) {
+      if (post.slugs?.[lang] === slug) return { post, forcedLang: lang };
+    }
+    if (post.slug === slug) return { post, forcedLang: null };
+  }
+  return null;
 }
 
 /** A single published post by slug. */

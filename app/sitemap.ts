@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { CATEGORIES } from "@/lib/directory";
-import { listPublishedPosts, categoriesWithPosts } from "@/lib/blog";
+import { listPublishedPosts, categoriesWithPosts, postSlug, SLUG_LANGS } from "@/lib/blog";
 
 const SITE = "https://shqiperi.org";
 
@@ -21,13 +21,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  // Published blog posts.
-  const blogPosts: MetadataRoute.Sitemap = listPublishedPosts().map((p) => ({
-    url: `${SITE}/blog/post/${p.slug}`,
-    lastModified: p.publishedAt ? new Date(p.publishedAt) : now,
-    changeFrequency: "monthly",
-    priority: 0.6,
-  }));
+  // Published blog posts: base slug + each language's localized slug.
+  const blogPosts: MetadataRoute.Sitemap = [];
+  for (const p of listPublishedPosts()) {
+    const lastModified = p.publishedAt ? new Date(p.publishedAt) : now;
+    const urls = new Set<string>([`${SITE}/blog/post/${p.slug}`]);
+    for (const lang of SLUG_LANGS) urls.add(`${SITE}/blog/post/${postSlug(p, lang)}`);
+    for (const url of urls) {
+      blogPosts.push({ url, lastModified, changeFrequency: "monthly", priority: 0.6 });
+    }
+  }
 
   // One indexable search URL per category that has listings.
   const categoryPages: MetadataRoute.Sitemap = CATEGORIES.filter(

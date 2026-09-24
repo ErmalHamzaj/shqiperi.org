@@ -29,6 +29,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
 
   const posts = listPostsByCategory(cat.id).map((p) => ({
     slug: p.slug,
+    slugs: p.slugs,
     cover: p.cover,
     readingMinutes: p.readingMinutes,
     title: p.title,

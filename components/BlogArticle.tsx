@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Logo, EagleMark } from "@/components/Logo";
 import { LangToggle } from "@/components/LangToggle";
+import { ArticleLangToggle } from "@/components/ArticleLangToggle";
 import { SearchBox } from "@/components/SearchBox";
 import { RepresentativeCTA } from "@/components/RepresentativeCTA";
 import { useLang } from "@/components/LanguageProvider";
@@ -10,8 +11,18 @@ import type { Lang } from "@/lib/i18n";
 import type { LangText } from "@/lib/directory";
 import { localize } from "@/lib/directory";
 
+// Client-safe slug picker (mirrors lib/blog.postSlug without importing server code).
+const SLUG_LANGS: Lang[] = ["sq", "en", "tr", "it"];
+function pslug(item: { slug: string; slugs?: Partial<Record<Lang, string>> }, lang: Lang): string {
+  return (SLUG_LANGS.includes(lang) && item.slugs?.[lang]) || item.slug;
+}
+
 export type ArticleData = {
   slug: string;
+  /** When set, the article is rendered in this language (from a localized URL). */
+  forcedLang?: Lang | null;
+  /** Language → this post's URL slug, for the in-article language switcher. */
+  langSlugs?: Partial<Record<Lang, string>>;
   cover?: string;
   /** Blog category, for the badge/link. */
   categoryId?: string;
@@ -30,7 +41,7 @@ export type ArticleData = {
   /** Plain query used to pre-fill the concierge message. */
   ctaQuery: string;
   /** Related posts shown at the bottom. */
-  related?: { slug: string; title: LangText; cover?: string }[];
+  related?: { slug: string; slugs?: Partial<Record<Lang, string>>; title: LangText; cover?: string }[];
 };
 
 const RELATED: Record<string, string> = {
@@ -64,7 +75,9 @@ function formatDate(iso: string, lang: string): string {
 }
 
 export function BlogArticle({ data }: { data: ArticleData }) {
-  const { lang } = useLang();
+  const { lang: providerLang } = useLang();
+  // A localized URL forces its language; otherwise follow the reader's choice.
+  const lang = data.forcedLang ?? providerLang;
   const body = data.html[lang] ?? data.html.en ?? data.html.sq ?? "";
 
   return (
@@ -81,7 +94,11 @@ export function BlogArticle({ data }: { data: ArticleData }) {
             <SearchBox size="sm" />
           </div>
           <div className="hidden sm:block">
-            <LangToggle />
+            {data.forcedLang && data.langSlugs ? (
+              <ArticleLangToggle current={lang} langSlugs={data.langSlugs} />
+            ) : (
+              <LangToggle />
+            )}
           </div>
         </div>
       </header>
@@ -129,6 +146,7 @@ export function BlogArticle({ data }: { data: ArticleData }) {
           <RepresentativeCTA
             query={data.ctaQuery}
             categoryId={data.ctaCategory ?? null}
+            lang={lang}
             prominent
           />
         )}
@@ -142,7 +160,7 @@ export function BlogArticle({ data }: { data: ArticleData }) {
               {data.related.map((r) => (
                 <li key={r.slug}>
                   <Link
-                    href={`/blog/post/${r.slug}`}
+                    href={`/blog/post/${pslug(r, lang)}`}
                     className="group flex items-center gap-3 rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-4 shadow-sm transition hover:border-flag-red/40 hover:shadow"
                   >
                     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-flag-red/10 text-lg">

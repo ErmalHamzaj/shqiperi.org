@@ -7,6 +7,7 @@ import {
   hasContact,
 } from "@/lib/representative";
 import { getPitch } from "@/lib/pitches";
+import { t, type Lang } from "@/lib/i18n";
 
 /**
  * Free concierge call-to-action, tailored per category (personalized tour,
@@ -17,12 +18,16 @@ export function RepresentativeCTA({
   query,
   categoryId = null,
   prominent = false,
+  lang: langProp,
 }: {
   query: string;
   categoryId?: string | null;
   prominent?: boolean;
+  lang?: Lang;
 }) {
-  const { lang, tr } = useLang();
+  const { lang: providerLang } = useLang();
+  const lang = langProp ?? providerLang;
+  const tr = t(lang);
   const wa = whatsappLink(query, lang);
   const mail = emailLink(query, lang);
 

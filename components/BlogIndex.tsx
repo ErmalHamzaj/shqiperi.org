@@ -7,9 +7,16 @@ import { SearchBox } from "@/components/SearchBox";
 import { useLang } from "@/components/LanguageProvider";
 import type { LangText } from "@/lib/directory";
 import { localize } from "@/lib/directory";
+import type { Lang } from "@/lib/i18n";
+
+const SLUG_LANGS: Lang[] = ["sq", "en", "tr", "it"];
+export function postCardSlug(item: { slug: string; slugs?: Partial<Record<Lang, string>> }, lang: Lang): string {
+  return (SLUG_LANGS.includes(lang) && item.slugs?.[lang]) || item.slug;
+}
 
 export type PostCard = {
   slug: string;
+  slugs?: Partial<Record<Lang, string>>;
   cover?: string;
   readingMinutes?: number;
   title: LangText;
@@ -119,7 +126,7 @@ function PostTile({ post, readLabel, lang }: { post: PostCard; readLabel: string
   return (
     <li>
       <Link
-        href={`/blog/post/${post.slug}`}
+        href={`/blog/post/${postCardSlug(post, lang)}`}
         className="group flex h-full flex-col rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 shadow-sm transition hover:border-flag-red/40 hover:shadow"
       >
         <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-flag-red/10 text-xl">

@@ -16,6 +16,7 @@ export default function BlogPage() {
       total: posts.length,
       posts: posts.slice(0, PREVIEW_PER_CATEGORY).map((p) => ({
         slug: p.slug,
+        slugs: p.slugs,
         cover: p.cover,
         readingMinutes: p.readingMinutes,
         title: p.title,

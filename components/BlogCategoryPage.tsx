@@ -5,7 +5,7 @@ import { Logo, EagleMark } from "@/components/Logo";
 import { LangToggle } from "@/components/LangToggle";
 import { SearchBox } from "@/components/SearchBox";
 import { useLang } from "@/components/LanguageProvider";
-import type { PostCard } from "@/components/BlogIndex";
+import { type PostCard, postCardSlug } from "@/components/BlogIndex";
 import type { LangText } from "@/lib/directory";
 import { localize } from "@/lib/directory";
 
@@ -61,7 +61,7 @@ export function BlogCategoryPage({
           {posts.map((p) => (
             <li key={p.slug}>
               <Link
-                href={`/blog/post/${p.slug}`}
+                href={`/blog/post/${postCardSlug(p, lang)}`}
                 className="group flex h-full flex-col rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 shadow-sm transition hover:border-flag-red/40 hover:shadow"
               >
                 <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-flag-red/10 text-xl">

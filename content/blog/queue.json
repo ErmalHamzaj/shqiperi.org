@@ -13,7 +13,8 @@
       "title": "First Trip to Albania: A Beginner's Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "first-trip-to-albania-a-beginners-guide"
     },
     {
       "id": "3-days-in-albania-itinerary",

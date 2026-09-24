@@ -83,7 +83,7 @@ export const dict: Record<Lang, Dict> = {
     sources: "Burimet",
     noSources: "Nuk u gjetën burime për këtë kërkim.",
     error: "Ndodhi një gabim gjatë kërkimit. Provoni përsëri.",
-    disclaimer: "Rezultatet mund të përmbajnë pasaktësi — verifikoni gjithmonë burimet.",
+    disclaimer: "Rezultatet mund të përmbajnë pasaktësi, verifikoni gjithmonë burimet.",
     webVia: "Nga Wikipedia",
     related: "Artikuj të lidhur",
     detailedBtn: "Merr përgjigje të detajuar",
@@ -111,7 +111,7 @@ export const dict: Record<Lang, Dict> = {
     dirListCta: "Jeni kompani? Listohuni këtu.",
     repTitle: "Dëshironi një plan të personalizuar?",
     repBody:
-      "Përfaqësuesi ynë online e organizon gjithçka për ju — tura, transferta, makina me qira, vizita pronash e më shumë. Na tregoni çfarë ju nevojitet.",
+      "Përfaqësuesi ynë online e organizon gjithçka për ju, ture, transferta, makina me qira, vizita pronash e më shumë. Na tregoni çfarë ju nevojitet.",
     repWhatsapp: "Shkruaji në WhatsApp",
     repEmail: "Dërgo email",
     repSoon: "Kontakti i përfaqësuesit do të shtohet së shpejti.",
@@ -121,8 +121,8 @@ export const dict: Record<Lang, Dict> = {
     featuredListCta: "Listo biznesin tënd",
     brandTitle: "Më shumë se një motor kërkimi.",
     brandBody:
-      "Kërko çdo shërbim në Shqipëri — dhe ekipi ynë ta organizon personalisht, falas. Tura, makina me qira, prona, avokatë, transferta e më shumë.",
-    brandCta: "Na pyet çdo gjë — falas",
+      "Kërko çdo shërbim në Shqipëri, dhe ekipi ynë ta organizon personalisht, falas. Ture, makina me qira, prona, avokatë, transferta e më shumë.",
+    brandCta: "Na pyet për çdo gjë, falas",
     brandNote: "Njerëz realë · Përgjigje brenda pak minutash · Pa asnjë tarifë",
     topics: [
       { label: "Lajme", query: "Lajmet e fundit nga Shqipëria" },
@@ -147,7 +147,7 @@ export const dict: Record<Lang, Dict> = {
     sources: "Sources",
     noSources: "No sources were found for this search.",
     error: "Something went wrong during the search. Please try again.",
-    disclaimer: "Results may contain inaccuracies — always verify the sources.",
+    disclaimer: "Results may contain inaccuracies, always verify the sources.",
     webVia: "From Wikipedia",
     related: "Related articles",
     detailedBtn: "Get a detailed answer",
@@ -175,7 +175,7 @@ export const dict: Record<Lang, Dict> = {
     dirListCta: "Are you a company? Get listed here.",
     repTitle: "Want a custom plan?",
     repBody:
-      "Our online representative organizes everything for you — tours, transfers, car rentals, property viewings and more. Just tell us what you need.",
+      "Our online representative organizes everything for you, tours, transfers, car rentals, property viewings and more. Just tell us what you need.",
     repWhatsapp: "Message on WhatsApp",
     repEmail: "Send email",
     repSoon: "Representative contact will be added soon.",
@@ -185,8 +185,8 @@ export const dict: Record<Lang, Dict> = {
     featuredListCta: "List your business",
     brandTitle: "More than a search engine.",
     brandBody:
-      "Search any service in Albania — and our team organizes it for you personally, free. Tours, car rentals, property, lawyers, transfers and more.",
-    brandCta: "Ask us anything — free",
+      "Search any service in Albania, and our team organizes it for you personally, free. Tours, car rentals, property, lawyers, transfers and more.",
+    brandCta: "Ask us anything, free",
     brandNote: "Real people · Reply within minutes · No fees, ever",
     topics: [
       { label: "News", query: "Latest news from Albania" },
@@ -211,7 +211,7 @@ export const dict: Record<Lang, Dict> = {
     sources: "Kaynaklar",
     noSources: "Bu arama için kaynak bulunamadı.",
     error: "Arama sırasında bir hata oluştu. Lütfen tekrar deneyin.",
-    disclaimer: "Sonuçlar hatalar içerebilir — kaynakları her zaman doğrulayın.",
+    disclaimer: "Sonuçlar hatalar içerebilir, kaynakları her zaman doğrulayın.",
     webVia: "Wikipedia'dan",
     related: "İlgili makaleler",
     detailedBtn: "Ayrıntılı yanıt al",
@@ -239,7 +239,7 @@ export const dict: Record<Lang, Dict> = {
     dirListCta: "Şirket misiniz? Buraya kaydolun.",
     repTitle: "Özel bir plan mı istiyorsunuz?",
     repBody:
-      "Çevrimiçi temsilcimiz her şeyi sizin için düzenler — turlar, transferler, araç kiralama, mülk gezileri ve daha fazlası. Ne istediğinizi bize söyleyin.",
+      "Çevrimiçi temsilcimiz her şeyi sizin için düzenler, turlar, transferler, araç kiralama, mülk gezileri ve daha fazlası. Ne istediğinizi bize söyleyin.",
     repWhatsapp: "WhatsApp'tan yaz",
     repEmail: "E-posta gönder",
     repSoon: "Temsilci iletişim bilgileri yakında eklenecek.",
@@ -249,8 +249,8 @@ export const dict: Record<Lang, Dict> = {
     featuredListCta: "İşletmenizi kaydedin",
     brandTitle: "Sıradan bir arama motorundan fazlası.",
     brandBody:
-      "Arnavutluk'ta herhangi bir hizmeti arayın — ekibimiz sizin için kişisel olarak, ücretsiz organize etsin. Turlar, araç kiralama, mülkler, avukatlar, transferler ve daha fazlası.",
-    brandCta: "Bize her şeyi sorun — ücretsiz",
+      "Arnavutluk'ta herhangi bir hizmeti arayın, ekibimiz sizin için kişisel olarak, ücretsiz organize etsin. Turlar, araç kiralama, mülkler, avukatlar, transferler ve daha fazlası.",
+    brandCta: "Bize her şeyi sorun, ücretsiz",
     brandNote: "Gerçek insanlar · Dakikalar içinde yanıt · Asla ücret yok",
     topics: [
       { label: "Haberler", query: "Arnavutluk'tan son haberler" },
@@ -275,7 +275,7 @@ export const dict: Record<Lang, Dict> = {
     sources: "Fonti",
     noSources: "Nessuna fonte trovata per questa ricerca.",
     error: "Si è verificato un errore durante la ricerca. Riprova.",
-    disclaimer: "I risultati possono contenere imprecisioni — verifica sempre le fonti.",
+    disclaimer: "I risultati possono contenere imprecisioni, verifica sempre le fonti.",
     webVia: "Da Wikipedia",
     related: "Articoli correlati",
     detailedBtn: "Ottieni una risposta dettagliata",
@@ -303,7 +303,7 @@ export const dict: Record<Lang, Dict> = {
     dirListCta: "Sei un'azienda? Registrati qui.",
     repTitle: "Vuoi un piano personalizzato?",
     repBody:
-      "Il nostro rappresentante online organizza tutto per te — tour, trasferimenti, noleggio auto, visite immobiliari e altro. Dicci di cosa hai bisogno.",
+      "Il nostro rappresentante online organizza tutto per te, tour, trasferimenti, noleggio auto, visite immobiliari e altro. Dicci di cosa hai bisogno.",
     repWhatsapp: "Scrivi su WhatsApp",
     repEmail: "Invia email",
     repSoon: "Il contatto del rappresentante sarà aggiunto presto.",
@@ -313,8 +313,8 @@ export const dict: Record<Lang, Dict> = {
     featuredListCta: "Registra la tua azienda",
     brandTitle: "Più di un motore di ricerca.",
     brandBody:
-      "Cerca qualsiasi servizio in Albania — e il nostro team lo organizza per te, gratis. Tour, noleggio auto, immobili, avvocati, transfer e altro.",
-    brandCta: "Chiedici qualsiasi cosa — gratis",
+      "Cerca qualsiasi servizio in Albania, e il nostro team lo organizza per te, gratis. Tour, noleggio auto, immobili, avvocati, transfer e altro.",
+    brandCta: "Chiedici qualsiasi cosa, gratis",
     brandNote: "Persone reali · Risposta in pochi minuti · Nessun costo",
     topics: [
       { label: "Notizie", query: "Ultime notizie dall'Albania" },
@@ -339,7 +339,7 @@ export const dict: Record<Lang, Dict> = {
     sources: "المصادر",
     noSources: "لم يتم العثور على مصادر لهذا البحث.",
     error: "حدث خطأ أثناء البحث. حاول مرة أخرى.",
-    disclaimer: "قد تحتوي النتائج على أخطاء — تحقّق دائمًا من المصادر.",
+    disclaimer: "قد تحتوي النتائج على أخطاء, تحقّق دائمًا من المصادر.",
     webVia: "من ويكيبيديا",
     related: "مقالات ذات صلة",
     detailedBtn: "احصل على إجابة مفصّلة",
@@ -367,7 +367,7 @@ export const dict: Record<Lang, Dict> = {
     dirListCta: "هل أنت شركة؟ سجّل هنا.",
     repTitle: "هل تريد خطة مخصّصة؟",
     repBody:
-      "ينظّم ممثّلنا عبر الإنترنت كل شيء من أجلك — الجولات، النقل، تأجير السيارات، زيارات العقارات والمزيد. أخبرنا بما تحتاجه.",
+      "ينظّم ممثّلنا عبر الإنترنت كل شيء من أجلك, الجولات، النقل، تأجير السيارات، زيارات العقارات والمزيد. أخبرنا بما تحتاجه.",
     repWhatsapp: "راسلنا على واتساب",
     repEmail: "أرسل بريدًا إلكترونيًا",
     repSoon: "ستتم إضافة معلومات الاتصال بالممثّل قريبًا.",
@@ -377,8 +377,8 @@ export const dict: Record<Lang, Dict> = {
     featuredListCta: "أدرج شركتك",
     brandTitle: "أكثر من مجرّد محرّك بحث.",
     brandBody:
-      "ابحث عن أي خدمة في ألبانيا — وفريقنا ينظّمها لك شخصيًا، مجانًا. جولات، تأجير سيارات، عقارات، محامون، مواصلات والمزيد.",
-    brandCta: "اسألنا أي شيء — مجانًا",
+      "ابحث عن أي خدمة في ألبانيا, وفريقنا ينظّمها لك شخصيًا، مجانًا. جولات، تأجير سيارات، عقارات، محامون، مواصلات والمزيد.",
+    brandCta: "اسألنا أي شيء, مجانًا",
     brandNote: "أشخاص حقيقيون · رد خلال دقائق · بدون أي رسوم",
     topics: [
       { label: "الأخبار", query: "آخر الأخبار من ألبانيا" },

@@ -464,7 +464,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     id: "boat-yacht",
-    name: { sq: "Tura me varkë & jaht", en: "Boat & yacht tours" },
+    name: { sq: "Ture me varkë & jaht", en: "Boat & yacht tours" },
     match: /\b(boat|yacht|cruise|speedboat|catamaran|water ?taxi|sail)\b|varkë|varka|lundrim|jaht|anije|tekne|barca|barche|crociera|قارب|يخت|قوارب/i,
     companies: [...BOAT_YACHT_COMPANIES],
   },
@@ -492,7 +492,7 @@ export const CATEGORIES: Category[] = [
         email: "komaniguide1@gmail.com",
         website: "https://komaniguide.com/",
         note: {
-          sq: "Tura me varkë në Liqenin e Komanit, Lumi i Shalës, Alpet Shqiptare",
+          sq: "Ture me varkë në Liqenin e Komanit, Lumi i Shalës, Alpet Shqiptare",
           en: "Komani Lake boat tours, Shala River, Albanian Alps",
         },
       },
@@ -503,7 +503,7 @@ export const CATEGORIES: Category[] = [
         email: "albaniantourguide8@gmail.com",
         website: "https://albaniantourguide.com/",
         note: {
-          sq: "Tura me guidë në të gjithë Shqipërinë, ekskursione ditore",
+          sq: "Ture me guidë në të gjithë Shqipërinë, ekskursione ditore",
           en: "Guided tours across Albania, day trips",
         },
       },

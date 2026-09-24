@@ -1,0 +1,48 @@
+{
+  "_readme": "Your content pipeline. Add topics to the list below. The generator (scripts/generate-guide.mjs) writes the next 'pending' topic as a DRAFT, then you approve it with scripts/publish-guide.mjs. schedule.days: 0=Sun 1=Mon 2=Tue 3=Wed 4=Thu 5=Fri 6=Sat.",
+  "schedule": { "days": [1, 4], "hour": 9 },
+  "model": "claude-sonnet-5",
+  "wordTarget": 1400,
+  "topics": [
+    {
+      "id": "car-rental-tirana-airport",
+      "title": "Renting a Car at Tirana Airport (TIA): The Complete Guide",
+      "keywords": "Tirana airport car rental, rent a car Tirana, TIA car hire, cheap car rental Albania, drive in Albania tips",
+      "category": "rent-car",
+      "cover": "🚗",
+      "status": "pending"
+    },
+    {
+      "id": "albanian-riviera-7-day-itinerary",
+      "title": "The Albanian Riviera: A Perfect 7-Day Itinerary",
+      "keywords": "Albanian Riviera itinerary, Ksamil, Himara, Dhermi, Saranda beaches, best beaches Albania, Riviera road trip",
+      "category": "tour-guides",
+      "cover": "🏖️",
+      "status": "pending"
+    },
+    {
+      "id": "buying-property-in-albania-foreigners-guide",
+      "title": "Buying Property in Albania as a Foreigner: 2026 Guide",
+      "keywords": "buy property Albania foreigner, real estate Albania, apartment Saranda, invest property Albania, property taxes Albania",
+      "category": "buy-property",
+      "cover": "🏢",
+      "status": "pending"
+    },
+    {
+      "id": "komani-lake-shala-river-boat-tour",
+      "title": "Komani Lake & Shala River: The Ultimate Boat Tour Guide",
+      "keywords": "Komani Lake ferry, Shala River tour, Albanian Alps boat trip, Koman to Fierze, how to visit Komani",
+      "category": "boat-yacht",
+      "cover": "⛵",
+      "status": "pending"
+    },
+    {
+      "id": "is-albania-safe-for-tourists",
+      "title": "Is Albania Safe for Tourists? An Honest 2026 Guide",
+      "keywords": "is Albania safe, Albania travel safety, solo travel Albania, is Albania safe for women, Albania scams",
+      "category": "tour-guides",
+      "cover": "🛡️",
+      "status": "pending"
+    }
+  ]
+}

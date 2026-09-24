@@ -50,6 +50,7 @@ export type Dict = {
   newsError: string;
   refineHint: string;
   dirTitle: string;
+  guidesTitle: string;
   dirEmpty: string;
   dirListCta: string;
   repTitle: string;
@@ -107,6 +108,7 @@ export const dict: Record<Lang, Dict> = {
     newsError: "Lajmet nuk mund të ngarkohen për momentin.",
     refineHint: "Zgjidhni një opsion:",
     dirTitle: "Kompani & kontakte",
+    guidesTitle: "Guida",
     dirEmpty: "Ende nuk ka kompani të listuara në këtë kategori.",
     dirListCta: "Jeni kompani? Listohuni këtu.",
     repTitle: "Dëshironi një plan të personalizuar?",
@@ -171,6 +173,7 @@ export const dict: Record<Lang, Dict> = {
     newsError: "News can't be loaded right now.",
     refineHint: "Choose an option:",
     dirTitle: "Companies & contacts",
+    guidesTitle: "Guides",
     dirEmpty: "No companies are listed in this category yet.",
     dirListCta: "Are you a company? Get listed here.",
     repTitle: "Want a custom plan?",
@@ -235,6 +238,7 @@ export const dict: Record<Lang, Dict> = {
     newsError: "Haberler şu anda yüklenemiyor.",
     refineHint: "Bir seçenek seçin:",
     dirTitle: "Şirketler ve iletişim",
+    guidesTitle: "Rehberler",
     dirEmpty: "Bu kategoride henüz şirket listelenmedi.",
     dirListCta: "Şirket misiniz? Buraya kaydolun.",
     repTitle: "Özel bir plan mı istiyorsunuz?",
@@ -299,6 +303,7 @@ export const dict: Record<Lang, Dict> = {
     newsError: "Le notizie non possono essere caricate ora.",
     refineHint: "Scegli un'opzione:",
     dirTitle: "Aziende e contatti",
+    guidesTitle: "Guide",
     dirEmpty: "Nessuna azienda ancora elencata in questa categoria.",
     dirListCta: "Sei un'azienda? Registrati qui.",
     repTitle: "Vuoi un piano personalizzato?",
@@ -363,6 +368,7 @@ export const dict: Record<Lang, Dict> = {
     newsError: "تعذّر تحميل الأخبار حاليًا.",
     refineHint: "اختر خيارًا:",
     dirTitle: "الشركات وجهات الاتصال",
+    guidesTitle: "أدلة",
     dirEmpty: "لا توجد شركات مدرجة في هذه الفئة بعد.",
     dirListCta: "هل أنت شركة؟ سجّل هنا.",
     repTitle: "هل تريد خطة مخصّصة؟",

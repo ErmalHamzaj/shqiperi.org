@@ -357,35 +357,40 @@
       "title": "Parking Guide in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "parking-guide-in-albania"
     },
     {
       "id": "private-driver-vip-transfers-in-albania",
       "title": "Private Driver & VIP Transfers in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "private-driver-vip-transfers-in-albania"
     },
     {
       "id": "airport-transfer-guide-in-albania",
       "title": "Airport Transfer Guide in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "airport-transfer-guide-in-albania"
     },
     {
       "id": "using-taxis-in-albania",
       "title": "Using Taxis in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "using-taxis-in-albania"
     },
     {
       "id": "intercity-buses-minibuses-in-albania",
       "title": "Intercity Buses & Minibuses in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "intercity-buses-minibuses-in-albania"
     },
     {
       "id": "crossing-borders-with-a-rental-car",

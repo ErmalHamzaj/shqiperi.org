@@ -189,42 +189,48 @@
       "title": "Hiking & Trekking Routes in Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "hiking-trekking-routes-in-albania"
     },
     {
       "id": "nature-adventure-tourism-in-albania",
       "title": "Nature & Adventure Tourism in Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "nature-adventure-tourism-in-albania"
     },
     {
       "id": "best-boat-yacht-tours-in-albania",
       "title": "Best Boat & Yacht Tours in Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "best-boat-yacht-tours-in-albania"
     },
     {
       "id": "diving-snorkeling-spots-in-albania",
       "title": "Diving & Snorkeling Spots in Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "diving-snorkeling-spots-in-albania"
     },
     {
       "id": "waterfalls-canyons-of-albania",
       "title": "Waterfalls & Canyons of Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "waterfalls-canyons-of-albania"
     },
     {
       "id": "best-photography-spots-in-albania",
       "title": "Best Photography Spots in Albania",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "best-photography-spots-in-albania"
     },
     {
       "id": "festivals-events-calendar-in-albania",

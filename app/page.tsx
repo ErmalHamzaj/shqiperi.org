@@ -83,8 +83,8 @@ function Footer() {
           <Link href="/directory" className="hover:text-flag-red">
             {tr.dirTitle}
           </Link>
-          <Link href="/guides" className="hover:text-flag-red">
-            {tr.guidesTitle}
+          <Link href="/blog" className="hover:text-flag-red">
+            {tr.blogTitle}
           </Link>
           <a href="#" className="hover:text-flag-red">
             {tr.footerAbout}

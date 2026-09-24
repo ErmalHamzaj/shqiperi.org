@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { CATEGORIES } from "@/lib/directory";
-import { listPublishedGuides } from "@/lib/guides";
+import { listPublishedPosts, categoriesWithPosts } from "@/lib/blog";
 
 const SITE = "https://shqiperi.org";
 
@@ -10,15 +10,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const core: MetadataRoute.Sitemap = [
     { url: SITE, lastModified: now, changeFrequency: "daily", priority: 1 },
     { url: `${SITE}/directory`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${SITE}/guides`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE}/blog`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
   ];
 
-  // Published guide articles.
-  const guidePages: MetadataRoute.Sitemap = listPublishedGuides().map((g) => ({
-    url: `${SITE}/guides/${g.slug}`,
-    lastModified: g.publishedAt ? new Date(g.publishedAt) : now,
-    changeFrequency: "monthly",
+  // Blog category pages.
+  const blogCategoryPages: MetadataRoute.Sitemap = categoriesWithPosts().map((c) => ({
+    url: `${SITE}/blog/${c.id}`,
+    lastModified: now,
+    changeFrequency: "weekly",
     priority: 0.7,
+  }));
+
+  // Published blog posts.
+  const blogPosts: MetadataRoute.Sitemap = listPublishedPosts().map((p) => ({
+    url: `${SITE}/blog/post/${p.slug}`,
+    lastModified: p.publishedAt ? new Date(p.publishedAt) : now,
+    changeFrequency: "monthly",
+    priority: 0.6,
   }));
 
   // One indexable search URL per category that has listings.
@@ -31,5 +39,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...core, ...guidePages, ...categoryPages];
+  return [...core, ...blogCategoryPages, ...blogPosts, ...categoryPages];
 }

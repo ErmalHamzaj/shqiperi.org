@@ -13,7 +13,12 @@ import { localize } from "@/lib/directory";
 export type ArticleData = {
   slug: string;
   cover?: string;
-  category?: string;
+  /** Blog category, for the badge/link. */
+  categoryId?: string;
+  categoryName?: LangText;
+  categoryIcon?: string;
+  /** Directory category id for the concierge CTA. */
+  ctaCategory?: string | null;
   readingMinutes?: number;
   title: LangText;
   /** Pre-rendered HTML body per language. */
@@ -27,10 +32,10 @@ const READ: Record<string, string> = {
 };
 
 const BACK: Record<string, string> = {
-  sq: "Të gjitha guidat", en: "All guides", tr: "Tüm rehberler", it: "Tutte le guide", ar: "كل الأدلة",
+  sq: "Blog", en: "Blog", tr: "Blog", it: "Blog", ar: "المدونة",
 };
 
-export function GuideArticle({ data }: { data: ArticleData }) {
+export function BlogArticle({ data }: { data: ArticleData }) {
   const { lang } = useLang();
   const body = data.html[lang] ?? data.html.en ?? data.html.sq ?? "";
 
@@ -55,16 +60,23 @@ export function GuideArticle({ data }: { data: ArticleData }) {
 
       <main className="mx-auto max-w-2xl px-4 py-8">
         <Link
-          href="/guides"
+          href="/blog"
           className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-zinc-500 hover:text-flag-red transition-colors"
         >
           <span aria-hidden="true">←</span> {BACK[lang] ?? BACK.en}
         </Link>
 
         <article>
-          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-flag-red/10 text-3xl">
-            {data.cover ?? "📄"}
-          </div>
+          {data.categoryId && data.categoryName ? (
+            <Link
+              href={`/blog/${data.categoryId}`}
+              className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-flag-red/10 px-3 py-1 text-xs font-semibold text-flag-red hover:bg-flag-red/15 transition-colors"
+            >
+              <span aria-hidden="true">{data.categoryIcon}</span>
+              {localize(data.categoryName, lang)}
+            </Link>
+          ) : null}
+
           <h1 className="text-3xl font-extrabold leading-tight tracking-tight text-zinc-900 dark:text-zinc-50">
             {localize(data.title, lang)}
           </h1>
@@ -82,7 +94,7 @@ export function GuideArticle({ data }: { data: ArticleData }) {
 
         <RepresentativeCTA
           query={data.ctaQuery}
-          categoryId={data.category ?? null}
+          categoryId={data.ctaCategory ?? null}
           prominent
         />
       </main>

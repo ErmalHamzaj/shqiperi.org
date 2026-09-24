@@ -61,7 +61,8 @@
       "title": "The Albanian Riviera Travel Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "the-albanian-riviera-travel-guide"
     },
     {
       "id": "ksamil-travel-guide",

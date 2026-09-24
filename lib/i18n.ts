@@ -39,6 +39,9 @@ export type Dict = {
   noWebResults: string;
   readMore: string;
   notAlbania: string;
+  verified: string;
+  verifyLine: string;
+  verifyCta: string;
   examplesTitle: string;
   examples: string[];
   newsTitle: string;
@@ -84,6 +87,9 @@ export const dict: Record<Lang, Dict> = {
     noWebResults: "Nuk u gjetën rezultate të drejtpërdrejta për këtë kërkim.",
     readMore: "Lexo më shumë",
     notAlbania: "Shqipëri kërkon vetëm për Shqipërinë dhe shqiptarët.",
+    verified: "I verifikuar",
+    verifyLine: "Duhet të verifikoni një biznes?",
+    verifyCta: "Na kontaktoni në WhatsApp",
     examplesTitle: "Provoni:",
     examples: [
       "Lajmet e fundit nga Shqipëria",
@@ -142,6 +148,9 @@ export const dict: Record<Lang, Dict> = {
     noWebResults: "No direct results were found for this search.",
     readMore: "Read more",
     notAlbania: "Shqipëri only searches for Albania and Albanians.",
+    verified: "Verified",
+    verifyLine: "Need to verify a business?",
+    verifyCta: "Contact us on WhatsApp",
     examplesTitle: "Try:",
     examples: [
       "Latest news from Albania",
@@ -200,6 +209,9 @@ export const dict: Record<Lang, Dict> = {
     noWebResults: "Bu arama için doğrudan sonuç bulunamadı.",
     readMore: "Devamını oku",
     notAlbania: "Shqipëri yalnızca Arnavutluk ve Arnavutlar için arama yapar.",
+    verified: "Doğrulanmış",
+    verifyLine: "Bir işletmeyi doğrulamanız mı gerekiyor?",
+    verifyCta: "WhatsApp'tan bize ulaşın",
     examplesTitle: "Deneyin:",
     examples: [
       "Arnavutluk'tan son haberler",
@@ -258,6 +270,9 @@ export const dict: Record<Lang, Dict> = {
     noWebResults: "Nessun risultato diretto trovato per questa ricerca.",
     readMore: "Leggi di più",
     notAlbania: "Shqipëri cerca solo per l'Albania e gli albanesi.",
+    verified: "Verificato",
+    verifyLine: "Devi verificare un'attività?",
+    verifyCta: "Contattaci su WhatsApp",
     examplesTitle: "Prova:",
     examples: [
       "Ultime notizie dall'Albania",
@@ -316,6 +331,9 @@ export const dict: Record<Lang, Dict> = {
     noWebResults: "لم يتم العثور على نتائج مباشرة لهذا البحث.",
     readMore: "اقرأ المزيد",
     notAlbania: "شقيبري يبحث فقط عن ألبانيا والألبان.",
+    verified: "موثّق",
+    verifyLine: "هل تحتاج إلى توثيق نشاط تجاري؟",
+    verifyCta: "تواصل معنا عبر واتساب",
     examplesTitle: "جرّب:",
     examples: [
       "آخر الأخبار من ألبانيا",

@@ -13,6 +13,7 @@ import { useLang } from "@/components/LanguageProvider";
 import { getRefinement } from "@/lib/refine";
 import { matchCategory, localize, sortByRating, type Company } from "@/lib/directory";
 import { CompanyCard } from "@/components/CompanyCard";
+import { VerifyCTA } from "@/components/VerifyCTA";
 
 type Result = { title: string; url: string; rating?: string; snippet?: string };
 type Status = "loading" | "done" | "error";
@@ -247,6 +248,7 @@ function DirectorySection({
                 : `${moreLabel[lang] ?? moreLabel.en} (${companies.length})`}
             </button>
           )}
+          <VerifyCTA className="mt-4" />
         </>
       )}
     </section>

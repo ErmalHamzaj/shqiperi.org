@@ -51,6 +51,24 @@ export function hasContact(): boolean {
   return Boolean(REPRESENTATIVE.whatsapp || REPRESENTATIVE.email);
 }
 
+/** Enquiry to verify/claim a business listing. */
+function verifyMessage(lang: Lang): string {
+  return lang === "sq"
+    ? "Përshëndetje! Dua të verifikoj / pretendoj listimin e një biznesi në Shqipëri."
+    : "Hello! I'd like to verify / claim a business listing on Shqipëri.";
+}
+
+export function verifyLink(lang: Lang): string | null {
+  const num = REPRESENTATIVE.whatsapp.replace(/\D/g, "");
+  if (num) return `https://wa.me/${num}?text=${encodeURIComponent(verifyMessage(lang))}`;
+  if (REPRESENTATIVE.email) {
+    return `mailto:${REPRESENTATIVE.email}?subject=${encodeURIComponent(
+      "Verify business listing",
+    )}&body=${encodeURIComponent(verifyMessage(lang))}`;
+  }
+  return null;
+}
+
 /** Advertising / "get listed" enquiry from a business. */
 function adsMessage(lang: Lang): string {
   return lang === "sq"

@@ -8,7 +8,7 @@ import { companyNote, type Company } from "@/lib/directory";
  * red left accent + a "Listed" mark, plus a star rating badge when available.
  */
 export function CompanyCard({ company: c }: { company: Company }) {
-  const { lang } = useLang();
+  const { lang, tr } = useLang();
   const note = companyNote(c, lang);
   const featured = !!c.featured;
   return (
@@ -21,9 +21,14 @@ export function CompanyCard({ company: c }: { company: Company }) {
     >
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <div className="flex items-center gap-1.5">
-            {featured && <CheckIcon />}
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span className="font-semibold text-zinc-800 dark:text-zinc-100">{c.name}</span>
+            {featured && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-flag-red px-2 py-0.5 text-[11px] font-semibold text-white">
+                <CheckIcon />
+                {tr.verified}
+              </span>
+            )}
           </div>
           {note && (
             <p className="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">{note}</p>
@@ -73,7 +78,7 @@ function formatCount(n: number): string {
 function CheckIcon() {
   return (
     <svg
-      className="h-3.5 w-3.5 shrink-0 text-flag-red"
+      className="h-3 w-3 shrink-0"
       viewBox="0 0 24 24"
       fill="currentColor"
       aria-hidden="true"

@@ -5,6 +5,7 @@ import { Logo, EagleMark } from "@/components/Logo";
 import { LangToggle } from "@/components/LangToggle";
 import { SearchBox } from "@/components/SearchBox";
 import { CompanyCard } from "@/components/CompanyCard";
+import { VerifyCTA } from "@/components/VerifyCTA";
 import { useLang } from "@/components/LanguageProvider";
 import { CATEGORIES, localize, sortByRating, type Category } from "@/lib/directory";
 
@@ -73,6 +74,8 @@ export default function DirectoryPage() {
             <CategoryAccordion key={cat.id} category={cat} />
           ))}
         </div>
+
+        <VerifyCTA className="mt-8" />
       </main>
     </div>
   );

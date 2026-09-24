@@ -23,13 +23,23 @@ export const REPRESENTATIVE = {
 function message(query: string, lang: Lang): string {
   const q = query.trim();
   if (!q) {
-    return lang === "sq"
-      ? "Përshëndetje! Dua ndihmë për të organizuar një plan në Shqipëri. Faleminderit!"
-      : "Hello! I'd like help organizing a plan in Albania. Thank you!";
+    const generic: Record<Lang, string> = {
+      sq: "Përshëndetje! Dua ndihmë për të organizuar një plan në Shqipëri. Faleminderit!",
+      en: "Hello! I'd like help organizing a plan in Albania. Thank you!",
+      tr: "Merhaba! Arnavutluk'ta bir plan organize etmek için yardım istiyorum. Teşekkürler!",
+      it: "Ciao! Vorrei aiuto per organizzare un piano in Albania. Grazie!",
+      ar: "مرحبًا! أريد المساعدة في تنظيم خطة في ألبانيا. شكرًا!",
+    };
+    return generic[lang] ?? generic.en;
   }
-  return lang === "sq"
-    ? `Përshëndetje! Dua ndihmë për: "${q}". A mund të më ndihmoni ta organizoj? Faleminderit!`
-    : `Hello! I'd like help with: "${q}". Could you help me organize it? Thank you!`;
+  const withQuery: Record<Lang, string> = {
+    sq: `Përshëndetje! Dua ndihmë për: "${q}". A mund të më ndihmoni ta organizoj? Faleminderit!`,
+    en: `Hello! I'd like help with: "${q}". Could you help me organize it? Thank you!`,
+    tr: `Merhaba! Şu konuda yardım istiyorum: "${q}". Organize etmeme yardımcı olabilir misiniz? Teşekkürler!`,
+    it: `Ciao! Vorrei aiuto per: "${q}". Potete aiutarmi a organizzarlo? Grazie!`,
+    ar: `مرحبًا! أريد المساعدة بخصوص: "${q}". هل يمكنكم مساعدتي في تنظيمه؟ شكرًا!`,
+  };
+  return withQuery[lang] ?? withQuery.en;
 }
 
 export function whatsappLink(query: string, lang: Lang): string | null {
@@ -40,10 +50,15 @@ export function whatsappLink(query: string, lang: Lang): string | null {
 
 export function emailLink(query: string, lang: Lang): string | null {
   if (!REPRESENTATIVE.email) return null;
-  const subject =
-    lang === "sq" ? "Kërkesë për plan të personalizuar" : "Custom plan request";
+  const subjects: Record<Lang, string> = {
+    sq: "Kërkesë për plan të personalizuar",
+    en: "Custom plan request",
+    tr: "Kişiye özel plan talebi",
+    it: "Richiesta di piano personalizzato",
+    ar: "طلب خطة مخصصة",
+  };
   return `mailto:${REPRESENTATIVE.email}?subject=${encodeURIComponent(
-    subject,
+    subjects[lang] ?? subjects.en,
   )}&body=${encodeURIComponent(message(query, lang))}`;
 }
 
@@ -53,9 +68,14 @@ export function hasContact(): boolean {
 
 /** Enquiry to verify/claim a business listing. */
 function verifyMessage(lang: Lang): string {
-  return lang === "sq"
-    ? "Përshëndetje! Dua të verifikoj / pretendoj listimin e një biznesi në Shqipëri."
-    : "Hello! I'd like to verify / claim a business listing on Shqipëri.";
+  const msgs: Record<Lang, string> = {
+    sq: "Përshëndetje! Dua të verifikoj / pretendoj listimin e një biznesi në Shqipëri.",
+    en: "Hello! I'd like to verify / claim a business listing on Shqipëri.",
+    tr: "Merhaba! Shqipëri'deki bir işletme kaydını doğrulamak / sahiplenmek istiyorum.",
+    it: "Ciao! Vorrei verificare / rivendicare la scheda di un'attività su Shqipëri.",
+    ar: "مرحبًا! أريد التحقق من / المطالبة بإدراج نشاط تجاري على Shqipëri.",
+  };
+  return msgs[lang] ?? msgs.en;
 }
 
 export function verifyLink(lang: Lang): string | null {
@@ -71,9 +91,14 @@ export function verifyLink(lang: Lang): string | null {
 
 /** Advertising / "get listed" enquiry from a business. */
 function adsMessage(lang: Lang): string {
-  return lang === "sq"
-    ? "Përshëndetje! Dua të reklamoj / listoj biznesin tim në Shqipëri. Më tregoni opsionet dhe çmimet, ju lutem."
-    : "Hello! I'd like to advertise / list my business on Shqipëri. Please tell me the options and pricing.";
+  const msgs: Record<Lang, string> = {
+    sq: "Përshëndetje! Dua të reklamoj / listoj biznesin tim në Shqipëri. Më tregoni opsionet dhe çmimet, ju lutem.",
+    en: "Hello! I'd like to advertise / list my business on Shqipëri. Please tell me the options and pricing.",
+    tr: "Merhaba! İşletmemi Shqipëri'de tanıtmak / listelemek istiyorum. Lütfen seçenekleri ve fiyatları söyleyin.",
+    it: "Ciao! Vorrei pubblicizzare / inserire la mia attività su Shqipëri. Ditemi le opzioni e i prezzi, per favore.",
+    ar: "مرحبًا! أريد الإعلان عن / إدراج نشاطي التجاري على Shqipëri. من فضلكم أخبروني بالخيارات والأسعار.",
+  };
+  return msgs[lang] ?? msgs.en;
 }
 
 /** Best available link for a business to reach out about advertising. */
@@ -81,7 +106,14 @@ export function adsLink(lang: Lang): string | null {
   const num = REPRESENTATIVE.whatsapp.replace(/\D/g, "");
   if (num) return `https://wa.me/${num}?text=${encodeURIComponent(adsMessage(lang))}`;
   if (REPRESENTATIVE.email) {
-    const subject = lang === "sq" ? "Reklamim / Listim biznesi" : "Advertising / Business listing";
+    const subjects: Record<Lang, string> = {
+      sq: "Reklamim / Listim biznesi",
+      en: "Advertising / Business listing",
+      tr: "Reklam / İşletme kaydı",
+      it: "Pubblicità / Inserimento attività",
+      ar: "إعلان / إدراج نشاط تجاري",
+    };
+    const subject = subjects[lang] ?? subjects.en;
     return `mailto:${REPRESENTATIVE.email}?subject=${encodeURIComponent(
       subject,
     )}&body=${encodeURIComponent(adsMessage(lang))}`;

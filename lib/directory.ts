@@ -422,31 +422,31 @@ const BANKS: Company[] = [
 export const CATEGORIES: Category[] = [
   {
     id: "rent-car",
-    name: { sq: "Makina me qira", en: "Car rental" },
+    name: { sq: "Makina me qira", en: "Car rental", tr: "Araç kiralama", it: "Noleggio auto", ar: "تأجير سيارات" },
     match: /\b(cars?|makin|auto)\b.*\b(rent|rental|qira|qera)\b|\b(rent|rental|qira)\b.*\b(cars?|makin|auto)\b|araç kirala|araba kirala|kiralık ara|noleggio auto|noleggiare un.?auto|autonoleggio|تأجير سيار|استئجار سيار/i,
     companies: [...CAR_RENTAL_COMPANIES],
   },
   {
     id: "rent-home",
-    name: { sq: "Shtëpi & apartamente me qira", en: "Homes & apartments for rent" },
+    name: { sq: "Shtëpi & apartamente me qira", en: "Homes & apartments for rent", tr: "Kiralık ev & daire", it: "Case e appartamenti in affitto", ar: "منازل وشقق للإيجار" },
     match: /\b(home|house|apartment|apartament|sht[ëe]pi|banes)\b.*\b(rent|qira|qera)\b|\b(rent|qira)\b.*\b(home|house|apartment|apartament|sht[ëe]pi)\b|kiralık ev|kiralık daire|affitto casa|affittare una casa|casa in affitto|استئجار منزل|إيجار منزل|استئجار شقة/i,
     companies: [century21Yllka, edisonLami, ...REAL_ESTATE_AGENCIES],
   },
   {
     id: "rent-villa",
-    name: { sq: "Vila me qira", en: "Villas for rent" },
+    name: { sq: "Vila me qira", en: "Villas for rent", tr: "Kiralık villa", it: "Ville in affitto", ar: "فيلات للإيجار" },
     match: /\b(villa|vil[ëe])\b.*\b(rent|qira|qera)\b|\b(rent|qira)\b.*\b(villa|vil[ëe])\b|kiralık villa|affitto villa|villa in affitto|استئجار فيلا/i,
     companies: [century21Yllka, edisonLami, ...REAL_ESTATE_AGENCIES],
   },
   {
     id: "rent-land",
-    name: { sq: "Tokë me qira", en: "Land for rent" },
+    name: { sq: "Tokë me qira", en: "Land for rent", tr: "Kiralık arsa", it: "Terreni in affitto", ar: "أراضٍ للإيجار" },
     match: /\b(land|tok[ëe])\b.*\b(rent|qira|qera)\b|\b(rent|qira)\b.*\b(land|tok[ëe])\b/i,
     companies: [edisonLami],
   },
   {
     id: "rent-helicopter",
-    name: { sq: "Helikopter me qira", en: "Helicopter charter" },
+    name: { sq: "Helikopter me qira", en: "Helicopter charter", tr: "Helikopter kiralama", it: "Noleggio elicottero", ar: "تأجير هليكوبتر" },
     match: /\b(helicopter|helikopter|heliski|heli)\b|elicottero|هليكوبتر|مروحية/i,
     companies: [
       {
@@ -464,25 +464,25 @@ export const CATEGORIES: Category[] = [
   },
   {
     id: "boat-yacht",
-    name: { sq: "Ture me varkë & jaht", en: "Boat & yacht tours" },
+    name: { sq: "Ture me varkë & jaht", en: "Boat & yacht tours", tr: "Tekne & yat turları", it: "Tour in barca e yacht", ar: "جولات القوارب واليخوت" },
     match: /\b(boat|yacht|cruise|speedboat|catamaran|water ?taxi|sail)\b|varkë|varka|lundrim|jaht|anije|tekne|barca|barche|crociera|قارب|يخت|قوارب/i,
     companies: [...BOAT_YACHT_COMPANIES],
   },
   {
     id: "taxi-transfers",
-    name: { sq: "Taksi & transferta", en: "Taxi & transfers" },
+    name: { sq: "Taksi & transferta", en: "Taxi & transfers", tr: "Taksi & transfer", it: "Taxi e transfer", ar: "سيارات أجرة ونقل" },
     match: /\b(taxi|transfer|transfers|shuttle|chauffeur)\b|taksi|transfert|aeroport|navetta|trasferiment|تاكسي|سيارة أجرة|نقل/i,
     companies: [...TAXI_COMPANIES],
   },
   {
     id: "buy-property",
-    name: { sq: "Blerje pronash", en: "Buy property" },
+    name: { sq: "Blerje pronash", en: "Buy property", tr: "Mülk satın al", it: "Comprare casa", ar: "شراء عقارات" },
     match: /\b(buy|blej|bli)\b.*\b(property|pron[ëe]|apartment|apartament|villa|vil[ëe]|land|tok[ëe]|house|sht[ëe]pi)\b|\breal estate\b|\bpatundsh|mülk satın al|ev satın al|emlak|gayrimenkul|comprare casa|acquistare casa|immobiliare|شراء عقار|شراء منزل|عقارات/i,
     companies: [century21Yllka, edisonLami, ...REAL_ESTATE_AGENCIES],
   },
   {
     id: "tour-guides",
-    name: { sq: "Guida turistike", en: "Tour guides" },
+    name: { sq: "Guida turistike", en: "Tour guides", tr: "Tur rehberleri", it: "Guide turistiche", ar: "مرشدون سياحيون" },
     match: /\b(tour guide|tour guides|guided tour|guida|guid[ëe]|udh[ëe]rr[ëe]fyes|sightseeing|tura turistike|ekskursion|komani|shala)\b|tur rehber|gezi rehber|guida turistica|دليل سياحي|مرشد سياحي|جولة سياحية/i,
     companies: [
       {
@@ -512,7 +512,7 @@ export const CATEGORIES: Category[] = [
   },
   {
     id: "lawyer",
-    name: { sq: "Avokatë & shërbime ligjore", en: "Lawyers & legal services" },
+    name: { sq: "Avokatë & shërbime ligjore", en: "Lawyers & legal services", tr: "Avukatlar & hukuki hizmetler", it: "Avvocati e servizi legali", ar: "محامون وخدمات قانونية" },
     match: /\b(lawyers?|attorneys?|legal|law firm|avokat|jurist|juridik|ligjor|noter|kontrat)\b|avukat|avvocato|legale|محامي|محاماة|قانوني/i,
     companies: [
       {
@@ -530,31 +530,31 @@ export const CATEGORIES: Category[] = [
   },
   {
     id: "accountants",
-    name: { sq: "Kontabilistë & taksa", en: "Accountants & tax" },
+    name: { sq: "Kontabilistë & taksa", en: "Accountants & tax", tr: "Muhasebeciler & vergi", it: "Commercialisti e fiscale", ar: "محاسبون وضرائب" },
     match: /\b(accountant|accounting|bookkeeping|tax|audit|payroll)\b|kontabilist|kontabilitet|taksa|fiskal|muhasebe|vergi|contabil|commercialista|محاسب|ضرائب|ضريب/i,
     companies: [...ACCOUNTANTS],
   },
   {
     id: "banks",
-    name: { sq: "Banka & financë", en: "Banks & finance" },
+    name: { sq: "Banka & financë", en: "Banks & finance", tr: "Bankalar & finans", it: "Banche e finanza", ar: "بنوك ومال" },
     match: /\b(bank|banking|loan|mortgage|leasing|microfinance|microcredit|deposit|payment|money transfer)\b|bank[ëa]|kredi|hua|hipotek|banka|بنك|مصرف|قرض|banca|prestito/i,
     companies: [...BANKS],
   },
   {
     id: "invest",
-    name: { sq: "Investime në Shqipëri", en: "Invest in Albania" },
+    name: { sq: "Investime në Shqipëri", en: "Invest in Albania", tr: "Arnavutluk'a yatırım", it: "Investire in Albania", ar: "الاستثمار في ألبانيا" },
     match: /\b(invest|investo|investim|investment)\b|yatırım|investire|investimento|استثمار/i,
     companies: [],
   },
   {
     id: "investment-centers",
-    name: { sq: "Qendra investimi", en: "Investment centers" },
+    name: { sq: "Qendra investimi", en: "Investment centers", tr: "Yatırım merkezleri", it: "Centri di investimento", ar: "مراكز الاستثمار" },
     match: /\b(investment center|qendr[ae] (e|të) investim)\b/i,
     companies: [],
   },
   {
     id: "business",
-    name: { sq: "Biznese shqiptare", en: "Albanian businesses" },
+    name: { sq: "Biznese shqiptare", en: "Albanian businesses", tr: "Arnavut işletmeleri", it: "Aziende albanesi", ar: "شركات ألبانية" },
     match: /\b(business|biznes|compan|kompani)\b|işletme|şirket|aziend|impresa|شركات|أعمال/i,
     companies: [],
   },

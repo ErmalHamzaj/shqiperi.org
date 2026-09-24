@@ -397,35 +397,40 @@
       "title": "Crossing Borders with a Rental Car",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "crossing-borders-with-a-rental-car"
     },
     {
       "id": "traveling-albania-by-campervan",
       "title": "Traveling Albania by Campervan",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "traveling-albania-by-campervan"
     },
     {
       "id": "ev-charging-stations-in-albania",
       "title": "EV Charging Stations in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "ev-charging-stations-in-albania"
     },
     {
       "id": "buying-a-used-car-in-albania",
       "title": "Buying a Used Car in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "buying-a-used-car-in-albania"
     },
     {
       "id": "car-insurance-inspection-in-albania",
       "title": "Car Insurance & Inspection in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "car-insurance-inspection-in-albania"
     },
     {
       "id": "buying-a-home-in-albania-full-guide",

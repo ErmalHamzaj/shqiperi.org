@@ -77,7 +77,7 @@ export type Dict = {
 export const dict: Record<Lang, Dict> = {
   sq: {
     tagline: "Kërko. Zbulo. Lidhu.",
-    placeholder: "Kërko çdo gjë për Shqipërinë…",
+    placeholder: "Kërko për Shqipërinë…",
     search: "Kërko",
     searching: "Duke kërkuar…",
     overview: "Përmbledhje",
@@ -142,7 +142,7 @@ export const dict: Record<Lang, Dict> = {
   },
   en: {
     tagline: "Search. Discover. Connect.",
-    placeholder: "Search anything about Albania…",
+    placeholder: "Search Albania…",
     search: "Search",
     searching: "Searching…",
     overview: "Overview",
@@ -207,7 +207,7 @@ export const dict: Record<Lang, Dict> = {
   },
   tr: {
     tagline: "Ara. Keşfet. Bağlan.",
-    placeholder: "Arnavutluk hakkında her şeyi ara…",
+    placeholder: "Arnavutluk'ta ara…",
     search: "Ara",
     searching: "Aranıyor…",
     overview: "Özet",
@@ -272,7 +272,7 @@ export const dict: Record<Lang, Dict> = {
   },
   it: {
     tagline: "Cerca. Scopri. Connetti.",
-    placeholder: "Cerca qualsiasi cosa sull'Albania…",
+    placeholder: "Cerca in Albania…",
     search: "Cerca",
     searching: "Ricerca in corso…",
     overview: "Panoramica",
@@ -337,7 +337,7 @@ export const dict: Record<Lang, Dict> = {
   },
   ar: {
     tagline: "ابحث. اكتشف. تواصل.",
-    placeholder: "ابحث عن أي شيء عن ألبانيا…",
+    placeholder: "ابحث عن ألبانيا…",
     search: "بحث",
     searching: "جارٍ البحث…",
     overview: "ملخّص",

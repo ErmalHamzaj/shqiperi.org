@@ -19,6 +19,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   if (!post) return { title: "Not found" };
   const title = post.title.tr ?? post.title.en ?? post.title.sq;
   const description = post.description.tr ?? post.description.en ?? post.description.sq;
+  const images = post.ogImage
+    ? [{ url: `${SITE}${post.ogImage}`, width: 1200, height: 675, alt: title }]
+    : undefined;
   return {
     title,
     description,
@@ -29,7 +32,11 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       url: `${SITE}/blog/post/${post.slug}`,
       type: "article",
       publishedTime: post.publishedAt ?? undefined,
+      images,
     },
+    twitter: images
+      ? { card: "summary_large_image", title, description, images: images.map((i) => i.url) }
+      : undefined,
   };
 }
 

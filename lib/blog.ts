@@ -74,6 +74,8 @@ export type Post = {
   /** Blog category id (see BLOG_CATEGORIES). */
   category?: string;
   cover?: string;
+  /** Social-share (Open Graph / Twitter) image, absolute path under /public. */
+  ogImage?: string;
   readingMinutes?: number;
   createdAt?: string;
   publishedAt?: string | null;

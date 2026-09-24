@@ -109,35 +109,40 @@
       "title": "Gjirokastër Travel Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "gjirokaster-travel-guide"
     },
     {
       "id": "tirana-travel-guide",
       "title": "Tirana Travel Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "tirana-travel-guide"
     },
     {
       "id": "shkodra-travel-guide",
       "title": "Shkodra Travel Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "shkodra-travel-guide"
     },
     {
       "id": "theth-national-park-guide",
       "title": "Theth National Park Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "theth-national-park-guide"
     },
     {
       "id": "valbona-valley-guide",
       "title": "Valbona Valley Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "valbona-valley-guide"
     },
     {
       "id": "komani-lake-ferry-boat-trip",

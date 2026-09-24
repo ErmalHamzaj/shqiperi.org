@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Shqipëri — Search Albania",
+    name: "Shqipëri — Your personal Albania guide",
     short_name: "Shqipëri",
     description:
-      "Search engine and business directory for Albania and Albanians — businesses, services and news.",
+      "Your personal concierge for Albania — we organize tours, rentals, property, lawyers, transfers and more for you, free.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

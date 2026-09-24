@@ -3,9 +3,9 @@ import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
 
 const SITE = "https://shqiperi.org";
-const TITLE = "Shqipëri — Kërko biznese, shërbime & lajme në Shqipëri";
+const TITLE = "Shqipëri — Ndihma & guida jote personale për Shqipërinë";
 const DESC =
-  "Motori i kërkimit dhe direktoria e Shqipërisë: makina me qira, prona, avokatë, guida turistike, tura me varkë, taksi, banka, kontabilistë, lajme e më shumë. Search Albania — businesses, services & news in one place.";
+  "Jo thjesht një drejtori, por një përvojë personale për Shqipërinë: ekipi ynë organizon për ty tura, makina me qira, prona, avokatë, transferta e më shumë, falas. Your personal Albania concierge — we organize tours, rentals, property, lawyers and transfers for you, free.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -18,10 +18,13 @@ export const metadata: Metadata = {
   keywords: [
     "Shqipëri",
     "Albania",
-    "Albania search",
-    "Albania directory",
-    "biznese Shqipëri",
-    "Albania business directory",
+    "Albania concierge",
+    "personal Albania guide",
+    "plan trip to Albania",
+    "Albania travel help",
+    "vizito Shqipërinë",
+    "udhëto në Shqipëri",
+    "personalized Albania tour",
     "makina me qira Shqipëri",
     "car rental Albania",
     "prona Shqipëri",
@@ -32,8 +35,8 @@ export const metadata: Metadata = {
     "tour guides Albania",
     "tura me varkë Shqipëri",
     "boat tours Albania",
-    "taksi Shqipëri",
-    "Albania taxi transfer",
+    "taksi & transferta Shqipëri",
+    "Albania airport transfer",
     "lajme Shqipëri",
     "Albania news",
   ],
@@ -105,9 +108,18 @@ const jsonLd = {
       name: "Shqipëri",
       url: SITE,
       logo: `${SITE}/icon.svg`,
+      slogan: "Your personal guide to Albania",
       description:
-        "Search engine and business directory for Albania and Albanians.",
+        "Personal concierge and guide for Albania — we help you plan and organize tours, car rentals, property, lawyers, transfers and more, free of charge.",
       areaServed: { "@type": "Country", name: "Albania" },
+      knowsAbout: [
+        "Albania travel",
+        "tours in Albania",
+        "car rental in Albania",
+        "real estate in Albania",
+        "lawyers in Albania",
+        "airport transfers in Albania",
+      ],
     },
   ],
 };

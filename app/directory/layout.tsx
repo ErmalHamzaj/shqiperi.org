@@ -5,8 +5,8 @@ const SITE = "https://shqiperi.org";
 const total = CATEGORIES.reduce((n, c) => n + c.companies.length, 0);
 
 export const metadata: Metadata = {
-  title: "Direktoria e bizneseve në Shqipëri — Business Directory",
-  description: `Direktoria e Shqipërisë me ${total}+ biznese: makina me qira, prona, avokatë, kontabilistë, banka, guida turistike, tura me varkë, taksi e transferta. Albania business directory with ${total}+ verified listings.`,
+  title: "Kompani & kontakte të verifikuara në Shqipëri",
+  description: `${total}+ biznese në Shqipëri, me ndihmë personale falas për t'i kontaktuar e organizuar: makina me qira, prona, avokatë, guida turistike, tura me varkë, taksi e më shumë. ${total}+ verified Albanian businesses, with free personal help to book them.`,
   alternates: { canonical: "/directory" },
   openGraph: {
     title: "Albania Business Directory — Shqipëri",

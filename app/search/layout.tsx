@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Kërko në Shqipëri — Search Albania",
+  title: "Rezultate & ndihmë personale për Shqipërinë",
   description:
-    "Kërko biznese, shërbime, prona, avokatë, makina me qira, tura e lajme në Shqipëri. Search Albania for businesses, services and news.",
+    "Gjej biznese e shërbime në Shqipëri dhe merr ndihmë personale falas nga ekipi ynë — tura, makina me qira, prona, avokatë, transferta e më shumë.",
   alternates: { canonical: "/search" },
 };
 

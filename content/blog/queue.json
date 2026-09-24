@@ -53,7 +53,8 @@
       "title": "Albania North to South Road Trip",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "albania-north-to-south-road-trip"
     },
     {
       "id": "the-albanian-riviera-travel-guide",

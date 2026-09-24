@@ -153,7 +153,7 @@ export async function generateOne({ id = null, force = false } = {}) {
   const translateModel = queue.translateModel || model;
   const langModels = queue.langModels || {};
   const modelFor = (code) => langModels[code] || translateModel;
-  const sourceLang = queue.sourceLang || "tr";
+  const sourceLang = queue.sourceLang || "en";
   const sourceName = LANG_NAME[sourceLang] || "Turkish";
   const defaultTarget = queue.wordTarget || 1400;
 

@@ -41,7 +41,7 @@ if (!LANG_NAME[lang]) {
 }
 
 const queue = JSON.parse(fs.readFileSync(QUEUE_PATH, "utf8"));
-const sourceLang = queue.sourceLang || "tr";
+const sourceLang = queue.sourceLang || "en";
 const model =
   modelArg || (queue.langModels && queue.langModels[lang]) || queue.translateModel || queue.model || "claude-sonnet-5";
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });

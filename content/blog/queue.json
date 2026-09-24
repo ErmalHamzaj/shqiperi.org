@@ -37,7 +37,8 @@
       "title": "7 Days in Albania: Itinerary",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "7-days-in-albania-itinerary"
     },
     {
       "id": "10-days-in-albania-itinerary",

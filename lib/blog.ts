@@ -21,6 +21,8 @@ export type BlogCategory = {
 };
 
 export const BLOG_CATEGORIES: BlogCategory[] = [
+  { id: "partnership", icon: "🤝", cta: null,
+    name: { en: "News & Partnerships", tr: "Haberler & İşbirlikleri", sq: "Lajme & Partneritete", it: "Notizie e partnership", ar: "أخبار وشراكات" } },
   { id: "travel", icon: "🏖️", cta: "tour-guides",
     name: { en: "Travel & Tourism", tr: "Gezi & Turizm", sq: "Udhëtim & Turizëm", it: "Viaggi e turismo", ar: "السفر والسياحة" } },
   { id: "real-estate", icon: "🏡", cta: "buy-property",

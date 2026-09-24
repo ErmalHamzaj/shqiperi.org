@@ -69,35 +69,40 @@
       "title": "Ksamil Travel Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "ksamil-travel-guide"
     },
     {
       "id": "saranda-travel-guide",
       "title": "Saranda Travel Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "saranda-travel-guide"
     },
     {
       "id": "vlora-travel-guide",
       "title": "Vlora Travel Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "vlora-travel-guide"
     },
     {
       "id": "himara-dhermi-travel-guide",
       "title": "Himara & Dhermi Travel Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "himara-dhermi-travel-guide"
     },
     {
       "id": "berat-travel-guide",
       "title": "Berat Travel Guide",
       "category": "travel",
       "cover": "🏖️",
-      "status": "pending"
+      "status": "published",
+      "slug": "berat-travel-guide"
     },
     {
       "id": "gjirokaster-travel-guide",

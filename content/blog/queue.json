@@ -317,35 +317,40 @@
       "title": "Driving in Albania with a Foreign License",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "driving-in-albania-with-a-foreign-license"
     },
     {
       "id": "do-you-need-an-international-driving-permit-in-albania",
       "title": "Do You Need an International Driving Permit in Albania?",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "do-you-need-an-international-driving-permit-in-albania"
     },
     {
       "id": "traffic-rules-in-albania",
       "title": "Traffic Rules in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "traffic-rules-in-albania"
     },
     {
       "id": "driving-on-mountain-roads-in-albania",
       "title": "Driving on Mountain Roads in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "driving-on-mountain-roads-in-albania"
     },
     {
       "id": "fuel-stations-petrol-prices-in-albania",
       "title": "Fuel Stations & Petrol Prices in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "fuel-stations-petrol-prices-in-albania"
     },
     {
       "id": "parking-guide-in-albania",

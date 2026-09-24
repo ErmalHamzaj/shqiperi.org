@@ -277,35 +277,40 @@
       "title": "Renting a Car in Albania: Full Guide",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "renting-a-car-in-albania-full-guide"
     },
     {
       "id": "car-rental-at-tirana-airport",
       "title": "Car Rental at Tirana Airport",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "car-rental-at-tirana-airport"
     },
     {
       "id": "best-road-trip-routes-by-rental-car",
       "title": "Best Road Trip Routes by Rental Car",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "best-road-trip-routes-by-rental-car"
     },
     {
       "id": "what-to-check-when-renting-a-car-in-albania",
       "title": "What to Check When Renting a Car in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "what-to-check-when-renting-a-car-in-albania"
     },
     {
       "id": "car-rental-insurance-deposit-in-albania",
       "title": "Car Rental Insurance & Deposit in Albania",
       "category": "cars",
       "cover": "🚗",
-      "status": "pending"
+      "status": "published",
+      "slug": "car-rental-insurance-deposit-in-albania"
     },
     {
       "id": "driving-in-albania-with-a-foreign-license",

@@ -52,6 +52,7 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     categoryName: cat?.name,
     categoryIcon: cat?.icon,
     ctaCategory: ctaForCategory(post.category),
+    hideCta: cat?.editorial ?? false,
     readingMinutes: post.readingMinutes,
     title: post.title,
     html,

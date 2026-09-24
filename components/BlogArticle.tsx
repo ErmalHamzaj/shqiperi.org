@@ -19,6 +19,8 @@ export type ArticleData = {
   categoryIcon?: string;
   /** Directory category id for the concierge CTA. */
   ctaCategory?: string | null;
+  /** Hide the concierge CTA entirely (editorial sections). */
+  hideCta?: boolean;
   readingMinutes?: number;
   title: LangText;
   /** Pre-rendered HTML body per language. */
@@ -92,11 +94,13 @@ export function BlogArticle({ data }: { data: ArticleData }) {
           />
         </article>
 
-        <RepresentativeCTA
-          query={data.ctaQuery}
-          categoryId={data.ctaCategory ?? null}
-          prominent
-        />
+        {!data.hideCta && (
+          <RepresentativeCTA
+            query={data.ctaQuery}
+            categoryId={data.ctaCategory ?? null}
+            prominent
+          />
+        )}
       </main>
     </div>
   );

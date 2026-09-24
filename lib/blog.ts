@@ -18,10 +18,12 @@ export type BlogCategory = {
   icon: string;
   /** Directory category for the concierge CTA on its posts (null = generic). */
   cta: string | null;
+  /** Editorial/announcement section: no concierge CTA on its posts. */
+  editorial?: boolean;
 };
 
 export const BLOG_CATEGORIES: BlogCategory[] = [
-  { id: "partnership", icon: "🤝", cta: null,
+  { id: "partnership", icon: "🤝", cta: null, editorial: true,
     name: { en: "News & Partnerships", tr: "Haberler & İşbirlikleri", sq: "Lajme & Partneritete", it: "Notizie e partnership", ar: "أخبار وشراكات" } },
   { id: "travel", icon: "🏖️", cta: "tour-guides",
     name: { en: "Travel & Tourism", tr: "Gezi & Turizm", sq: "Udhëtim & Turizëm", it: "Viaggi e turismo", ar: "السفر والسياحة" } },

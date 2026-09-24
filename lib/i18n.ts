@@ -62,6 +62,10 @@ export type Dict = {
   topics: { label: string; query: string }[];
   featuredTitle: string;
   featuredListCta: string;
+  brandTitle: string;
+  brandBody: string;
+  brandCta: string;
+  brandNote: string;
   footerAbout: string;
   footerPrivacy: string;
   footerContact: string;
@@ -115,6 +119,11 @@ export const dict: Record<Lang, Dict> = {
     topicsTitle: "Eksploro",
     featuredTitle: "Biznese të përzgjedhura",
     featuredListCta: "Listo biznesin tënd",
+    brandTitle: "Më shumë se një motor kërkimi.",
+    brandBody:
+      "Kërko çdo shërbim në Shqipëri — dhe ekipi ynë ta organizon personalisht, falas. Tura, makina me qira, prona, avokatë, transferta e më shumë.",
+    brandCta: "Na pyet çdo gjë — falas",
+    brandNote: "Njerëz realë · Përgjigje brenda pak minutash · Pa asnjë tarifë",
     topics: [
       { label: "Lajme", query: "Lajmet e fundit nga Shqipëria" },
       { label: "Investo në Shqipëri", query: "Investo në Shqipëri" },
@@ -174,6 +183,11 @@ export const dict: Record<Lang, Dict> = {
     topicsTitle: "Explore",
     featuredTitle: "Featured businesses",
     featuredListCta: "List your business",
+    brandTitle: "More than a search engine.",
+    brandBody:
+      "Search any service in Albania — and our team organizes it for you personally, free. Tours, car rentals, property, lawyers, transfers and more.",
+    brandCta: "Ask us anything — free",
+    brandNote: "Real people · Reply within minutes · No fees, ever",
     topics: [
       { label: "News", query: "Latest news from Albania" },
       { label: "Invest in Albania", query: "Invest in Albania" },
@@ -233,6 +247,11 @@ export const dict: Record<Lang, Dict> = {
     topicsTitle: "Keşfet",
     featuredTitle: "Öne çıkan işletmeler",
     featuredListCta: "İşletmenizi kaydedin",
+    brandTitle: "Sıradan bir arama motorundan fazlası.",
+    brandBody:
+      "Arnavutluk'ta herhangi bir hizmeti arayın — ekibimiz sizin için kişisel olarak, ücretsiz organize etsin. Turlar, araç kiralama, mülkler, avukatlar, transferler ve daha fazlası.",
+    brandCta: "Bize her şeyi sorun — ücretsiz",
+    brandNote: "Gerçek insanlar · Dakikalar içinde yanıt · Asla ücret yok",
     topics: [
       { label: "Haberler", query: "Arnavutluk'tan son haberler" },
       { label: "Arnavutluk'a yatırım", query: "Arnavutluk'a yatırım yap" },
@@ -292,6 +311,11 @@ export const dict: Record<Lang, Dict> = {
     topicsTitle: "Esplora",
     featuredTitle: "Aziende in evidenza",
     featuredListCta: "Registra la tua azienda",
+    brandTitle: "Più di un motore di ricerca.",
+    brandBody:
+      "Cerca qualsiasi servizio in Albania — e il nostro team lo organizza per te, gratis. Tour, noleggio auto, immobili, avvocati, transfer e altro.",
+    brandCta: "Chiedici qualsiasi cosa — gratis",
+    brandNote: "Persone reali · Risposta in pochi minuti · Nessun costo",
     topics: [
       { label: "Notizie", query: "Ultime notizie dall'Albania" },
       { label: "Investire in Albania", query: "Investire in Albania" },
@@ -351,6 +375,11 @@ export const dict: Record<Lang, Dict> = {
     topicsTitle: "استكشف",
     featuredTitle: "شركات مميّزة",
     featuredListCta: "أدرج شركتك",
+    brandTitle: "أكثر من مجرّد محرّك بحث.",
+    brandBody:
+      "ابحث عن أي خدمة في ألبانيا — وفريقنا ينظّمها لك شخصيًا، مجانًا. جولات، تأجير سيارات، عقارات، محامون، مواصلات والمزيد.",
+    brandCta: "اسألنا أي شيء — مجانًا",
+    brandNote: "أشخاص حقيقيون · رد خلال دقائق · بدون أي رسوم",
     topics: [
       { label: "الأخبار", query: "آخر الأخبار من ألبانيا" },
       { label: "الاستثمار في ألبانيا", query: "الاستثمار في ألبانيا" },

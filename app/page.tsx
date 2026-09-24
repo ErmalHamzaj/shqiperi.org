@@ -6,6 +6,7 @@ import { SearchBox } from "@/components/SearchBox";
 import { LangToggle } from "@/components/LangToggle";
 import { Weather } from "@/components/Weather";
 import { NewsList } from "@/components/NewsList";
+import { BrandBanner } from "@/components/BrandBanner";
 import { adsLink } from "@/lib/representative";
 import { useLang } from "@/components/LanguageProvider";
 
@@ -54,8 +55,13 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* Brand message — real people help you, free */}
+        <div className="mt-14 w-full max-w-xl">
+          <BrandBanner />
+        </div>
+
         {/* News panel */}
-        <div className="mt-16 mb-12 w-full max-w-xl rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
+        <div className="mt-10 mb-12 w-full max-w-xl rounded-2xl border border-zinc-100 dark:border-zinc-800 bg-white dark:bg-zinc-800/40 p-5 sm:p-6 shadow-sm">
           <NewsList limit={5} />
         </div>
       </main>

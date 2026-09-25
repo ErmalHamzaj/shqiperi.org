@@ -581,28 +581,32 @@
       "title": "Working with a Real Estate Agent in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "working-with-a-real-estate-agent-in-albania"
     },
     {
       "id": "paying-for-property-from-abroad",
       "title": "Paying for Property from Abroad",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "paying-for-property-from-abroad"
     },
     {
       "id": "buying-land-in-albania",
       "title": "Buying Land in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "buying-land-in-albania"
     },
     {
       "id": "commercial-property-hotel-investment-in-albania",
       "title": "Commercial Property & Hotel Investment in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "commercial-property-hotel-investment-in-albania"
     },
     {
       "id": "how-to-get-a-residence-permit-in-albania",

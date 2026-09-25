@@ -653,35 +653,40 @@
       "title": "Residency Through Investment in Albania",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "residency-through-investment-in-albania"
     },
     {
       "id": "how-to-get-a-work-permit-in-albania",
       "title": "How to Get a Work Permit in Albania",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "how-to-get-a-work-permit-in-albania"
     },
     {
       "id": "family-reunification-in-albania",
       "title": "Family Reunification in Albania",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "family-reunification-in-albania"
     },
     {
       "id": "applying-for-albanian-citizenship",
       "title": "Applying for Albanian Citizenship",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "applying-for-albanian-citizenship"
     },
     {
       "id": "requirements-documents-for-citizenship",
       "title": "Requirements & Documents for Citizenship",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "requirements-documents-for-citizenship"
     },
     {
       "id": "address-registration-in-albania",

@@ -485,42 +485,48 @@
       "title": "Lawyer & Notary Process When Buying a Home",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "lawyer-notary-process-when-buying-a-home"
     },
     {
       "id": "buying-a-sea-view-home-in-albania",
       "title": "Buying a Sea-View Home in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "buying-a-sea-view-home-in-albania"
     },
     {
       "id": "property-investment-on-the-riviera-saranda-ksamil-vlora",
       "title": "Property Investment on the Riviera: Saranda, Ksamil, Vlora",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "property-investment-on-the-riviera-saranda-ksamil-vlora"
     },
     {
       "id": "buying-a-home-in-tirana",
       "title": "Buying a Home in Tirana",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "buying-a-home-in-tirana"
     },
     {
       "id": "investment-property-in-albania",
       "title": "Investment Property in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "investment-property-in-albania"
     },
     {
       "id": "buy-to-let-buying-and-renting-out-in-albania",
       "title": "Buy-to-Let: Buying and Renting Out in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "buy-to-let-buying-and-renting-out-in-albania"
     },
     {
       "id": "buying-off-plan-new-build-property-in-albania",

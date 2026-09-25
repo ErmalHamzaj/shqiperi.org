@@ -693,28 +693,32 @@
       "title": "Address Registration in Albania",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "address-registration-in-albania"
     },
     {
       "id": "rights-obligations-of-foreigners-in-albania",
       "title": "Rights & Obligations of Foreigners in Albania",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "rights-obligations-of-foreigners-in-albania"
     },
     {
       "id": "power-of-attorney-apostille-in-albania",
       "title": "Power of Attorney & Apostille in Albania",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "power-of-attorney-apostille-in-albania"
     },
     {
       "id": "retiring-in-albania-residency-living",
       "title": "Retiring in Albania: Residency & Living",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "retiring-in-albania-residency-living"
     },
     {
       "id": "starting-a-company-in-albania-step-by-step",

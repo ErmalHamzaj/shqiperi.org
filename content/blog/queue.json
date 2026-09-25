@@ -533,42 +533,48 @@
       "title": "Buying Off-Plan / New-Build Property in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "buying-off-plan-new-build-property-in-albania"
     },
     {
       "id": "checking-zoning-building-permits-in-albania",
       "title": "Checking Zoning & Building Permits in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "checking-zoning-building-permits-in-albania"
     },
     {
       "id": "property-valuation-prices-in-albania",
       "title": "Property Valuation & Prices in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "property-valuation-prices-in-albania"
     },
     {
       "id": "short-term-rental-airbnb-investment-in-albania",
       "title": "Short-Term Rental & Airbnb Investment in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "short-term-rental-airbnb-investment-in-albania"
     },
     {
       "id": "long-term-renting-in-albania",
       "title": "Long-Term Renting in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "long-term-renting-in-albania"
     },
     {
       "id": "rental-contracts-deposits-in-albania",
       "title": "Rental Contracts & Deposits in Albania",
       "category": "real-estate",
       "cover": "🏡",
-      "status": "pending"
+      "status": "published",
+      "slug": "rental-contracts-deposits-in-albania"
     },
     {
       "id": "working-with-a-real-estate-agent-in-albania",

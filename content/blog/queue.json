@@ -613,35 +613,40 @@
       "title": "How to Get a Residence Permit in Albania",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "how-to-get-a-residence-permit-in-albania"
     },
     {
       "id": "residence-permit-for-foreigners-in-albania",
       "title": "Residence Permit for Foreigners in Albania",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "residence-permit-for-foreigners-in-albania"
     },
     {
       "id": "documents-for-an-albanian-residence-permit",
       "title": "Documents for an Albanian Residence Permit",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "documents-for-an-albanian-residence-permit"
     },
     {
       "id": "renewing-your-residence-permit-in-albania",
       "title": "Renewing Your Residence Permit in Albania",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "renewing-your-residence-permit-in-albania"
     },
     {
       "id": "long-term-permanent-residency-in-albania",
       "title": "Long-Term & Permanent Residency in Albania",
       "category": "immigration",
       "cover": "🛂",
-      "status": "pending"
+      "status": "published",
+      "slug": "long-term-permanent-residency-in-albania"
     },
     {
       "id": "residency-through-investment-in-albania",

@@ -112,28 +112,29 @@ export default function HomePage() {
                 <Link
                   key={p.key}
                   href={p.href}
-                  className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-slate-300"
+                  className="group flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-slate-200/80 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:ring-transparent"
                 >
-                  <div className="relative h-36 overflow-hidden">
+                  <div className="relative h-40 overflow-hidden">
                     <img
                       src={`${IMG}/${p.img}.jpg`}
                       alt={d.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                     />
-                    <span className={`absolute -bottom-6 left-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-slate-100 ${p.color}`}>
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/25 to-transparent" />
+                    <span className={`absolute left-4 top-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white/95 shadow-sm ring-1 ring-white/70 backdrop-blur ${p.color}`}>
                       {p.icon}
                     </span>
                   </div>
-                  <div className="p-5 pt-8">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-sm font-bold uppercase tracking-wide text-slate-900">
-                        {d.title}
-                      </h3>
-                      <span className="text-slate-300 transition-colors group-hover:text-blue-500">→</span>
+                  <div className="flex flex-1 items-end justify-between gap-3 p-5">
+                    <div className="min-w-0">
+                      <h3 className="text-base font-bold text-slate-900">{d.title}</h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
+                        {d.items.join(" · ")}
+                      </p>
                     </div>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
-                      {d.items.join(" · ")}
-                    </p>
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                      →
+                    </span>
                   </div>
                 </Link>
               );
@@ -185,20 +186,22 @@ export default function HomePage() {
               <Link
                 key={d.name}
                 href={d.href}
-                className="group relative block h-56 overflow-hidden rounded-2xl"
+                className="group relative block h-64 overflow-hidden rounded-3xl ring-1 ring-slate-900/5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
               >
                 <img
                   src={`${IMG}/${d.img}.jpg`}
                   alt={d.name}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4">
-                  <div className="text-white">
-                    <p className="text-base font-bold leading-tight">{d.name}</p>
-                    <p className="text-xs text-white/80">{h.destTags[d.tag]}</p>
-                  </div>
-                  <span className="text-white/90 transition-transform group-hover:translate-x-0.5">→</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/5" />
+                <span className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-inset ring-white/30 backdrop-blur transition-all duration-300 group-hover:bg-white group-hover:text-slate-900">
+                  →
+                </span>
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <span className="inline-block rounded-full bg-white/15 px-2.5 py-1 text-[11px] font-semibold text-white/90 ring-1 ring-inset ring-white/25 backdrop-blur">
+                    {h.destTags[d.tag]}
+                  </span>
+                  <p className="mt-2 text-lg font-bold leading-tight text-white">{d.name}</p>
                 </div>
               </Link>
             ))}

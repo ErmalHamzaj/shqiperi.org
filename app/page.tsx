@@ -55,7 +55,7 @@ export default function HomePage() {
           <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-slate-900/85 via-slate-900/25 to-transparent" />
           <div className="mx-auto w-full max-w-7xl px-4 pt-12 sm:px-6 sm:pt-16 lg:pt-20">
             <div className="max-w-xl text-white">
-              <h1 className="text-5xl font-extrabold leading-none tracking-tight sm:text-6xl">
+              <h1 className="text-4xl font-extrabold leading-none tracking-tight sm:text-5xl">
                 SHQIPËRIA
               </h1>
               <p className="mt-3 text-xl font-semibold sm:text-2xl">{h.heroTitle}</p>

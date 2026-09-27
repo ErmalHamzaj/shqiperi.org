@@ -104,7 +104,6 @@ export default function HomePage() {
 
         {/* ============ WHAT ARE YOU HERE FOR ============ */}
         <Section>
-          <Head title={h.pillarsTitle} action={h.viewAll} actionHref="/blog" />
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {PILLARS.map((p) => {
               const d = h.pillars[p.key];

@@ -74,11 +74,10 @@ export default function HomePage() {
                 {h.finalCtaLine}
               </span>
 
-              <h1 className="mt-5 text-4xl font-extrabold leading-none tracking-tight sm:text-5xl">
-                SHQIPËRIA
+              <h1 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
+                {h.heroTitle}
               </h1>
-              <p className="mt-3 text-xl font-semibold sm:text-2xl">{h.heroTitle}</p>
-              <p className="mt-1 text-base text-white/85 sm:text-lg">{h.heroSub}</p>
+              <p className="mt-2 text-base text-white/85 sm:text-lg">{h.heroSub}</p>
 
               <div className="mt-6 max-w-lg">
                 <HeroSearch placeholder={h.heroSearchPlaceholder} label={tr.search} />

@@ -49,10 +49,11 @@ export default function HomePage() {
       <SiteNav />
       <main className="flex-1">
         {/* ============ HERO ============ */}
-        <section className="relative isolate flex h-[70vh] max-h-[640px] min-h-[420px] items-center overflow-hidden">
+        <section className="relative isolate flex h-[72vh] max-h-[680px] min-h-[500px] items-start overflow-hidden">
           <HeroSlider images={HERO_IMAGES} />
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-900/75 via-slate-900/45 to-slate-900/10" />
-          <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
+          <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-slate-900/85 via-slate-900/25 to-transparent" />
+          <div className="mx-auto w-full max-w-7xl px-4 pt-12 sm:px-6 sm:pt-16 lg:pt-20">
             <div className="max-w-xl text-white">
               <h1 className="text-5xl font-extrabold leading-none tracking-tight sm:text-6xl">
                 SHQIPËRIA
@@ -82,10 +83,18 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ============ WHAT ARE YOU HERE FOR ============ */}
-        <Section>
-          <Head title={h.pillarsTitle} action={h.viewAll} actionHref="/blog" />
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* ============ WHAT ARE YOU HERE FOR (overlaps hero) ============ */}
+        <section className="relative z-20">
+          <div className="mx-auto -mt-28 max-w-7xl px-4 pb-4 sm:-mt-32 sm:px-6 lg:-mt-44">
+            <div className="mb-5 flex items-end justify-between gap-4">
+              <h2 className="text-2xl font-extrabold tracking-tight text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.45)] sm:text-3xl">
+                {h.pillarsTitle}
+              </h2>
+              <Link href="/blog" className="shrink-0 whitespace-nowrap text-sm font-semibold text-white/90 drop-shadow hover:text-white">
+                {h.viewAll} →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {PILLARS.map((p) => {
               const d = h.pillars[p.key];
               return (
@@ -116,8 +125,9 @@ export default function HomePage() {
                 </Link>
               );
             })}
+            </div>
           </div>
-        </Section>
+        </section>
 
         {/* ============ ALBANIA RIGHT NOW ============ */}
         <Section>

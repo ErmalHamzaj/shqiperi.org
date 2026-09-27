@@ -174,53 +174,52 @@ export function SiteNav() {
       {/* VISIT mega menu (desktop) */}
       {mega && (
         <div className="absolute inset-x-0 top-full hidden border-t border-slate-200 bg-white shadow-xl lg:block">
-          <div className="mx-auto max-w-7xl px-6 py-8">
-            <div className="grid grid-cols-12 gap-8">
-              <div className="col-span-12 grid grid-cols-2 gap-x-8 gap-y-7 md:grid-cols-3 xl:col-span-9">
-                {VISIT_COLUMNS.map((col) => (
-                  <div key={col.title}>
-                    <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
-                      {col.title}
-                    </p>
-                    <ul className="space-y-1">
-                      {col.links.map(([text, href]) => (
-                        <li key={text}>
-                          <Link
-                            href={href}
-                            onClick={() => setMega(false)}
-                            className="block rounded py-1 text-sm text-slate-600 transition-colors hover:text-blue-600"
-                          >
-                            {text}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                href="/blog/post/the-albanian-riviera-travel-guide"
-                onClick={() => setMega(false)}
-                className="group relative col-span-12 hidden overflow-hidden rounded-2xl xl:col-span-3 xl:block"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/imagesalbania/dhermi.jpg"
-                  alt="Albanian Riviera"
-                  className="h-full min-h-[240px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-5">
-                  <p className="text-[11px] font-semibold uppercase tracking-wide text-white/80">
-                    Featured
+          <div className="mx-auto flex max-h-[calc(100vh-4.5rem)] max-w-7xl gap-6 overflow-y-auto px-6 py-8 xl:gap-8">
+            {/* Link columns: single row of 6 so tall/short columns never leave gaps */}
+            <div className="grid min-w-0 flex-1 grid-cols-3 gap-x-5 gap-y-8 lg:grid-cols-6">
+              {VISIT_COLUMNS.map((col) => (
+                <div key={col.title} className="min-w-0">
+                  <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
+                    {col.title}
                   </p>
-                  <p className="mt-1 text-lg font-bold leading-tight text-white">
-                    Discover the Albanian Riviera →
-                  </p>
+                  <ul className="space-y-0.5">
+                    {col.links.map(([text, href]) => (
+                      <li key={text}>
+                        <Link
+                          href={href}
+                          onClick={() => setMega(false)}
+                          className="block rounded py-1 text-sm leading-snug text-slate-600 transition-colors hover:text-blue-600"
+                        >
+                          {text}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </Link>
+              ))}
             </div>
+
+            <Link
+              href="/blog/post/the-albanian-riviera-travel-guide"
+              onClick={() => setMega(false)}
+              className="group relative hidden w-56 shrink-0 self-stretch overflow-hidden rounded-2xl xl:block"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/imagesalbania/dhermi.jpg"
+                alt="Albanian Riviera"
+                className="h-full min-h-[240px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <p className="text-[11px] font-semibold uppercase tracking-wide text-white/80">
+                  Featured
+                </p>
+                <p className="mt-1 text-lg font-bold leading-tight text-white">
+                  Discover the Albanian Riviera →
+                </p>
+              </div>
+            </Link>
           </div>
         </div>
       )}

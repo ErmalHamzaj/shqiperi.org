@@ -49,22 +49,22 @@ export default function HomePage() {
       <SiteNav />
       <main className="flex-1">
         {/* ============ HERO ============ */}
-        <section className="relative isolate flex min-h-[560px] items-center overflow-hidden lg:min-h-[600px]">
+        <section className="relative isolate flex h-[70vh] max-h-[640px] min-h-[420px] items-center overflow-hidden">
           <HeroSlider images={HERO_IMAGES} />
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-900/75 via-slate-900/45 to-slate-900/10" />
-          <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6">
+          <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6">
             <div className="max-w-xl text-white">
-              <h1 className="text-5xl font-extrabold leading-none tracking-tight sm:text-7xl">
+              <h1 className="text-5xl font-extrabold leading-none tracking-tight sm:text-6xl">
                 SHQIPËRIA
               </h1>
-              <p className="mt-4 text-2xl font-semibold sm:text-3xl">{h.heroTitle}</p>
-              <p className="mt-1 text-lg text-white/85">{h.heroSub}</p>
+              <p className="mt-3 text-xl font-semibold sm:text-2xl">{h.heroTitle}</p>
+              <p className="mt-1 text-base text-white/85 sm:text-lg">{h.heroSub}</p>
 
-              <div className="mt-7">
+              <div className="mt-5">
                 <HeroSearch placeholder={h.heroSearchPlaceholder} label={tr.search} />
               </div>
 
-              <div className="mt-5 flex flex-wrap gap-3">
+              <div className="mt-4 flex flex-wrap gap-3">
                 <Link
                   href="#explore"
                   className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"

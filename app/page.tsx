@@ -101,26 +101,31 @@ export default function HomePage() {
                 <Link
                   key={p.key}
                   href={p.href}
-                  className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                  className="group relative block h-64 overflow-hidden rounded-3xl shadow-lg ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
                 >
-                  <div className="relative h-40 overflow-hidden">
-                    <img
-                      src={`${IMG}/${p.img}.jpg`}
-                      alt={d.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <span className="absolute -bottom-5 left-5 flex h-11 w-11 items-center justify-center rounded-full bg-white text-blue-600 shadow-md ring-1 ring-slate-100">
+                  <img
+                    src={`${IMG}/${p.img}.jpg`}
+                    alt={d.title}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/35 to-slate-900/5" />
+                  <div className="relative flex h-full flex-col justify-between p-5">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white ring-1 ring-inset ring-white/25 backdrop-blur-sm">
                       {p.icon}
                     </span>
-                  </div>
-                  <div className="p-5 pt-7">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-base font-bold uppercase tracking-wide text-slate-900">
-                        {d.title}
-                      </h3>
-                      <span className="text-slate-300 transition-transform group-hover:translate-x-0.5">→</span>
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <h3 className="text-lg font-extrabold uppercase tracking-wide text-white">
+                          {d.title}
+                        </h3>
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-inset ring-white/25 backdrop-blur-sm transition-all duration-300 group-hover:bg-white group-hover:text-slate-900">
+                          →
+                        </span>
+                      </div>
+                      <p className="mt-1.5 text-sm leading-relaxed text-white/80">
+                        {d.items.join(" · ")}
+                      </p>
                     </div>
-                    <p className="mt-1.5 text-sm text-slate-500">{d.items.join(" · ")}</p>
                   </div>
                 </Link>
               );

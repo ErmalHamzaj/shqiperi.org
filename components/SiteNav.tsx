@@ -179,7 +179,7 @@ export function SiteNav() {
             <div className="grid min-w-0 flex-1 grid-cols-3 gap-x-5 gap-y-8 lg:grid-cols-6">
               {VISIT_COLUMNS.map((col) => (
                 <div key={col.title} className="min-w-0">
-                  <p className="mb-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-slate-400">
+                  <p className="mb-2.5 text-xs font-extrabold uppercase tracking-[0.12em] text-slate-900">
                     {col.title}
                   </p>
                   <ul className="space-y-0.5">

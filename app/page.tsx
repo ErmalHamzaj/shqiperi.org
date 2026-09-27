@@ -10,16 +10,28 @@ import { adsLink } from "@/lib/representative";
 
 const IMG = "/images/home";
 
-const HERO_IMAGES = Array.from(
-  { length: 24 },
-  (_, i) => `${IMG}/hero/${String(i + 1).padStart(2, "0")}.jpg`
-);
+// Curated hero photos (imagesalbania/).
+const HERO_IMAGES = [
+  "/imagesalbania/ksamil.jpg",
+  "/imagesalbania/dhermi.jpg",
+  "/imagesalbania/saranda.png",
+  "/imagesalbania/orikumi.jpg",
+  "/imagesalbania/thethi.png",
+  "/imagesalbania/alpet.png",
+  "/imagesalbania/gjirokastra.jpg",
+  "/imagesalbania/berati.png",
+  "/imagesalbania/kruja.jpg",
+  "/imagesalbania/tirana.avif",
+  "/imagesalbania/lure.png",
+  "/imagesalbania/benjatp.png",
+  "/imagesalbania/tirana2.webp",
+];
 
 const PILLARS = [
-  { key: "visit", img: "visit", href: "/blog/travel", icon: <PlaneIcon /> },
-  { key: "live", img: "live", href: "/blog/living", icon: <HomeIcon /> },
-  { key: "invest", img: "invest", href: "/blog/real-estate", icon: <ChartIcon /> },
-  { key: "discover", img: "discover", href: "/blog", icon: <BookIcon /> },
+  { key: "visit", img: "visit", href: "/blog/travel", icon: <PlaneIcon />, color: "text-sky-500" },
+  { key: "live", img: "live", href: "/blog/living", icon: <HomeIcon />, color: "text-emerald-500" },
+  { key: "invest", img: "invest", href: "/blog/real-estate", icon: <ChartIcon />, color: "text-violet-500" },
+  { key: "discover", img: "discover", href: "/blog", icon: <BookIcon />, color: "text-amber-500" },
 ] as const;
 
 const DESTINATIONS = [
@@ -49,16 +61,12 @@ export default function HomePage() {
       <SiteNav />
       <main className="flex-1">
         {/* ============ HERO ============ */}
-        <section className="relative isolate flex h-[72vh] max-h-[680px] min-h-[500px] items-start overflow-hidden">
+        <section className="relative isolate flex h-[66vh] max-h-[600px] min-h-[440px] items-center overflow-hidden">
           <HeroSlider images={HERO_IMAGES} />
-          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-900/75 via-slate-900/45 to-slate-900/10" />
-          <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-slate-900/85 via-slate-900/25 to-transparent" />
-          {/* soft colour depth */}
-          <div className="pointer-events-none absolute -left-24 top-4 -z-10 h-72 w-72 rounded-full bg-blue-500/25 blur-3xl" />
-          <div className="pointer-events-none absolute right-[-6rem] top-1/4 -z-10 h-80 w-80 rounded-full bg-cyan-400/15 blur-3xl" />
-          <div className="mx-auto w-full max-w-7xl px-4 pt-11 sm:px-6 sm:pt-14 lg:pt-16">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-900/55 via-slate-900/25 to-transparent" />
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
             <div className="max-w-xl text-white">
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white shadow-sm backdrop-blur-md">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white ring-1 ring-inset ring-white/25 backdrop-blur-md">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
@@ -66,131 +74,105 @@ export default function HomePage() {
                 {h.finalCtaLine}
               </span>
 
-              <h1 className="mt-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-4xl font-extrabold leading-none tracking-tight text-transparent sm:text-5xl">
+              <h1 className="mt-5 text-4xl font-extrabold leading-none tracking-tight sm:text-5xl">
                 SHQIPËRIA
               </h1>
               <p className="mt-3 text-xl font-semibold sm:text-2xl">{h.heroTitle}</p>
-              <p className="mt-1 text-base text-white/80 sm:text-lg">{h.heroSub}</p>
+              <p className="mt-1 text-base text-white/85 sm:text-lg">{h.heroSub}</p>
 
-              <div className="mt-6">
+              <div className="mt-6 max-w-lg">
                 <HeroSearch placeholder={h.heroSearchPlaceholder} label={tr.search} />
               </div>
 
               <div className="mt-4 flex flex-wrap gap-3">
                 <Link
                   href="#explore"
-                  className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-900/30 transition-colors hover:bg-blue-700"
+                  className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-md transition-colors hover:bg-blue-700"
                 >
                   {h.ctaExplore} <span aria-hidden="true">→</span>
                 </Link>
                 <Link
                   href="#ask"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/20"
+                  className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-3 text-sm font-semibold text-slate-900 backdrop-blur transition-colors hover:bg-white"
                 >
-                  {h.nav.ask} <SparkleIcon className="h-4 w-4" />
+                  {h.nav.ask} <SparkleIcon className="h-4 w-4 text-blue-600" />
                 </Link>
-              </div>
-
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-white/75">
-                <HeroStat n="10" label={h.nav.destinations} />
-                <span className="h-4 w-px bg-white/25" />
-                <span className="text-xs font-semibold tracking-[0.15em] text-white/70">
-                  SHQIP · EN · TR · IT · AR
-                </span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ============ WHAT ARE YOU HERE FOR (overlaps hero) ============ */}
-        <section className="relative z-20">
-          <div className="mx-auto -mt-28 max-w-7xl px-4 pb-4 sm:-mt-32 sm:px-6 lg:-mt-44">
-            <div className="mb-5 flex items-end justify-between gap-4">
-              <h2 className="text-2xl font-extrabold tracking-tight text-white [text-shadow:0_1px_12px_rgba(0,0,0,0.45)] sm:text-3xl">
-                {h.pillarsTitle}
-              </h2>
-              <Link href="/blog" className="shrink-0 whitespace-nowrap text-sm font-semibold text-white/90 drop-shadow hover:text-white">
-                {h.viewAll} →
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* ============ WHAT ARE YOU HERE FOR ============ */}
+        <Section>
+          <Head title={h.pillarsTitle} action={h.viewAll} actionHref="/blog" />
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {PILLARS.map((p) => {
               const d = h.pillars[p.key];
               return (
                 <Link
                   key={p.key}
                   href={p.href}
-                  className="group relative block h-64 overflow-hidden rounded-3xl shadow-lg ring-1 ring-black/5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
+                  className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-slate-300"
                 >
-                  <img
-                    src={`${IMG}/${p.img}.jpg`}
-                    alt={d.title}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/35 to-slate-900/5" />
-                  <div className="relative flex h-full flex-col justify-between p-5">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/15 text-white ring-1 ring-inset ring-white/25 backdrop-blur-sm">
+                  <div className="relative h-36 overflow-hidden">
+                    <img
+                      src={`${IMG}/${p.img}.jpg`}
+                      alt={d.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className={`absolute -bottom-6 left-5 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md ring-1 ring-slate-100 ${p.color}`}>
                       {p.icon}
                     </span>
-                    <div>
-                      <div className="flex items-center justify-between gap-2">
-                        <h3 className="text-lg font-extrabold uppercase tracking-wide text-white">
-                          {d.title}
-                        </h3>
-                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-inset ring-white/25 backdrop-blur-sm transition-all duration-300 group-hover:bg-white group-hover:text-slate-900">
-                          →
-                        </span>
-                      </div>
-                      <p className="mt-1.5 text-sm leading-relaxed text-white/80">
-                        {d.items.join(" · ")}
-                      </p>
+                  </div>
+                  <div className="p-5 pt-8">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-sm font-bold uppercase tracking-wide text-slate-900">
+                        {d.title}
+                      </h3>
+                      <span className="text-slate-300 transition-colors group-hover:text-blue-500">→</span>
                     </div>
+                    <p className="mt-1.5 text-sm leading-relaxed text-slate-500">
+                      {d.items.join(" · ")}
+                    </p>
                   </div>
                 </Link>
               );
             })}
-            </div>
           </div>
-        </section>
+        </Section>
 
         {/* ============ ALBANIA RIGHT NOW ============ */}
         <Section>
-          <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-slate-900 via-slate-900 to-brand-900 p-6 shadow-xl ring-1 ring-white/10 sm:p-8">
-            <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
-
-            <div className="relative mb-6 flex flex-wrap items-end justify-between gap-4">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50/70 p-6 sm:p-8">
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2.5">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-red-300 ring-1 ring-inset ring-red-500/30">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-rose-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-rose-500 ring-1 ring-inset ring-rose-100">
                     <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
-                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red-400" />
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-400 opacity-75" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-rose-500" />
                     </span>
                     LIVE
                   </span>
-                  <h2 className="text-xl font-extrabold tracking-tight text-white sm:text-2xl">
+                  <h2 className="text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl">
                     {h.nowTitle}
                   </h2>
                 </div>
-                <p className="mt-1 text-sm text-white/55">{h.liveInfo}</p>
+                <p className="mt-1 text-sm text-slate-500">{h.liveInfo}</p>
               </div>
-              <Link
-                href="/search"
-                className="shrink-0 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-inset ring-white/15 backdrop-blur transition-colors hover:bg-white/20"
-              >
+              <Link href="/search" className="shrink-0 text-sm font-semibold text-blue-600 hover:text-blue-700">
                 {h.viewMoreData} →
               </Link>
             </div>
 
-            <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
-              <LiveTile icon="☀️" label="Tirana" value="26°C" sub={h.nowTiles.weatherSub} />
-              <LiveTile icon="💶" label={h.nowTiles.eur} value="103.5" sub="▲ 0.2%" up />
-              <LiveTile icon="⛽" label={h.nowTiles.fuel} value="€1.82" />
-              <LiveTile icon="✈️" label={h.nowTiles.flights} value="24" sub={h.nowTiles.flightsSub} />
-              <LiveTile icon="🚦" label={h.nowTiles.traffic} value={h.nowTiles.trafficVal} sub="Tirana" />
-              <LiveTile icon="📅" label={h.nowTiles.events} value="12" sub={h.nowTiles.eventsSub} />
-              <LiveTile icon="📰" label={h.nowTiles.news} value="5" sub={h.nowTiles.newsSub} />
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
+              <LiveTile icon={<SunIcon />} tint="bg-amber-50 text-amber-500" label="Tirana" value="26°C" sub={h.nowTiles.weatherSub} />
+              <LiveTile icon={<EuroIcon />} tint="bg-emerald-50 text-emerald-600" label={h.nowTiles.eur} value="103.5" sub="▲ 0.2%" up />
+              <LiveTile icon={<FuelIcon />} tint="bg-rose-50 text-rose-500" label={h.nowTiles.fuel} value="€1.82" />
+              <LiveTile icon={<PlaneIcon />} tint="bg-sky-50 text-sky-500" label={h.nowTiles.flights} value="24" sub={h.nowTiles.flightsSub} />
+              <LiveTile icon={<TrafficIcon />} tint="bg-violet-50 text-violet-500" label={h.nowTiles.traffic} value={h.nowTiles.trafficVal} sub="Tirana" />
+              <LiveTile icon={<CalendarIcon />} tint="bg-blue-50 text-blue-600" label={h.nowTiles.events} value="12" sub={h.nowTiles.eventsSub} />
+              <LiveTile icon={<NewsIcon />} tint="bg-cyan-50 text-cyan-600" label={h.nowTiles.news} value="5" sub={h.nowTiles.newsSub} />
             </div>
           </div>
         </Section>
@@ -393,28 +375,30 @@ function AskChip({ text }: { text: string }) {
 
 function LiveTile({
   icon,
+  tint,
   label,
   value,
   sub,
   up,
 }: {
-  icon: string;
+  icon: ReactNode;
+  tint: string;
   label: string;
   value: string;
   sub?: string;
   up?: boolean;
 }) {
   return (
-    <div className="rounded-2xl bg-white/[0.05] p-3.5 ring-1 ring-inset ring-white/10 transition-colors hover:bg-white/[0.09]">
+    <div className="rounded-2xl border border-slate-200 bg-white p-3.5 transition-colors hover:border-slate-300">
       <div className="flex items-center gap-2">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-base leading-none" aria-hidden="true">
+        <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${tint}`}>
           {icon}
         </span>
-        <p className="truncate text-[11px] font-medium text-white/55">{label}</p>
+        <p className="truncate text-[11px] font-medium text-slate-500">{label}</p>
       </div>
-      <p className="mt-2.5 text-xl font-extrabold leading-none text-white">{value}</p>
+      <p className="mt-2.5 text-xl font-extrabold leading-none text-slate-900">{value}</p>
       {sub && (
-        <p className={`mt-1 truncate text-[11px] font-medium ${up ? "text-emerald-400" : "text-white/45"}`}>
+        <p className={`mt-1 truncate text-[11px] font-medium ${up ? "text-emerald-600" : "text-slate-400"}`}>
           {sub}
         </p>
       )}
@@ -422,14 +406,6 @@ function LiveTile({
   );
 }
 
-function HeroStat({ n, label }: { n: string; label: string }) {
-  return (
-    <span className="inline-flex items-baseline gap-1.5">
-      <span className="text-lg font-extrabold text-white">{n}</span>
-      <span className="text-xs font-medium tracking-wide text-white/70">{label}</span>
-    </span>
-  );
-}
 
 function Section({ children, id }: { children: ReactNode; id?: string }) {
   return (
@@ -520,3 +496,9 @@ function ShieldIcon() { return (<svg className="h-5 w-5" viewBox="0 0 24 24" fil
 function CalculatorIcon() { return (<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v4"/></svg>); }
 function CheckIcon({ className = "h-4 w-4" }: { className?: string }) { return (<svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m5 12 5 5 9-11"/></svg>); }
 function NavIcon({ className = "h-4 w-4" }: { className?: string }) { return (<svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>); }
+function SunIcon() { return (<svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>); }
+function EuroIcon() { return (<svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 7a7 7 0 1 0 0 10"/><path d="M4 10.5h9M4 13.5h8"/></svg>); }
+function FuelIcon() { return (<svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 21V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v15"/><path d="M3 21h13"/><path d="M6 10h6"/><path d="M14 8l3 3v6a2 2 0 0 0 4 0v-7l-3-3"/></svg>); }
+function TrafficIcon() { return (<svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="8" y="3" width="8" height="16" rx="3"/><path d="M12 19v2"/><circle cx="12" cy="7" r="0.6" fill="currentColor"/><circle cx="12" cy="11" r="0.6" fill="currentColor"/><circle cx="12" cy="15" r="0.6" fill="currentColor"/></svg>); }
+function CalendarIcon() { return (<svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4"/></svg>); }
+function NewsIcon() { return (<svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 5h13v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z"/><path d="M17 8h3v11a2 2 0 0 1-2 2"/><path d="M8 9h6M8 13h6M8 17h4"/></svg>); }

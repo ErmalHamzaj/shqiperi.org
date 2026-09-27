@@ -14,16 +14,15 @@ export function HeroSlider({
   images: string[];
   interval?: number;
 }) {
-  const [idx, setIdx] = useState(0);
-  const [prev, setPrev] = useState<number | null>(null);
+  const [{ idx, prev }, setState] = useState<{ idx: number; prev: number }>({
+    idx: 0,
+    prev: -1,
+  });
 
   useEffect(() => {
     if (images.length < 2) return;
     const id = setInterval(() => {
-      setIdx((cur) => {
-        setPrev(cur);
-        return (cur + 1) % images.length;
-      });
+      setState((s) => ({ idx: (s.idx + 1) % images.length, prev: s.idx }));
     }, interval);
     return () => clearInterval(id);
   }, [images.length, interval]);
@@ -38,11 +37,12 @@ export function HeroSlider({
 
   return (
     <div className="absolute inset-0 -z-20 overflow-hidden bg-slate-900" aria-hidden="true">
-      {prev !== null && prev !== idx && (
+      {prev >= 0 && prev !== idx && (
         <img
           key={`prev-${prev}`}
           src={images[prev]}
           alt=""
+          decoding="async"
           className="absolute inset-0 h-full w-full object-cover"
         />
       )}
@@ -50,6 +50,7 @@ export function HeroSlider({
         key={`cur-${idx}`}
         src={images[idx]}
         alt=""
+        decoding="async"
         fetchPriority="high"
         className="hero-slide-active absolute inset-0 h-full w-full object-cover"
       />

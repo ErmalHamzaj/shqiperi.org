@@ -22,17 +22,14 @@ body {
   }
 }
 
-/* Hero slideshow crossfade + slow zoom */
+/* Hero slideshow crossfade (smooth, no zoom snap) */
 @keyframes heroFade {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-@keyframes heroZoom {
-  from { transform: scale(1.02); }
-  to { transform: scale(1.1); }
-}
 .hero-slide-active {
-  animation: heroFade 1200ms ease forwards, heroZoom 8000ms ease-out forwards;
+  animation: heroFade 1600ms ease-in-out forwards;
+  will-change: opacity;
 }
 
 /* Answer typography */

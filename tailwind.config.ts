@@ -10,7 +10,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Albanian flag palette
+        // Primary brand blue (master blueprint #032F50) + shades.
+        brand: {
+          50: "#eef3f8",
+          100: "#d5e2ee",
+          200: "#adc5dc",
+          300: "#7ea3c4",
+          400: "#4d7ba6",
+          500: "#1f568a",
+          600: "#0a4570",
+          700: "#06375c",
+          800: "#042d4c",
+          900: "#032F50",
+          DEFAULT: "#032F50",
+        },
+        // Albanian flag palette — use red only where functional / Albanian-inspired.
         flag: {
           red: "#E41E20",
           dark: "#B71518",

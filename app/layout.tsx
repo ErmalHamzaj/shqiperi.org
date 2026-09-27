@@ -3,9 +3,9 @@ import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
 
 const SITE = "https://shqiperi.org";
-const TITLE = "Shqipëri — Ndihma & guida jote personale për Shqipërinë";
+const TITLE = "Shqipëria — The digital front door to Albania";
 const DESC =
-  "Jo thjesht një drejtori, por një përvojë personale për Shqipërinë: ekipi ynë organizon për ty tura, makina me qira, prona, avokatë, transferta e më shumë, falas. Your personal Albania concierge — we organize tours, rentals, property, lawyers and transfers for you, free.";
+  "Your starting point for Albania. Travel, live, invest and do business: shqiperi.org helps you discover destinations, decide with clear guides and current data, and act with verified local options and real services.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#E41E20",
+  themeColor: "#032F50",
 };
 
 // Structured data: enables Google sitelinks search box + Organization rich data.
@@ -108,9 +108,9 @@ const jsonLd = {
       name: "Shqipëri",
       url: SITE,
       logo: `${SITE}/icon.svg`,
-      slogan: "Your personal guide to Albania",
+      slogan: "Your starting point for Albania",
       description:
-        "Personal concierge and guide for Albania — we help you plan and organize tours, car rentals, property, lawyers, transfers and more, free of charge.",
+        "The digital front door to Albania — helping people travel, live, invest and do business with structured destinations, clear guides, current data and verified local options.",
       areaServed: { "@type": "Country", name: "Albania" },
       knowsAbout: [
         "Albania travel",

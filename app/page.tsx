@@ -102,9 +102,10 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ============ WHAT ARE YOU HERE FOR ============ */}
-        <Section>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* ============ WHAT ARE YOU HERE FOR (cards overlap hero ~20%) ============ */}
+        <section className="relative z-20">
+          <div className="mx-auto -mt-12 max-w-7xl px-4 pb-12 sm:-mt-14 sm:px-6 sm:pb-14 lg:-mt-16">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {PILLARS.map((p) => {
               const d = h.pillars[p.key];
               return (
@@ -138,8 +139,9 @@ export default function HomePage() {
                 </Link>
               );
             })}
+            </div>
           </div>
-        </Section>
+        </section>
 
         {/* ============ ALBANIA RIGHT NOW ============ */}
         <Section>

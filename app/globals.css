@@ -22,6 +22,19 @@ body {
   }
 }
 
+/* Hero slideshow crossfade + slow zoom */
+@keyframes heroFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes heroZoom {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.1); }
+}
+.hero-slide-active {
+  animation: heroFade 1200ms ease forwards, heroZoom 8000ms ease-out forwards;
+}
+
 /* Answer typography */
 .answer p {
   @apply mb-4 leading-relaxed;

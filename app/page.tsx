@@ -4,10 +4,16 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { SiteNav, SparkleIcon } from "@/components/SiteNav";
+import { HeroSlider } from "@/components/HeroSlider";
 import { useLang } from "@/components/LanguageProvider";
 import { adsLink } from "@/lib/representative";
 
 const IMG = "/images/home";
+
+const HERO_IMAGES = Array.from(
+  { length: 24 },
+  (_, i) => `${IMG}/hero/${String(i + 1).padStart(2, "0")}.jpg`
+);
 
 const PILLARS = [
   { key: "visit", img: "visit", href: "/blog/travel", icon: <PlaneIcon /> },
@@ -44,11 +50,7 @@ export default function HomePage() {
       <main className="flex-1">
         {/* ============ HERO ============ */}
         <section className="relative isolate flex min-h-[560px] items-center overflow-hidden lg:min-h-[600px]">
-          <img
-            src={`${IMG}/hero.jpg`}
-            alt="Albanian Riviera"
-            className="absolute inset-0 -z-10 h-full w-full object-cover"
-          />
+          <HeroSlider images={HERO_IMAGES} />
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-900/75 via-slate-900/45 to-slate-900/10" />
           <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6">
             <div className="max-w-xl text-white">
@@ -77,11 +79,6 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-          </div>
-          <div className="absolute bottom-4 right-4 hidden items-center gap-1.5 rounded-lg bg-black/30 px-3 py-1.5 text-xs text-white backdrop-blur sm:flex">
-            <PinIcon className="h-3.5 w-3.5" />
-            <span className="font-semibold">Himarë</span>
-            <span className="text-white/70">Albanian Riviera</span>
           </div>
         </section>
 
@@ -412,8 +409,10 @@ function SiteFooter() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-sm">
-            <p className="text-xl font-extrabold tracking-tight text-white">
-              Shqipëri<span className="text-slate-500">.org</span>
+            <p className="flex items-center gap-2 text-xl font-extrabold tracking-tight text-white">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Albanian_eagle.png" alt="" className="h-7 w-7 object-contain invert" />
+              <span>Shqipëri.<span className="text-flag-red">org</span></span>
             </p>
             <p className="mt-2 text-sm text-slate-400">{h.finalCtaLine}</p>
           </div>
@@ -455,5 +454,4 @@ function BriefcaseIcon() { return (<svg className="h-5 w-5" viewBox="0 0 24 24" 
 function ShieldIcon() { return (<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>); }
 function CalculatorIcon() { return (<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15v4"/></svg>); }
 function CheckIcon({ className = "h-4 w-4" }: { className?: string }) { return (<svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m5 12 5 5 9-11"/></svg>); }
-function PinIcon({ className = "h-4 w-4" }: { className?: string }) { return (<svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>); }
 function NavIcon({ className = "h-4 w-4" }: { className?: string }) { return (<svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>); }

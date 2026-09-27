@@ -23,8 +23,12 @@ export function SiteNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-        <Link href="/" className="select-none text-xl font-extrabold tracking-tight text-slate-900">
-          Shqipëri<span className="text-slate-400">.org</span>
+        <Link href="/" className="flex select-none items-center gap-2" aria-label="Shqipëri.org">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/Albanian_eagle.png" alt="" className="h-7 w-7 object-contain" />
+          <span className="text-xl font-extrabold tracking-tight text-slate-900">
+            Shqipëri.<span className="text-flag-red">org</span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-0.5 lg:flex">

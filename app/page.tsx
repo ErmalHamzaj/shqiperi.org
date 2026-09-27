@@ -53,31 +53,50 @@ export default function HomePage() {
           <HeroSlider images={HERO_IMAGES} />
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-slate-900/75 via-slate-900/45 to-slate-900/10" />
           <div className="absolute inset-x-0 bottom-0 -z-10 h-2/3 bg-gradient-to-t from-slate-900/85 via-slate-900/25 to-transparent" />
-          <div className="mx-auto w-full max-w-7xl px-4 pt-12 sm:px-6 sm:pt-16 lg:pt-20">
+          {/* soft colour depth */}
+          <div className="pointer-events-none absolute -left-24 top-4 -z-10 h-72 w-72 rounded-full bg-blue-500/25 blur-3xl" />
+          <div className="pointer-events-none absolute right-[-6rem] top-1/4 -z-10 h-80 w-80 rounded-full bg-cyan-400/15 blur-3xl" />
+          <div className="mx-auto w-full max-w-7xl px-4 pt-11 sm:px-6 sm:pt-14 lg:pt-16">
             <div className="max-w-xl text-white">
-              <h1 className="text-3xl font-extrabold leading-none tracking-tight sm:text-4xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white shadow-sm backdrop-blur-md">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                {h.finalCtaLine}
+              </span>
+
+              <h1 className="mt-5 bg-gradient-to-b from-white to-white/70 bg-clip-text text-4xl font-extrabold leading-none tracking-tight text-transparent sm:text-5xl">
                 SHQIPËRIA
               </h1>
               <p className="mt-3 text-xl font-semibold sm:text-2xl">{h.heroTitle}</p>
-              <p className="mt-1 text-base text-white/85 sm:text-lg">{h.heroSub}</p>
+              <p className="mt-1 text-base text-white/80 sm:text-lg">{h.heroSub}</p>
 
-              <div className="mt-5">
+              <div className="mt-6">
                 <HeroSearch placeholder={h.heroSearchPlaceholder} label={tr.search} />
               </div>
 
               <div className="mt-4 flex flex-wrap gap-3">
                 <Link
                   href="#explore"
-                  className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+                  className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-900/30 transition-colors hover:bg-blue-700"
                 >
                   {h.ctaExplore} <span aria-hidden="true">→</span>
                 </Link>
                 <Link
                   href="#ask"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/20"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/20"
                 >
                   {h.nav.ask} <SparkleIcon className="h-4 w-4" />
                 </Link>
+              </div>
+
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-white/75">
+                <HeroStat n="10" label={h.nav.destinations} />
+                <span className="h-4 w-px bg-white/25" />
+                <span className="text-xs font-semibold tracking-[0.15em] text-white/70">
+                  SHQIP · EN · TR · IT · AR
+                </span>
               </div>
             </div>
           </div>
@@ -136,26 +155,42 @@ export default function HomePage() {
 
         {/* ============ ALBANIA RIGHT NOW ============ */}
         <Section>
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
-            <div className="mb-5 flex items-end justify-between gap-4">
+          <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-slate-900 via-slate-900 to-brand-900 p-6 shadow-xl ring-1 ring-white/10 sm:p-8">
+            <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" />
+
+            <div className="relative mb-6 flex flex-wrap items-end justify-between gap-4">
               <div>
-                <h2 className="text-xl font-extrabold uppercase tracking-wide text-slate-900">
-                  {h.nowTitle}
-                </h2>
-                <p className="mt-1 text-sm text-slate-500">{h.liveInfo}</p>
+                <div className="flex items-center gap-2.5">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-red-300 ring-1 ring-inset ring-red-500/30">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red-400" />
+                    </span>
+                    LIVE
+                  </span>
+                  <h2 className="text-xl font-extrabold tracking-tight text-white sm:text-2xl">
+                    {h.nowTitle}
+                  </h2>
+                </div>
+                <p className="mt-1 text-sm text-white/55">{h.liveInfo}</p>
               </div>
-              <Link href="/search" className="shrink-0 text-sm font-semibold text-blue-600 hover:text-blue-700">
+              <Link
+                href="/search"
+                className="shrink-0 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-inset ring-white/15 backdrop-blur transition-colors hover:bg-white/20"
+              >
                 {h.viewMoreData} →
               </Link>
             </div>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
-              <Tile icon="☀️" main="26°C" top="Tirana" sub={h.nowTiles.weatherSub} />
-              <Tile icon="💱" main="103.5" top={h.nowTiles.eur} sub="+0.2%" subGreen />
-              <Tile icon="⛽" main="€1.82" top={h.nowTiles.fuel} />
-              <Tile icon="✈️" main="24" top={h.nowTiles.flights} sub={h.nowTiles.flightsSub} />
-              <Tile icon="🚗" main={h.nowTiles.trafficVal} top={h.nowTiles.traffic} sub="Tirana" />
-              <Tile icon="📅" main="12" top={h.nowTiles.events} sub={h.nowTiles.eventsSub} />
-              <Tile icon="📰" main="5" top={h.nowTiles.news} sub={h.nowTiles.newsSub} />
+
+            <div className="relative grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-7">
+              <LiveTile icon="☀️" label="Tirana" value="26°C" sub={h.nowTiles.weatherSub} />
+              <LiveTile icon="💶" label={h.nowTiles.eur} value="103.5" sub="▲ 0.2%" up />
+              <LiveTile icon="⛽" label={h.nowTiles.fuel} value="€1.82" />
+              <LiveTile icon="✈️" label={h.nowTiles.flights} value="24" sub={h.nowTiles.flightsSub} />
+              <LiveTile icon="🚦" label={h.nowTiles.traffic} value={h.nowTiles.trafficVal} sub="Tirana" />
+              <LiveTile icon="📅" label={h.nowTiles.events} value="12" sub={h.nowTiles.eventsSub} />
+              <LiveTile icon="📰" label={h.nowTiles.news} value="5" sub={h.nowTiles.newsSub} />
             </div>
           </div>
         </Section>
@@ -356,28 +391,43 @@ function AskChip({ text }: { text: string }) {
   );
 }
 
-function Tile({
+function LiveTile({
   icon,
-  main,
-  top,
+  label,
+  value,
   sub,
-  subGreen,
+  up,
 }: {
   icon: string;
-  main: string;
-  top: string;
+  label: string;
+  value: string;
   sub?: string;
-  subGreen?: boolean;
+  up?: boolean;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-white px-3.5 py-3">
-      <span className="text-xl leading-none" aria-hidden="true">{icon}</span>
-      <div className="min-w-0">
-        <p className="truncate text-xs font-medium text-slate-500">{top}</p>
-        <p className="text-lg font-extrabold leading-tight text-slate-900">{main}</p>
-        {sub && <p className={`truncate text-xs ${subGreen ? "text-emerald-600" : "text-slate-400"}`}>{sub}</p>}
+    <div className="rounded-2xl bg-white/[0.05] p-3.5 ring-1 ring-inset ring-white/10 transition-colors hover:bg-white/[0.09]">
+      <div className="flex items-center gap-2">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10 text-base leading-none" aria-hidden="true">
+          {icon}
+        </span>
+        <p className="truncate text-[11px] font-medium text-white/55">{label}</p>
       </div>
+      <p className="mt-2.5 text-xl font-extrabold leading-none text-white">{value}</p>
+      {sub && (
+        <p className={`mt-1 truncate text-[11px] font-medium ${up ? "text-emerald-400" : "text-white/45"}`}>
+          {sub}
+        </p>
+      )}
     </div>
+  );
+}
+
+function HeroStat({ n, label }: { n: string; label: string }) {
+  return (
+    <span className="inline-flex items-baseline gap-1.5">
+      <span className="text-lg font-extrabold text-white">{n}</span>
+      <span className="text-xs font-medium tracking-wide text-white/70">{label}</span>
+    </span>
   );
 }
 

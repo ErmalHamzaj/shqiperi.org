@@ -23,7 +23,29 @@ export const RTL_LANGS: Lang[] = ["ar"];
 export const isRtl = (lang: Lang) => RTL_LANGS.includes(lang);
 
 export type HomeDict = {
-  nav: { visit: string; live: string; invest: string; discover: string; ask: string };
+  nav: { visit: string; live: string; invest: string; discover: string; destinations: string; services: string; ask: string };
+  heroSearchPlaceholder: string;
+  liveInfo: string;
+  viewAll: string;
+  viewMoreData: string;
+  viewAllDestinations: string;
+  exploreDesc: string;
+  askKicker: string;
+  askHeading: string;
+  askDesc: string;
+  askChips: string[];
+  askPromptPlaceholder: string;
+  askCardTitle: string;
+  askCardItems: string[];
+  popularTitle: string;
+  popularDesc: string;
+  popular: { label: string; desc: string }[];
+  mapTitle: string;
+  mapDesc: string;
+  mapButton: string;
+  mapLegend: string[];
+  destTags: string[];
+  nowTiles: { eur: string; fuel: string; flights: string; flightsSub: string; traffic: string; trafficVal: string; events: string; eventsSub: string; news: string; newsSub: string; weatherSub: string };
   heroTitle: string;
   heroSub: string;
   heroLede: string;
@@ -109,7 +131,36 @@ export type Dict = {
 export const dict: Record<Lang, Dict> = {
   sq: {
     home: {
-      nav: { visit: "Vizito", live: "Jeto", invest: "Investo", discover: "Zbulo", ask: "Pyet Shqipërinë" },
+      nav: { visit: "Vizito", live: "Jeto", invest: "Investo", discover: "Zbulo", destinations: "Destinacione", services: "Shërbime", ask: "Pyet Shqipërinë" },
+      heroSearchPlaceholder: "Pyet çdo gjë për Shqipërinë...",
+      liveInfo: "Informacion i drejtpërdrejtë për udhëtimin, qëndrimin ose biznesin tënd.",
+      viewAll: "Shiko të gjitha",
+      viewMoreData: "Shiko më shumë të dhëna",
+      viewAllDestinations: "Të gjitha destinacionet",
+      exploreDesc: "Zbulo destinacione mahnitëse, nga plazhet te malet, nga qytetet historike te qytetet e gjalla.",
+      askKicker: "PYET SHQIPËRINË",
+      askHeading: "Merr një plan të personalizuar për Shqipërinë.",
+      askDesc: "Na trego çfarë kërkon dhe merr një itinerar të posaçëm, rekomandime dhe këshilla vendase.",
+      askChips: ["Udhëtim 7-ditor", "Pushime familjare", "Blerje prone", "Hapje biznesi"],
+      askPromptPlaceholder: "Po vij për 7 ditë me familjen. Duam plazhe, ushqim të mirë dhe natyrë...",
+      askCardTitle: "Nga idetë te plane realë.",
+      askCardItems: ["Itinerare të personalizuara", "Rekomandime reale vendase", "Hotele, restorante, aktivitete", "Harta, kosto dhe këshilla praktike"],
+      popularTitle: "Të njohura tani",
+      popularDesc: "Mjetet, guidat dhe shërbimet më të dobishme për Shqipërinë.",
+      popular: [
+        { label: "Gjej një makinë", desc: "Krahaso dhe rezervo" },
+        { label: "Gjej akomodim", desc: "Hotele, apartamente, vila" },
+        { label: "Bli pronë", desc: "Listime dhe ekspertë vendas" },
+        { label: "Hap një biznes", desc: "Udhëzues hap pas hapi" },
+        { label: "Udhëzues qëndrimi", desc: "Kërkesat dhe procesi" },
+        { label: "Llogaritës i kostos", desc: "Planifiko buxhetin tënd" },
+      ],
+      mapTitle: "Eksploro Shqipërinë në hartë",
+      mapDesc: "Gjej destinacione, akomodim, restorante, aktivitete dhe shërbime.",
+      mapButton: "Hap hartën interaktive",
+      mapLegend: ["Hotele", "Restorante", "Për të bërë", "Shërbime", "Prona"],
+      destTags: ["Modern & i Gjallë", "Plazhe & Natyrë", "Male & Aventurë", "Histori & Kulturë", "Trashëgimi UNESCO", "Bregdet & Ishuj"],
+      nowTiles: { eur: "EUR / ALL", fuel: "Naftë (1L)", flights: "Fluturime", flightsSub: "Mbërritje sot", traffic: "Trafik", trafficVal: "Normal", events: "Evente", eventsSub: "Këtë javë", news: "Lajme", newsSub: "Përditësime", weatherSub: "Me diell" },
       heroTitle: "Pika jote e nisjes për Shqipërinë.",
       heroSub: "Udhëto. Jeto. Investo. Bëj biznes.",
       heroLede: "Nga planifikimi i udhëtimit te blerja e pronës, hapja e biznesit dhe jeta këtu, ne të ndihmojmë të vendosësh dhe të veprosh, falas.",
@@ -204,7 +255,36 @@ export const dict: Record<Lang, Dict> = {
   },
   en: {
     home: {
-      nav: { visit: "Visit", live: "Live", invest: "Invest", discover: "Discover", ask: "Ask Albania" },
+      nav: { visit: "Visit", live: "Live", invest: "Invest", discover: "Discover", destinations: "Destinations", services: "Services", ask: "Ask Albania" },
+      heroSearchPlaceholder: "Ask anything about Albania...",
+      liveInfo: "Live information for your trip, stay or business.",
+      viewAll: "View all",
+      viewMoreData: "View more live data",
+      viewAllDestinations: "View all destinations",
+      exploreDesc: "Discover amazing destinations, from beaches to mountains, historic towns to vibrant cities.",
+      askKicker: "ASK ALBANIA",
+      askHeading: "Get a personalized Albania plan.",
+      askDesc: "Tell us what you're looking for and get a custom itinerary, recommendations and local insights.",
+      askChips: ["A 7-day trip", "Family vacation", "Buying property", "Starting a business"],
+      askPromptPlaceholder: "I'm coming for 7 days with my family. We want beaches, good food and nature...",
+      askCardTitle: "From ideas to real plans.",
+      askCardItems: ["Custom itineraries", "Real local recommendations", "Hotels, restaurants, activities", "Maps, costs and practical tips"],
+      popularTitle: "Popular right now",
+      popularDesc: "The most useful tools, guides and services for Albania.",
+      popular: [
+        { label: "Find a car", desc: "Compare and book" },
+        { label: "Find accommodation", desc: "Hotels, apartments, villas" },
+        { label: "Buy property", desc: "Listings and local experts" },
+        { label: "Start a business", desc: "Step-by-step guide" },
+        { label: "Residency guide", desc: "Requirements and process" },
+        { label: "Trip cost calculator", desc: "Plan your budget" },
+      ],
+      mapTitle: "Explore Albania on the map",
+      mapDesc: "Find destinations, accommodation, restaurants, activities and services.",
+      mapButton: "Open interactive map",
+      mapLegend: ["Hotels", "Restaurants", "Things to do", "Services", "Properties"],
+      destTags: ["Modern & Vibrant", "Beaches & Nature", "Mountains & Adventure", "History & Culture", "UNESCO Heritage", "Seaside & Islands"],
+      nowTiles: { eur: "EUR / ALL", fuel: "Fuel (1L)", flights: "Flights", flightsSub: "Arrivals today", traffic: "Traffic", trafficVal: "Normal", events: "Events", eventsSub: "This week", news: "News", newsSub: "Key updates", weatherSub: "Sunny" },
       heroTitle: "Your starting point for Albania.",
       heroSub: "Travel. Live. Invest. Do business.",
       heroLede: "From planning a trip to buying property, starting a business and living here, we help you decide and act, free.",
@@ -299,7 +379,36 @@ export const dict: Record<Lang, Dict> = {
   },
   tr: {
     home: {
-      nav: { visit: "Ziyaret", live: "Yaşa", invest: "Yatırım", discover: "Keşfet", ask: "Arnavutluk'a Sor" },
+      nav: { visit: "Ziyaret", live: "Yaşa", invest: "Yatırım", discover: "Keşfet", destinations: "Destinasyonlar", services: "Hizmetler", ask: "Arnavutluk'a Sor" },
+      heroSearchPlaceholder: "Arnavutluk hakkında her şeyi sorun...",
+      liveInfo: "Geziniz, konaklamanız veya işiniz için canlı bilgiler.",
+      viewAll: "Tümünü gör",
+      viewMoreData: "Daha fazla canlı veri",
+      viewAllDestinations: "Tüm destinasyonlar",
+      exploreDesc: "Plajlardan dağlara, tarihi kasabalardan canlı şehirlere muhteşem destinasyonları keşfedin.",
+      askKicker: "ARNAVUTLUK'A SOR",
+      askHeading: "Kişiselleştirilmiş bir Arnavutluk planı alın.",
+      askDesc: "Ne aradığınızı bize söyleyin; özel bir program, öneriler ve yerel ipuçları alın.",
+      askChips: ["7 günlük gezi", "Aile tatili", "Mülk alma", "İş kurma"],
+      askPromptPlaceholder: "Ailemle 7 günlüğüne geliyorum. Plaj, güzel yemek ve doğa istiyoruz...",
+      askCardTitle: "Fikirlerden gerçek planlara.",
+      askCardItems: ["Özel programlar", "Gerçek yerel öneriler", "Oteller, restoranlar, aktiviteler", "Haritalar, maliyetler ve pratik ipuçları"],
+      popularTitle: "Şu an popüler",
+      popularDesc: "Arnavutluk için en faydalı araçlar, rehberler ve hizmetler.",
+      popular: [
+        { label: "Araç bul", desc: "Karşılaştır ve rezerve et" },
+        { label: "Konaklama bul", desc: "Oteller, daireler, villalar" },
+        { label: "Mülk al", desc: "İlanlar ve yerel uzmanlar" },
+        { label: "İş kur", desc: "Adım adım rehber" },
+        { label: "Oturum rehberi", desc: "Gereklilikler ve süreç" },
+        { label: "Gezi maliyet hesaplayıcı", desc: "Bütçenizi planlayın" },
+      ],
+      mapTitle: "Arnavutluk'u haritada keşfedin",
+      mapDesc: "Destinasyonları, konaklamayı, restoranları, aktiviteleri ve hizmetleri bulun.",
+      mapButton: "Etkileşimli haritayı aç",
+      mapLegend: ["Oteller", "Restoranlar", "Yapılacaklar", "Hizmetler", "Mülkler"],
+      destTags: ["Modern & Canlı", "Plajlar & Doğa", "Dağlar & Macera", "Tarih & Kültür", "UNESCO Mirası", "Sahil & Adalar"],
+      nowTiles: { eur: "EUR / ALL", fuel: "Yakıt (1L)", flights: "Uçuşlar", flightsSub: "Bugün varışlar", traffic: "Trafik", trafficVal: "Normal", events: "Etkinlikler", eventsSub: "Bu hafta", news: "Haberler", newsSub: "Öne çıkanlar", weatherSub: "Güneşli" },
       heroTitle: "Arnavutluk için başlangıç noktanız.",
       heroSub: "Gez. Yaşa. Yatırım yap. İş kur.",
       heroLede: "Gezi planlamaktan mülk almaya, iş kurmaya ve burada yaşamaya kadar, karar vermenize ve harekete geçmenize ücretsiz yardımcı oluyoruz.",
@@ -394,7 +503,36 @@ export const dict: Record<Lang, Dict> = {
   },
   it: {
     home: {
-      nav: { visit: "Visita", live: "Vivi", invest: "Investi", discover: "Scopri", ask: "Chiedi all'Albania" },
+      nav: { visit: "Visita", live: "Vivi", invest: "Investi", discover: "Scopri", destinations: "Destinazioni", services: "Servizi", ask: "Chiedi all'Albania" },
+      heroSearchPlaceholder: "Chiedi qualsiasi cosa sull'Albania...",
+      liveInfo: "Informazioni dal vivo per il tuo viaggio, soggiorno o impresa.",
+      viewAll: "Vedi tutto",
+      viewMoreData: "Più dati dal vivo",
+      viewAllDestinations: "Tutte le destinazioni",
+      exploreDesc: "Scopri destinazioni straordinarie, dalle spiagge alle montagne, dai borghi storici alle città vivaci.",
+      askKicker: "CHIEDI ALL'ALBANIA",
+      askHeading: "Ottieni un piano personalizzato per l'Albania.",
+      askDesc: "Dicci cosa cerchi e ottieni un itinerario su misura, consigli e informazioni locali.",
+      askChips: ["Un viaggio di 7 giorni", "Vacanza in famiglia", "Comprare casa", "Avviare un'impresa"],
+      askPromptPlaceholder: "Vengo per 7 giorni con la famiglia. Vogliamo spiagge, buon cibo e natura...",
+      askCardTitle: "Dalle idee a piani reali.",
+      askCardItems: ["Itinerari su misura", "Consigli locali reali", "Hotel, ristoranti, attività", "Mappe, costi e consigli pratici"],
+      popularTitle: "Popolari adesso",
+      popularDesc: "Gli strumenti, le guide e i servizi più utili per l'Albania.",
+      popular: [
+        { label: "Trova un'auto", desc: "Confronta e prenota" },
+        { label: "Trova alloggio", desc: "Hotel, appartamenti, ville" },
+        { label: "Compra casa", desc: "Annunci ed esperti locali" },
+        { label: "Avvia un'impresa", desc: "Guida passo per passo" },
+        { label: "Guida alla residenza", desc: "Requisiti e processo" },
+        { label: "Calcolatore costi viaggio", desc: "Pianifica il tuo budget" },
+      ],
+      mapTitle: "Esplora l'Albania sulla mappa",
+      mapDesc: "Trova destinazioni, alloggi, ristoranti, attività e servizi.",
+      mapButton: "Apri la mappa interattiva",
+      mapLegend: ["Hotel", "Ristoranti", "Cose da fare", "Servizi", "Immobili"],
+      destTags: ["Moderna & Vivace", "Spiagge & Natura", "Montagne & Avventura", "Storia & Cultura", "Patrimonio UNESCO", "Mare & Isole"],
+      nowTiles: { eur: "EUR / ALL", fuel: "Carburante (1L)", flights: "Voli", flightsSub: "Arrivi oggi", traffic: "Traffico", trafficVal: "Normale", events: "Eventi", eventsSub: "Questa settimana", news: "Notizie", newsSub: "Aggiornamenti", weatherSub: "Soleggiato" },
       heroTitle: "Il tuo punto di partenza per l'Albania.",
       heroSub: "Viaggia. Vivi. Investi. Fai impresa.",
       heroLede: "Dal pianificare un viaggio all'acquisto di una casa, all'avvio di un'attività e alla vita qui, ti aiutiamo a decidere e ad agire, gratis.",
@@ -489,7 +627,36 @@ export const dict: Record<Lang, Dict> = {
   },
   ar: {
     home: {
-      nav: { visit: "زُر", live: "عِش", invest: "استثمر", discover: "اكتشف", ask: "اسأل ألبانيا" },
+      nav: { visit: "زُر", live: "عِش", invest: "استثمر", discover: "اكتشف", destinations: "الوجهات", services: "الخدمات", ask: "اسأل ألبانيا" },
+      heroSearchPlaceholder: "اسأل أي شيء عن ألبانيا...",
+      liveInfo: "معلومات حيّة لرحلتك أو إقامتك أو عملك.",
+      viewAll: "عرض الكل",
+      viewMoreData: "مزيد من البيانات الحيّة",
+      viewAllDestinations: "كل الوجهات",
+      exploreDesc: "اكتشف وجهات مذهلة، من الشواطئ إلى الجبال، ومن البلدات التاريخية إلى المدن النابضة.",
+      askKicker: "اسأل ألبانيا",
+      askHeading: "احصل على خطة ألبانية مخصّصة.",
+      askDesc: "أخبرنا بما تبحث عنه واحصل على برنامج مخصّص وتوصيات ورؤى محلية.",
+      askChips: ["رحلة 7 أيام", "عطلة عائلية", "شراء عقار", "بدء عمل"],
+      askPromptPlaceholder: "سآتي لمدة 7 أيام مع عائلتي. نريد شواطئ وطعامًا جيدًا وطبيعة...",
+      askCardTitle: "من الأفكار إلى خطط حقيقية.",
+      askCardItems: ["برامج مخصّصة", "توصيات محلية حقيقية", "فنادق ومطاعم وأنشطة", "خرائط وتكاليف ونصائح عملية"],
+      popularTitle: "الأكثر رواجًا الآن",
+      popularDesc: "أكثر الأدوات والأدلة والخدمات فائدة في ألبانيا.",
+      popular: [
+        { label: "ابحث عن سيارة", desc: "قارن واحجز" },
+        { label: "ابحث عن إقامة", desc: "فنادق وشقق وفلل" },
+        { label: "اشترِ عقارًا", desc: "قوائم وخبراء محليون" },
+        { label: "ابدأ عملًا", desc: "دليل خطوة بخطوة" },
+        { label: "دليل الإقامة", desc: "المتطلبات والعملية" },
+        { label: "حاسبة تكلفة الرحلة", desc: "خطّط ميزانيتك" },
+      ],
+      mapTitle: "استكشف ألبانيا على الخريطة",
+      mapDesc: "ابحث عن الوجهات والإقامة والمطاعم والأنشطة والخدمات.",
+      mapButton: "افتح الخريطة التفاعلية",
+      mapLegend: ["فنادق", "مطاعم", "أنشطة", "خدمات", "عقارات"],
+      destTags: ["حديثة ونابضة", "شواطئ وطبيعة", "جبال ومغامرة", "تاريخ وثقافة", "تراث اليونسكو", "ساحل وجزر"],
+      nowTiles: { eur: "يورو / ليك", fuel: "وقود (1ل)", flights: "رحلات", flightsSub: "وصول اليوم", traffic: "حركة المرور", trafficVal: "عادية", events: "فعاليات", eventsSub: "هذا الأسبوع", news: "أخبار", newsSub: "أهم التحديثات", weatherSub: "مشمس" },
       heroTitle: "نقطة انطلاقك إلى ألبانيا.",
       heroSub: "سافر. عِش. استثمر. مارس الأعمال.",
       heroLede: "من تخطيط رحلة إلى شراء عقار وبدء عمل والعيش هنا، نساعدك على القرار والتنفيذ، مجانًا.",

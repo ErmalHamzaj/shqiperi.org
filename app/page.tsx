@@ -103,7 +103,7 @@ export default function HomePage() {
 
         {/* ============ WHAT ARE YOU HERE FOR (cards overlap hero ~20%) ============ */}
         <section className="relative z-20">
-          <div className="mx-auto -mt-12 max-w-7xl px-4 pb-12 sm:-mt-14 sm:px-6 sm:pb-14 lg:-mt-16">
+          <div className="mx-auto -mt-12 max-w-7xl px-4 pb-7 sm:-mt-14 sm:px-6 sm:pb-9 lg:-mt-16">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {PILLARS.map((p) => {
               const d = h.pillars[p.key];
@@ -276,7 +276,7 @@ export default function HomePage() {
         <section className="relative isolate overflow-hidden">
           <img src={`${IMG}/map.jpg`} alt="Albania" className="absolute inset-0 -z-10 h-full w-full object-cover" />
           <div className="absolute inset-0 -z-10 bg-slate-900/45" />
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+          <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
               <div className="text-white">
                 <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">{h.mapTitle}</h2>
@@ -413,7 +413,7 @@ function LiveTile({
 function Section({ children, id }: { children: ReactNode; id?: string }) {
   return (
     <section id={id}>
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14">{children}</div>
+      <div className="mx-auto max-w-7xl px-4 py-7 sm:px-6 sm:py-9">{children}</div>
     </section>
   );
 }

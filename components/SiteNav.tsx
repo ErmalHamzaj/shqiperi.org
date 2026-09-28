@@ -560,13 +560,6 @@ export function SiteNav() {
             </svg>
           </Link>
           <LangToggle />
-          <Link
-            href="/search"
-            className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
-          >
-            <SparkleIcon className="h-4 w-4" />
-            <span className="hidden sm:inline">{nav.ask}</span>
-          </Link>
           <button
             type="button"
             onClick={() => setMobileOpen((v) => !v)}

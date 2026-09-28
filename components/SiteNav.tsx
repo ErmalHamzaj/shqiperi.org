@@ -495,7 +495,12 @@ export function SiteNav() {
   const { tr } = useLang();
   const nav = tr.home.nav;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSub, setMobileSub] = useState<NavKey | null>(null);
   const [openKey, setOpenKey] = useState<NavKey | null>(null);
+  const closeMobile = () => {
+    setMobileOpen(false);
+    setMobileSub(null);
+  };
   const label = (k: NavKey) => nav[k];
   const activeMenu = openKey ? MENUS[openKey] : undefined;
 
@@ -635,18 +640,67 @@ export function SiteNav() {
 
       {/* mobile menu */}
       {mobileOpen && (
-        <nav className="border-t border-slate-200 bg-white lg:hidden">
+        <nav className="max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-slate-200 bg-white lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col px-4 py-2 sm:px-6">
-            {NAV.map((l) => (
-              <Link
-                key={l.key}
-                href={l.href}
-                onClick={() => setMobileOpen(false)}
-                className="rounded-lg px-2 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-slate-900"
-              >
-                {label(l.key)}
-              </Link>
-            ))}
+            {NAV.map((l) => {
+              const menu = MENUS[l.key];
+              if (!menu) {
+                return (
+                  <Link
+                    key={l.key}
+                    href={l.href}
+                    onClick={closeMobile}
+                    className="border-b border-slate-100 px-2 py-3 text-sm font-semibold text-slate-900 last:border-0"
+                  >
+                    {label(l.key)}
+                  </Link>
+                );
+              }
+              const expanded = mobileSub === l.key;
+              return (
+                <div key={l.key} className="border-b border-slate-100 last:border-0">
+                  <button
+                    type="button"
+                    onClick={() => setMobileSub(expanded ? null : l.key)}
+                    aria-expanded={expanded}
+                    className="flex w-full items-center justify-between px-2 py-3 text-sm font-semibold text-slate-900"
+                  >
+                    {label(l.key)}
+                    <Caret open={expanded} />
+                  </button>
+                  {expanded && (
+                    <div className="pb-3">
+                      {menu.columns.map((col) => (
+                        <div key={col.title} className="mb-3">
+                          <p className="px-2 text-[11px] font-extrabold uppercase tracking-[0.12em] text-slate-500">
+                            {col.title}
+                          </p>
+                          <div className="mt-1 flex flex-col">
+                            {col.links.map(([text, href]) => (
+                              <Link
+                                key={text}
+                                href={href}
+                                onClick={closeMobile}
+                                className="rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-blue-600"
+                              >
+                                {text}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                      <Link
+                        href={menu.feature.href}
+                        onClick={closeMobile}
+                        className="mx-2 mt-1 block rounded-lg bg-blue-600 px-3 py-2.5 text-center text-sm font-semibold text-white"
+                      >
+                        {menu.feature.cta}
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </nav>
       )}

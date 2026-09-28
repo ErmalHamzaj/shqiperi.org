@@ -9,6 +9,8 @@ import { useLang } from "@/components/LanguageProvider";
 import { adsLink } from "@/lib/representative";
 
 const IMG = "/images/home";
+const MAP_EMBED =
+  "https://www.google.com/maps/d/u/0/embed?mid=1jJDh_Oa9BcL9Ox3dwX8XXdF_bTRh4HQi&ll=41.37969875463499%2C20.49664289392188&z=8";
 
 // Curated hero photos (imagesalbania/).
 const HERO_IMAGES = [
@@ -273,37 +275,44 @@ export default function HomePage() {
         </Section>
 
         {/* ============ EXPLORE ON THE MAP ============ */}
-        <section className="relative isolate overflow-hidden">
-          <img src={`${IMG}/map.jpg`} alt="Albania" className="absolute inset-0 -z-10 h-full w-full object-cover" />
-          <div className="absolute inset-0 -z-10 bg-slate-900/45" />
-          <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
-            <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2">
-              <div className="text-white">
-                <h2 className="text-2xl font-extrabold tracking-tight sm:text-3xl">{h.mapTitle}</h2>
-                <p className="mt-3 max-w-md text-white/85">{h.mapDesc}</p>
-                <Link
-                  href="/directory"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
-                >
-                  {h.mapButton} <span aria-hidden="true">→</span>
-                </Link>
+        <Section id="map">
+          <Head title={h.mapTitle} desc={h.mapDesc} action={h.mapButton} actionHref="/directory" />
+          <div className="grid gap-6 lg:grid-cols-3">
+            <div className="group relative overflow-hidden rounded-3xl bg-slate-100 shadow-xl ring-1 ring-slate-200 lg:col-span-2">
+              <iframe
+                title="Interactive map of Albania"
+                src={MAP_EMBED}
+                loading="lazy"
+                className="h-[440px] w-full border-0 sm:h-[540px]"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+              <span className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Live interactive map
+              </span>
+            </div>
+
+            <div className="flex flex-col gap-5 rounded-3xl border border-slate-200 bg-slate-50/70 p-6 sm:p-7">
+              <div>
+                <p className="text-sm font-bold text-slate-900">{tr.dirTitle}</p>
+                <ul className="mt-4 grid grid-cols-1 gap-3">
+                  {h.mapLegend.map((m, i) => (
+                    <li key={m} className="flex items-center gap-3 text-sm text-slate-600">
+                      <span className={`h-2.5 w-2.5 rounded-full ${["bg-blue-500", "bg-rose-500", "bg-emerald-500", "bg-violet-500", "bg-amber-500"][i]}`} />
+                      {m}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <div className="flex flex-wrap gap-3 lg:justify-end">
-                <div className="rounded-2xl bg-white/95 p-5 shadow-lg backdrop-blur">
-                  <p className="mb-3 text-sm font-bold text-slate-900">{tr.dirTitle}</p>
-                  <ul className="grid grid-cols-1 gap-2">
-                    {h.mapLegend.map((m, i) => (
-                      <li key={m} className="flex items-center gap-2 text-sm text-slate-600">
-                        <span className={`h-2.5 w-2.5 rounded-full ${["bg-blue-500", "bg-rose-500", "bg-emerald-500", "bg-violet-500", "bg-amber-500"][i]}`} />
-                        {m}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              <Link
+                href="/directory"
+                className="mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+              >
+                {h.mapButton} <span aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
-        </section>
+        </Section>
       </main>
 
       <SiteFooter />

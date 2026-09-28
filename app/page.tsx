@@ -279,14 +279,16 @@ export default function HomePage() {
           <Head title={h.mapTitle} desc={h.mapDesc} action={h.mapButton} actionHref="/directory" />
           <div className="grid gap-6 lg:grid-cols-3">
             <div className="group relative overflow-hidden rounded-3xl bg-slate-100 shadow-xl ring-1 ring-slate-200 lg:col-span-2">
-              <iframe
-                title="Interactive map of Albania"
-                src={MAP_EMBED}
-                loading="lazy"
-                className="h-[440px] w-full border-0 sm:h-[540px]"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
+              <div className="relative h-[440px] overflow-hidden sm:h-[540px]">
+                <iframe
+                  title="Interactive map of Albania"
+                  src={MAP_EMBED}
+                  loading="lazy"
+                  className="absolute inset-x-0 -top-[62px] h-[502px] w-full border-0 sm:h-[602px]"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
               <span className="pointer-events-none absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Live interactive map
               </span>
